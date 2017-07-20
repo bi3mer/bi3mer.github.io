@@ -1,0 +1,39 @@
+\begin{theindex}
+
+  \item UnBlockMeSolver \textit{(package)}, \hyperpage{2}
+    \subitem UnBlockMeSolver.Map \textit{(package)}, \hyperpage{3}
+      \subsubitem UnBlockMeSolver.Map.Map \textit{(module)}, 
+		\hyperpage{4--8}
+      \subsubitem UnBlockMeSolver.Map.MapReader \textit{(module)}, 
+		\hyperpage{9--10}
+      \subsubitem UnBlockMeSolver.Map.Move \textit{(module)}, 
+		\hyperpage{11--13}
+      \subsubitem UnBlockMeSolver.Map.Piece \textit{(module)}, 
+		\hyperpage{14--15}
+    \subitem UnBlockMeSolver.PathFinder \textit{(package)}, 
+		\hyperpage{16}
+      \subsubitem UnBlockMeSolver.PathFinder.AStar \textit{(module)}, 
+		\hyperpage{17--18}
+      \subsubitem UnBlockMeSolver.PathFinder.AStarNode \textit{(module)}, 
+		\hyperpage{19--20}
+      \subsubitem UnBlockMeSolver.PathFinder.bfs \textit{(module)}, 
+		\hyperpage{27--28}
+      \subsubitem UnBlockMeSolver.PathFinder.dfs \textit{(module)}, 
+		\hyperpage{29--30}
+      \subsubitem UnBlockMeSolver.PathFinder.Heuristics \textit{(module)}, 
+		\hyperpage{21}
+      \subsubitem UnBlockMeSolver.PathFinder.Node \textit{(module)}, 
+		\hyperpage{22--23}
+      \subsubitem UnBlockMeSolver.PathFinder.PathFinder \textit{(module)}, 
+		\hyperpage{24--25}
+      \subsubitem UnBlockMeSolver.PathFinder.Solver \textit{(module)}, 
+		\hyperpage{26}
+    \subitem UnBlockMeSolver.test \textit{(package)}, \hyperpage{31}
+      \subsubitem UnBlockMeSolver.test.files \textit{(module)}, 
+		\hyperpage{52}
+      \subsubitem UnBlockMeSolver.test.MapTests \textit{(package)}, 
+		\hyperpage{32}
+      \subsubitem UnBlockMeSolver.test.PathFinding \textit{(package)}, 
+		\hyperpage{43}
+
+\end{theindex}

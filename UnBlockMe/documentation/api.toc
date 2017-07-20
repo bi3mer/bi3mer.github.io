@@ -1,0 +1,132 @@
+\contentsline {section}{Contents}{1}{section*.1}
+\contentsline {section}{\numberline {1}Package UnBlockMeSolver}{5}{section.1}
+\contentsline {subsection}{\numberline {1.1}Modules}{5}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Variables}{5}{subsection.1.2}
+\contentsline {section}{\numberline {2}Package UnBlockMeSolver.Map}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Modules}{6}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Variables}{6}{subsection.2.2}
+\contentsline {section}{\numberline {3}Module UnBlockMeSolver.Map.Map}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Variables}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Class Map}{7}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Methods}{7}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Properties}{11}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Class Variables}{11}{subsubsection.3.2.3}
+\contentsline {section}{\numberline {4}Module UnBlockMeSolver.Map.MapReader}{12}{section.4}
+\contentsline {subsection}{\numberline {4.1}Variables}{12}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Class MapReader}{12}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Methods}{12}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Properties}{12}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}Class Variables}{13}{subsubsection.4.2.3}
+\contentsline {section}{\numberline {5}Module UnBlockMeSolver.Map.Move}{14}{section.5}
+\contentsline {subsection}{\numberline {5.1}Variables}{14}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Class Move}{14}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Methods}{14}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Properties}{16}{subsubsection.5.2.2}
+\contentsline {section}{\numberline {6}Module UnBlockMeSolver.Map.Piece}{17}{section.6}
+\contentsline {subsection}{\numberline {6.1}Variables}{17}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Class Piece}{17}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Methods}{17}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Properties}{18}{subsubsection.6.2.2}
+\contentsline {section}{\numberline {7}Package UnBlockMeSolver.PathFinder}{19}{section.7}
+\contentsline {subsection}{\numberline {7.1}Modules}{19}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Variables}{19}{subsection.7.2}
+\contentsline {section}{\numberline {8}Module UnBlockMeSolver.PathFinder.AStar}{20}{section.8}
+\contentsline {subsection}{\numberline {8.1}Variables}{20}{subsection.8.1}
+\contentsline {subsection}{\numberline {8.2}Class AStar}{20}{subsection.8.2}
+\contentsline {subsubsection}{\numberline {8.2.1}Methods}{20}{subsubsection.8.2.1}
+\contentsline {subsubsection}{\numberline {8.2.2}Properties}{21}{subsubsection.8.2.2}
+\contentsline {section}{\numberline {9}Module UnBlockMeSolver.PathFinder.AStarNode}{22}{section.9}
+\contentsline {subsection}{\numberline {9.1}Variables}{22}{subsection.9.1}
+\contentsline {subsection}{\numberline {9.2}Class AStarNode}{22}{subsection.9.2}
+\contentsline {subsubsection}{\numberline {9.2.1}Methods}{22}{subsubsection.9.2.1}
+\contentsline {subsubsection}{\numberline {9.2.2}Properties}{23}{subsubsection.9.2.2}
+\contentsline {subsubsection}{\numberline {9.2.3}Class Variables}{23}{subsubsection.9.2.3}
+\contentsline {section}{\numberline {10}Module UnBlockMeSolver.PathFinder.Heuristics}{24}{section.10}
+\contentsline {subsection}{\numberline {10.1}Functions}{24}{subsection.10.1}
+\contentsline {subsection}{\numberline {10.2}Variables}{24}{subsection.10.2}
+\contentsline {section}{\numberline {11}Module UnBlockMeSolver.PathFinder.Node}{25}{section.11}
+\contentsline {subsection}{\numberline {11.1}Variables}{25}{subsection.11.1}
+\contentsline {subsection}{\numberline {11.2}Class Node}{25}{subsection.11.2}
+\contentsline {subsubsection}{\numberline {11.2.1}Methods}{25}{subsubsection.11.2.1}
+\contentsline {subsubsection}{\numberline {11.2.2}Properties}{26}{subsubsection.11.2.2}
+\contentsline {section}{\numberline {12}Module UnBlockMeSolver.PathFinder.PathFinder}{27}{section.12}
+\contentsline {subsection}{\numberline {12.1}Variables}{27}{subsection.12.1}
+\contentsline {subsection}{\numberline {12.2}Class PathFinder}{27}{subsection.12.2}
+\contentsline {subsubsection}{\numberline {12.2.1}Methods}{27}{subsubsection.12.2.1}
+\contentsline {subsubsection}{\numberline {12.2.2}Properties}{27}{subsubsection.12.2.2}
+\contentsline {section}{\numberline {13}Module UnBlockMeSolver.PathFinder.Solver}{29}{section.13}
+\contentsline {subsection}{\numberline {13.1}Variables}{29}{subsection.13.1}
+\contentsline {section}{\numberline {14}Module UnBlockMeSolver.PathFinder.bfs}{30}{section.14}
+\contentsline {subsection}{\numberline {14.1}Variables}{30}{subsection.14.1}
+\contentsline {subsection}{\numberline {14.2}Class BFS}{30}{subsection.14.2}
+\contentsline {subsubsection}{\numberline {14.2.1}Methods}{30}{subsubsection.14.2.1}
+\contentsline {subsubsection}{\numberline {14.2.2}Properties}{31}{subsubsection.14.2.2}
+\contentsline {section}{\numberline {15}Module UnBlockMeSolver.PathFinder.dfs}{32}{section.15}
+\contentsline {subsection}{\numberline {15.1}Variables}{32}{subsection.15.1}
+\contentsline {subsection}{\numberline {15.2}Class DFS}{32}{subsection.15.2}
+\contentsline {subsubsection}{\numberline {15.2.1}Methods}{32}{subsubsection.15.2.1}
+\contentsline {subsubsection}{\numberline {15.2.2}Properties}{33}{subsubsection.15.2.2}
+\contentsline {section}{\numberline {16}Package UnBlockMeSolver.test}{34}{section.16}
+\contentsline {subsection}{\numberline {16.1}Modules}{34}{subsection.16.1}
+\contentsline {subsection}{\numberline {16.2}Variables}{34}{subsection.16.2}
+\contentsline {section}{\numberline {17}Package UnBlockMeSolver.test.MapTests}{35}{section.17}
+\contentsline {subsection}{\numberline {17.1}Modules}{35}{subsection.17.1}
+\contentsline {subsection}{\numberline {17.2}Variables}{35}{subsection.17.2}
+\contentsline {section}{\numberline {18}Module UnBlockMeSolver.test.MapTests.mapTests}{36}{section.18}
+\contentsline {subsection}{\numberline {18.1}Variables}{36}{subsection.18.1}
+\contentsline {subsection}{\numberline {18.2}Class FakeMapReader}{36}{subsection.18.2}
+\contentsline {subsubsection}{\numberline {18.2.1}Methods}{36}{subsubsection.18.2.1}
+\contentsline {subsubsection}{\numberline {18.2.2}Properties}{36}{subsubsection.18.2.2}
+\contentsline {subsection}{\numberline {18.3}Class TestMap}{37}{subsection.18.3}
+\contentsline {subsubsection}{\numberline {18.3.1}Methods}{37}{subsubsection.18.3.1}
+\contentsline {subsubsection}{\numberline {18.3.2}Properties}{38}{subsubsection.18.3.2}
+\contentsline {subsubsection}{\numberline {18.3.3}Class Variables}{39}{subsubsection.18.3.3}
+\contentsline {section}{\numberline {19}Module UnBlockMeSolver.test.MapTests.moveTests}{40}{section.19}
+\contentsline {subsection}{\numberline {19.1}Variables}{40}{subsection.19.1}
+\contentsline {subsection}{\numberline {19.2}Class TestMove}{40}{subsection.19.2}
+\contentsline {subsubsection}{\numberline {19.2.1}Methods}{40}{subsubsection.19.2.1}
+\contentsline {subsubsection}{\numberline {19.2.2}Properties}{41}{subsubsection.19.2.2}
+\contentsline {subsubsection}{\numberline {19.2.3}Class Variables}{41}{subsubsection.19.2.3}
+\contentsline {section}{\numberline {20}Module UnBlockMeSolver.test.MapTests.pieceTests}{42}{section.20}
+\contentsline {subsection}{\numberline {20.1}Variables}{42}{subsection.20.1}
+\contentsline {subsection}{\numberline {20.2}Class TestPiece}{42}{subsection.20.2}
+\contentsline {subsubsection}{\numberline {20.2.1}Methods}{42}{subsubsection.20.2.1}
+\contentsline {subsubsection}{\numberline {20.2.2}Properties}{43}{subsubsection.20.2.2}
+\contentsline {subsubsection}{\numberline {20.2.3}Class Variables}{43}{subsubsection.20.2.3}
+\contentsline {section}{\numberline {21}Module UnBlockMeSolver.test.MapTests.readerTests}{44}{section.21}
+\contentsline {subsection}{\numberline {21.1}Variables}{44}{subsection.21.1}
+\contentsline {subsection}{\numberline {21.2}Class TestReader}{44}{subsection.21.2}
+\contentsline {subsubsection}{\numberline {21.2.1}Methods}{44}{subsubsection.21.2.1}
+\contentsline {subsubsection}{\numberline {21.2.2}Properties}{45}{subsubsection.21.2.2}
+\contentsline {subsubsection}{\numberline {21.2.3}Class Variables}{45}{subsubsection.21.2.3}
+\contentsline {section}{\numberline {22}Package UnBlockMeSolver.test.PathFinding}{46}{section.22}
+\contentsline {subsection}{\numberline {22.1}Modules}{46}{subsection.22.1}
+\contentsline {subsection}{\numberline {22.2}Variables}{46}{subsection.22.2}
+\contentsline {section}{\numberline {23}Module UnBlockMeSolver.test.PathFinding.AStarNodeTests}{47}{section.23}
+\contentsline {subsection}{\numberline {23.1}Variables}{47}{subsection.23.1}
+\contentsline {subsection}{\numberline {23.2}Class NodeTest}{47}{subsection.23.2}
+\contentsline {subsubsection}{\numberline {23.2.1}Methods}{47}{subsubsection.23.2.1}
+\contentsline {subsubsection}{\numberline {23.2.2}Properties}{47}{subsubsection.23.2.2}
+\contentsline {subsubsection}{\numberline {23.2.3}Class Variables}{48}{subsubsection.23.2.3}
+\contentsline {section}{\numberline {24}Module UnBlockMeSolver.test.PathFinding.heuristicTests}{49}{section.24}
+\contentsline {subsection}{\numberline {24.1}Variables}{49}{subsection.24.1}
+\contentsline {subsection}{\numberline {24.2}Class TestMap}{49}{subsection.24.2}
+\contentsline {subsubsection}{\numberline {24.2.1}Methods}{49}{subsubsection.24.2.1}
+\contentsline {subsubsection}{\numberline {24.2.2}Properties}{50}{subsubsection.24.2.2}
+\contentsline {subsubsection}{\numberline {24.2.3}Class Variables}{50}{subsubsection.24.2.3}
+\contentsline {section}{\numberline {25}Module UnBlockMeSolver.test.PathFinding.nodeTests}{51}{section.25}
+\contentsline {subsection}{\numberline {25.1}Variables}{51}{subsection.25.1}
+\contentsline {subsection}{\numberline {25.2}Class NodeTest}{51}{subsection.25.2}
+\contentsline {subsubsection}{\numberline {25.2.1}Methods}{51}{subsubsection.25.2.1}
+\contentsline {subsubsection}{\numberline {25.2.2}Properties}{51}{subsubsection.25.2.2}
+\contentsline {subsubsection}{\numberline {25.2.3}Class Variables}{52}{subsubsection.25.2.3}
+\contentsline {section}{\numberline {26}Module UnBlockMeSolver.test.PathFinding.pathFindingTests}{53}{section.26}
+\contentsline {subsection}{\numberline {26.1}Functions}{53}{subsection.26.1}
+\contentsline {subsection}{\numberline {26.2}Variables}{53}{subsection.26.2}
+\contentsline {subsection}{\numberline {26.3}Class PathFindingTest}{53}{subsection.26.3}
+\contentsline {subsubsection}{\numberline {26.3.1}Methods}{53}{subsubsection.26.3.1}
+\contentsline {subsubsection}{\numberline {26.3.2}Properties}{54}{subsubsection.26.3.2}
+\contentsline {subsubsection}{\numberline {26.3.3}Class Variables}{54}{subsubsection.26.3.3}
+\contentsline {section}{\numberline {27}Module UnBlockMeSolver.test.files}{55}{section.27}
+\contentsline {subsection}{\numberline {27.1}Variables}{55}{subsection.27.1}
+\contentsline {section}{Index}{56}{section*.2}

@@ -1,0 +1,1270 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2016.5.22)  20 JUL 2017 18:52
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**api.tex
+(./api.tex
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip43
+\f@ncyO@elh=\skip44
+\f@ncyO@erh=\skip45
+\f@ncyO@olh=\skip46
+\f@ncyO@orh=\skip47
+\f@ncyO@elf=\skip48
+\f@ncyO@erf=\skip49
+\f@ncyO@olf=\skip50
+\f@ncyO@orf=\skip51
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/boxedminipage/boxedminipage.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen103
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip52
+\LTright=\skip53
+\LTpre=\skip54
+\LTpost=\skip55
+\LTchunksize=\count87
+\LTcapwidth=\dimen104
+\LT@head=\box26
+\LT@firsthead=\box27
+\LT@foot=\box28
+\LT@lastfoot=\box29
+\LT@cols=\count88
+\LT@rows=\count89
+\c@LT@tables=\count90
+\c@LT@chunks=\count91
+\LT@p@ftn=\toks14
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+Package: tocbibind 2010/10/13 v1.5k extra ToC listings
+Package tocbibind Info: The document has section divisions on input line 50.
+
+
+Package tocbibind Note: Using section or other style headings.
+
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks15
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/preprint/fullpage.sty
+Package: fullpage 1999/02/23 1.1 (PWD)
+\FP@margin=\skip56
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: dvips.def on input line 144.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+))
+\BCL=\skip57
+Package color Info: Redefining color py@inputcolour on input line 35.
+\funcindent=\skip58
+\funcwidth=\skip59
+\varindent=\skip60
+\varnamewidth=\skip61
+\vardescrwidth=\skip62
+\varwidth=\skip63
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2015/03/17 v1.2c Input encoding file
+\inpenc@prehook=\toks16
+\inpenc@posthook=\toks17
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/utf8.def
+File: utf8.def 2016/02/28 v1.1s UTF-8 support for inputenc
+Now handling font encoding OML ...
+... no UTF-8 mapping file for font encoding OML
+Now handling font encoding T1 ...
+... processing UTF-8 mapping file for font encoding T1
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.dfu
+File: t1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AB (decimal 171)
+   defining Unicode char U+00AD (decimal 173)
+   defining Unicode char U+00BB (decimal 187)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C0 (decimal 192)
+   defining Unicode char U+00C1 (decimal 193)
+   defining Unicode char U+00C2 (decimal 194)
+   defining Unicode char U+00C3 (decimal 195)
+   defining Unicode char U+00C4 (decimal 196)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00C7 (decimal 199)
+   defining Unicode char U+00C8 (decimal 200)
+   defining Unicode char U+00C9 (decimal 201)
+   defining Unicode char U+00CA (decimal 202)
+   defining Unicode char U+00CB (decimal 203)
+   defining Unicode char U+00CC (decimal 204)
+   defining Unicode char U+00CD (decimal 205)
+   defining Unicode char U+00CE (decimal 206)
+   defining Unicode char U+00CF (decimal 207)
+   defining Unicode char U+00D0 (decimal 208)
+   defining Unicode char U+00D1 (decimal 209)
+   defining Unicode char U+00D2 (decimal 210)
+   defining Unicode char U+00D3 (decimal 211)
+   defining Unicode char U+00D4 (decimal 212)
+   defining Unicode char U+00D5 (decimal 213)
+   defining Unicode char U+00D6 (decimal 214)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00D9 (decimal 217)
+   defining Unicode char U+00DA (decimal 218)
+   defining Unicode char U+00DB (decimal 219)
+   defining Unicode char U+00DC (decimal 220)
+   defining Unicode char U+00DD (decimal 221)
+   defining Unicode char U+00DE (decimal 222)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E0 (decimal 224)
+   defining Unicode char U+00E1 (decimal 225)
+   defining Unicode char U+00E2 (decimal 226)
+   defining Unicode char U+00E3 (decimal 227)
+   defining Unicode char U+00E4 (decimal 228)
+   defining Unicode char U+00E5 (decimal 229)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00E7 (decimal 231)
+   defining Unicode char U+00E8 (decimal 232)
+   defining Unicode char U+00E9 (decimal 233)
+   defining Unicode char U+00EA (decimal 234)
+   defining Unicode char U+00EB (decimal 235)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F0 (decimal 240)
+   defining Unicode char U+00F1 (decimal 241)
+   defining Unicode char U+00F2 (decimal 242)
+   defining Unicode char U+00F3 (decimal 243)
+   defining Unicode char U+00F4 (decimal 244)
+   defining Unicode char U+00F5 (decimal 245)
+   defining Unicode char U+00F6 (decimal 246)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+00F9 (decimal 249)
+   defining Unicode char U+00FA (decimal 250)
+   defining Unicode char U+00FB (decimal 251)
+   defining Unicode char U+00FC (decimal 252)
+   defining Unicode char U+00FD (decimal 253)
+   defining Unicode char U+00FE (decimal 254)
+   defining Unicode char U+00FF (decimal 255)
+   defining Unicode char U+0100 (decimal 256)
+   defining Unicode char U+0101 (decimal 257)
+   defining Unicode char U+0102 (decimal 258)
+   defining Unicode char U+0103 (decimal 259)
+   defining Unicode char U+0104 (decimal 260)
+   defining Unicode char U+0105 (decimal 261)
+   defining Unicode char U+0106 (decimal 262)
+   defining Unicode char U+0107 (decimal 263)
+   defining Unicode char U+0108 (decimal 264)
+   defining Unicode char U+0109 (decimal 265)
+   defining Unicode char U+010A (decimal 266)
+   defining Unicode char U+010B (decimal 267)
+   defining Unicode char U+010C (decimal 268)
+   defining Unicode char U+010D (decimal 269)
+   defining Unicode char U+010E (decimal 270)
+   defining Unicode char U+010F (decimal 271)
+   defining Unicode char U+0110 (decimal 272)
+   defining Unicode char U+0111 (decimal 273)
+   defining Unicode char U+0112 (decimal 274)
+   defining Unicode char U+0113 (decimal 275)
+   defining Unicode char U+0114 (decimal 276)
+   defining Unicode char U+0115 (decimal 277)
+   defining Unicode char U+0116 (decimal 278)
+   defining Unicode char U+0117 (decimal 279)
+   defining Unicode char U+0118 (decimal 280)
+   defining Unicode char U+0119 (decimal 281)
+   defining Unicode char U+011A (decimal 282)
+   defining Unicode char U+011B (decimal 283)
+   defining Unicode char U+011C (decimal 284)
+   defining Unicode char U+011D (decimal 285)
+   defining Unicode char U+011E (decimal 286)
+   defining Unicode char U+011F (decimal 287)
+   defining Unicode char U+0120 (decimal 288)
+   defining Unicode char U+0121 (decimal 289)
+   defining Unicode char U+0122 (decimal 290)
+   defining Unicode char U+0123 (decimal 291)
+   defining Unicode char U+0124 (decimal 292)
+   defining Unicode char U+0125 (decimal 293)
+   defining Unicode char U+0128 (decimal 296)
+   defining Unicode char U+0129 (decimal 297)
+   defining Unicode char U+012A (decimal 298)
+   defining Unicode char U+012B (decimal 299)
+   defining Unicode char U+012C (decimal 300)
+   defining Unicode char U+012D (decimal 301)
+   defining Unicode char U+012E (decimal 302)
+   defining Unicode char U+012F (decimal 303)
+   defining Unicode char U+0130 (decimal 304)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0132 (decimal 306)
+   defining Unicode char U+0133 (decimal 307)
+   defining Unicode char U+0134 (decimal 308)
+   defining Unicode char U+0135 (decimal 309)
+   defining Unicode char U+0136 (decimal 310)
+   defining Unicode char U+0137 (decimal 311)
+   defining Unicode char U+0139 (decimal 313)
+   defining Unicode char U+013A (decimal 314)
+   defining Unicode char U+013B (decimal 315)
+   defining Unicode char U+013C (decimal 316)
+   defining Unicode char U+013D (decimal 317)
+   defining Unicode char U+013E (decimal 318)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0143 (decimal 323)
+   defining Unicode char U+0144 (decimal 324)
+   defining Unicode char U+0145 (decimal 325)
+   defining Unicode char U+0146 (decimal 326)
+   defining Unicode char U+0147 (decimal 327)
+   defining Unicode char U+0148 (decimal 328)
+   defining Unicode char U+014A (decimal 330)
+   defining Unicode char U+014B (decimal 331)
+   defining Unicode char U+014C (decimal 332)
+   defining Unicode char U+014D (decimal 333)
+   defining Unicode char U+014E (decimal 334)
+   defining Unicode char U+014F (decimal 335)
+   defining Unicode char U+0150 (decimal 336)
+   defining Unicode char U+0151 (decimal 337)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0154 (decimal 340)
+   defining Unicode char U+0155 (decimal 341)
+   defining Unicode char U+0156 (decimal 342)
+   defining Unicode char U+0157 (decimal 343)
+   defining Unicode char U+0158 (decimal 344)
+   defining Unicode char U+0159 (decimal 345)
+   defining Unicode char U+015A (decimal 346)
+   defining Unicode char U+015B (decimal 347)
+   defining Unicode char U+015C (decimal 348)
+   defining Unicode char U+015D (decimal 349)
+   defining Unicode char U+015E (decimal 350)
+   defining Unicode char U+015F (decimal 351)
+   defining Unicode char U+0160 (decimal 352)
+   defining Unicode char U+0161 (decimal 353)
+   defining Unicode char U+0162 (decimal 354)
+   defining Unicode char U+0163 (decimal 355)
+   defining Unicode char U+0164 (decimal 356)
+   defining Unicode char U+0165 (decimal 357)
+   defining Unicode char U+0168 (decimal 360)
+   defining Unicode char U+0169 (decimal 361)
+   defining Unicode char U+016A (decimal 362)
+   defining Unicode char U+016B (decimal 363)
+   defining Unicode char U+016C (decimal 364)
+   defining Unicode char U+016D (decimal 365)
+   defining Unicode char U+016E (decimal 366)
+   defining Unicode char U+016F (decimal 367)
+   defining Unicode char U+0170 (decimal 368)
+   defining Unicode char U+0171 (decimal 369)
+   defining Unicode char U+0172 (decimal 370)
+   defining Unicode char U+0173 (decimal 371)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0178 (decimal 376)
+   defining Unicode char U+0179 (decimal 377)
+   defining Unicode char U+017A (decimal 378)
+   defining Unicode char U+017B (decimal 379)
+   defining Unicode char U+017C (decimal 380)
+   defining Unicode char U+017D (decimal 381)
+   defining Unicode char U+017E (decimal 382)
+   defining Unicode char U+01CD (decimal 461)
+   defining Unicode char U+01CE (decimal 462)
+   defining Unicode char U+01CF (decimal 463)
+   defining Unicode char U+01D0 (decimal 464)
+   defining Unicode char U+01D1 (decimal 465)
+   defining Unicode char U+01D2 (decimal 466)
+   defining Unicode char U+01D3 (decimal 467)
+   defining Unicode char U+01D4 (decimal 468)
+   defining Unicode char U+01E2 (decimal 482)
+   defining Unicode char U+01E3 (decimal 483)
+   defining Unicode char U+01E6 (decimal 486)
+   defining Unicode char U+01E7 (decimal 487)
+   defining Unicode char U+01E8 (decimal 488)
+   defining Unicode char U+01E9 (decimal 489)
+   defining Unicode char U+01EA (decimal 490)
+   defining Unicode char U+01EB (decimal 491)
+   defining Unicode char U+01F0 (decimal 496)
+   defining Unicode char U+01F4 (decimal 500)
+   defining Unicode char U+01F5 (decimal 501)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
+   defining Unicode char U+1E02 (decimal 7682)
+   defining Unicode char U+1E03 (decimal 7683)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2010 (decimal 8208)
+   defining Unicode char U+2011 (decimal 8209)
+   defining Unicode char U+2012 (decimal 8210)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2015 (decimal 8213)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201A (decimal 8218)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+   defining Unicode char U+201E (decimal 8222)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+2039 (decimal 8249)
+   defining Unicode char U+203A (decimal 8250)
+   defining Unicode char U+2423 (decimal 9251)
+)
+Now handling font encoding OT1 ...
+... processing UTF-8 mapping file for font encoding OT1
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ot1enc.dfu
+File: ot1enc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
+   defining Unicode char U+00A0 (decimal 160)
+   defining Unicode char U+00A1 (decimal 161)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00AD (decimal 173)
+   defining Unicode char U+00B8 (decimal 184)
+   defining Unicode char U+00BF (decimal 191)
+   defining Unicode char U+00C5 (decimal 197)
+   defining Unicode char U+00C6 (decimal 198)
+   defining Unicode char U+00D8 (decimal 216)
+   defining Unicode char U+00DF (decimal 223)
+   defining Unicode char U+00E6 (decimal 230)
+   defining Unicode char U+00EC (decimal 236)
+   defining Unicode char U+00ED (decimal 237)
+   defining Unicode char U+00EE (decimal 238)
+   defining Unicode char U+00EF (decimal 239)
+   defining Unicode char U+00F8 (decimal 248)
+   defining Unicode char U+0131 (decimal 305)
+   defining Unicode char U+0141 (decimal 321)
+   defining Unicode char U+0142 (decimal 322)
+   defining Unicode char U+0152 (decimal 338)
+   defining Unicode char U+0153 (decimal 339)
+   defining Unicode char U+0174 (decimal 372)
+   defining Unicode char U+0175 (decimal 373)
+   defining Unicode char U+0176 (decimal 374)
+   defining Unicode char U+0177 (decimal 375)
+   defining Unicode char U+0218 (decimal 536)
+   defining Unicode char U+0219 (decimal 537)
+   defining Unicode char U+021A (decimal 538)
+   defining Unicode char U+021B (decimal 539)
+   defining Unicode char U+2013 (decimal 8211)
+   defining Unicode char U+2014 (decimal 8212)
+   defining Unicode char U+2018 (decimal 8216)
+   defining Unicode char U+2019 (decimal 8217)
+   defining Unicode char U+201C (decimal 8220)
+   defining Unicode char U+201D (decimal 8221)
+)
+Now handling font encoding OMS ...
+... processing UTF-8 mapping file for font encoding OMS
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omsenc.dfu
+File: omsenc.dfu 2016/02/28 v1.1s UTF-8 support for inputenc
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+)
+Now handling font encoding OMX ...
+... no UTF-8 mapping file for font encoding OMX
+Now handling font encoding U ...
+... no UTF-8 mapping file for font encoding U
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+02C6 (decimal 710)
+   defining Unicode char U+02DC (decimal 732)
+   defining Unicode char U+200C (decimal 8204)
+   defining Unicode char U+2026 (decimal 8230)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2423 (decimal 9251)
+))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2016/05/05 v6.83n Hypertext links for LaTeX
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
+)
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2016/05/16 v1.17 At begin shipout hook (HO)
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen105
+\Hy@linkcounter=\count92
+\Hy@pagecounter=\count93
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2016/05/05 v6.83n Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count94
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 4322.
+Package hyperref Info: Option `bookmarksopen' set `false' on input line 4322.
+Package hyperref Info: Option `colorlinks' set `true' on input line 4322.
+
+
+Package hyperref Warning: Option `pagecolor' is not available anymore.
+
+Package hyperref Info: Hyper figures OFF on input line 4446.
+Package hyperref Info: Link nesting OFF on input line 4451.
+Package hyperref Info: Hyper index ON on input line 4454.
+Package hyperref Info: Plain pages OFF on input line 4461.
+Package hyperref Info: Backreferencing ON on input line 4464.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4691.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/backref.sty
+Package: backref 2012/07/25 v1.38 Bibliographical back referencing
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+))
+\c@Hy@tempcnt=\count95
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5044.
+\XeTeXLinkMargin=\dimen106
+\Fld@menulength=\count96
+\Field@Width=\dimen107
+\Fld@charsize=\dimen108
+Package hyperref Info: Hyper figures OFF on input line 6298.
+Package hyperref Info: Link nesting OFF on input line 6303.
+Package hyperref Info: Hyper index ON on input line 6306.
+Package hyperref Info: backreferencing ON on input line 6311.
+Package hyperref Info: Link coloring ON on input line 6316.
+Package hyperref Info: Link coloring with OCG OFF on input line 6323.
+Package hyperref Info: PDF/A mode OFF on input line 6328.
+LaTeX Info: Redefining \ref on input line 6368.
+LaTeX Info: Redefining \pageref on input line 6372.
+\Hy@abspage=\count97
+\c@Item=\count98
+\c@Hfootnote=\count99
+)
+
+Package hyperref Message: Driver: hdvips.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hdvips.def
+File: hdvips.def 2016/05/05 v6.83n Hyperref driver for dvips
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/pdfmark.def
+File: pdfmark.def 2016/05/05 v6.83n Hyperref definitions for pdfmark specials
+\pdf@docset=\toks19
+\pdf@box=\box30
+\pdf@toks=\toks20
+\pdf@defaulttoks=\toks21
+\HyField@AnnotCount=\count100
+\Fld@listcount=\count101
+\c@bookmark@seq@number=\count102
+\Hy@SectionHShift=\skip64
+))
+\@indexfile=\write3
+\openout3 = `api.idx'.
+
+
+Writing index file api.idx
+(./api.aux (./UnBlockMeSolver-module.aux) (./UnBlockMeSolver.Map-module.aux)
+(./UnBlockMeSolver.Map.Map-module.aux)
+(./UnBlockMeSolver.Map.MapReader-module.aux)
+(./UnBlockMeSolver.Map.Move-module.aux) (./UnBlockMeSolver.Map.Piece-module.aux
+) (./UnBlockMeSolver.PathFinder-module.aux)
+(./UnBlockMeSolver.PathFinder.AStar-module.aux)
+(./UnBlockMeSolver.PathFinder.AStarNode-module.aux)
+(./UnBlockMeSolver.PathFinder.Heuristics-module.aux)
+(./UnBlockMeSolver.PathFinder.Node-module.aux)
+(./UnBlockMeSolver.PathFinder.PathFinder-module.aux)
+(./UnBlockMeSolver.PathFinder.Solver-module.aux)
+(./UnBlockMeSolver.PathFinder.bfs-module.aux)
+(./UnBlockMeSolver.PathFinder.dfs-module.aux)
+(./UnBlockMeSolver.test-module.aux) (./UnBlockMeSolver.test.MapTests-module.aux
+) (./UnBlockMeSolver.test.MapTests.mapTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.moveTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.pieceTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.readerTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding-module.aux)
+(./UnBlockMeSolver.test.PathFinding.AStarNodeTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding.heuristicTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding.nodeTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding.pathFindingTests-module.aux)
+(./UnBlockMeSolver.test.files-module.aux))
+\openout1 = `api.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 80.
+LaTeX Font Info:    ... okay on input line 80.
+\AtBeginShipoutBox=\box31
+Package hyperref Info: Link coloring ON on input line 80.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count103
+)
+LaTeX Info: Redefining \ref on input line 80.
+LaTeX Info: Redefining \pageref on input line 80.
+LaTeX Info: Redefining \nameref on input line 80.
+
+(./api.out) (./api.out)
+\@outlinefile=\write4
+\openout4 = `api.out'.
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 95.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 95.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (./api.toc
+[1
+
+] [2] [3])
+\tf@toc=\write5
+\openout5 = `api.toc'.
+
+ [4]
+\openout2 = `UnBlockMeSolver-module.aux'.
+
+ (./UnBlockMeSolver-module.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+) [5
+
+]
+\openout2 = `UnBlockMeSolver.Map-module.aux'.
+
+
+(./UnBlockMeSolver.Map-module.tex) [6
+
+
+]
+\openout2 = `UnBlockMeSolver.Map.Map-module.aux'.
+
+ (./UnBlockMeSolver.Map.Map-module.tex
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 66.
+
+LaTeX Font Info:    No file OMScmtt.fd. on input line 66.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbackslash' on input line 66.
+
+LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 85.
+[7
+
+
+] [8] [9] [10]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 781--782
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [11]
+\openout2 = `UnBlockMeSolver.Map.MapReader-module.aux'.
+
+ (./UnBlockMeSolver.Map.MapReader-module.tex
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 146--147
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[12
+
+
+]) [13]
+\openout2 = `UnBlockMeSolver.Map.Move-module.aux'.
+
+ (./UnBlockMeSolver.Map.Move-module.tex [14
+
+
+] [15]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 339--340
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [16]
+\openout2 = `UnBlockMeSolver.Map.Piece-module.aux'.
+
+ (./UnBlockMeSolver.Map.Piece-module.tex [17
+
+
+]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 173--174
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [18]
+\openout2 = `UnBlockMeSolver.PathFinder-module.aux'.
+
+ (./UnBlockMeSolver.PathFinder-module.tex
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+) [19
+
+
+]
+\openout2 = `UnBlockMeSolver.PathFinder.AStar-module.aux'.
+
+
+(./UnBlockMeSolver.PathFinder.AStar-module.tex
+Overfull \hbox (97.68115pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+[20
+
+
+]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 198--199
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [21]
+\openout2 = `UnBlockMeSolver.PathFinder.AStarNode-module.aux'.
+
+ (./UnBlockMeSolver.PathFinder.AStarNode-module.tex
+Overfull \hbox (97.04291pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+[22
+
+
+]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 167--168
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [23]
+\openout2 = `UnBlockMeSolver.PathFinder.Heuristics-module.aux'.
+
+ (./UnBlockMeSolver.PathFinder.Heuristics-module.tex) [24
+
+
+]
+\openout2 = `UnBlockMeSolver.PathFinder.Node-module.aux'.
+
+
+(./UnBlockMeSolver.PathFinder.Node-module.tex
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 142--143
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[25
+
+
+]) [26]
+\openout2 = `UnBlockMeSolver.PathFinder.PathFinder-module.aux'.
+
+ (./UnBlockMeSolver.PathFinder.PathFinder-module.tex
+Overfull \hbox (48.41307pt too wide) in paragraph at lines 55--59
+[]\OT1/cmr/bx/n/12 Known Sub-classes: \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFin
+der.bfs.BFS, Un-BlockMe-Solver.PathFinder.dfs.DFS,
+ []
+
+
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 132--133
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[27
+
+
+]) [28]
+\openout2 = `UnBlockMeSolver.PathFinder.Solver-module.aux'.
+
+ (./UnBlockMeSolver.PathFinder.Solver-module.tex) [29
+
+
+]
+\openout2 = `UnBlockMeSolver.PathFinder.bfs-module.aux'.
+
+
+(./UnBlockMeSolver.PathFinder.bfs-module.tex
+Overfull \hbox (70.17282pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+[30
+
+
+]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 160--161
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [31]
+\openout2 = `UnBlockMeSolver.PathFinder.dfs-module.aux'.
+
+ (./UnBlockMeSolver.PathFinder.dfs-module.tex
+Overfull \hbox (70.92282pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+[32
+
+
+]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 160--161
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [33]
+\openout2 = `UnBlockMeSolver.test-module.aux'.
+
+ (./UnBlockMeSolver.test-module.tex) [34
+
+
+]
+\openout2 = `UnBlockMeSolver.test.MapTests-module.aux'.
+
+
+(./UnBlockMeSolver.test.MapTests-module.tex) [35
+
+
+]
+\openout2 = `UnBlockMeSolver.test.MapTests.mapTests-module.aux'.
+
+
+(./UnBlockMeSolver.test.MapTests.mapTests-module.tex
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 96--97
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[36
+
+
+] [37]
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 456--457
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 456--457
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 456--457
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 462--463
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[38]) [39]
+\openout2 = `UnBlockMeSolver.test.MapTests.moveTests-module.aux'.
+
+ (./UnBlockMeSolver.test.MapTests.moveTests-module.tex
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 179--180
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 179--180
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 179--180
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+[40
+
+
+]
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 185--186
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [41]
+\openout2 = `UnBlockMeSolver.test.MapTests.pieceTests-module.aux'.
+
+ (./UnBlockMeSolver.test.MapTests.pieceTests-module.tex
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 101--102
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 101--102
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 101--102
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 107--108
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[42
+
+
+]) [43]
+\openout2 = `UnBlockMeSolver.test.MapTests.readerTests-module.aux'.
+
+ (./UnBlockMeSolver.test.MapTests.readerTests-module.tex
+Overfull \hbox (15.12166pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 114--115
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 114--115
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 114--115
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 120--121
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[44
+
+
+]) [45]
+\openout2 = `UnBlockMeSolver.test.PathFinding-module.aux'.
+
+ (./UnBlockMeSolver.test.PathFinding-module.tex) [46
+
+
+]
+\openout2 = `UnBlockMeSolver.test.PathFinding.AStarNodeTests-module.aux'.
+
+
+(./UnBlockMeSolver.test.PathFinding.AStarNodeTests-module.tex
+Overfull \hbox (49.65222pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 88--89
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 88--89
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 88--89
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 94--95
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[47
+
+
+]) [48]
+\openout2 = `UnBlockMeSolver.test.PathFinding.heuristicTests-module.aux'.
+
+ (./UnBlockMeSolver.test.PathFinding.heuristicTests-module.tex
+Overfull \hbox (29.5675pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 101--102
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 101--102
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 101--102
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 107--108
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[49
+
+
+]) [50]
+\openout2 = `UnBlockMeSolver.test.PathFinding.nodeTests-module.aux'.
+
+ (./UnBlockMeSolver.test.PathFinding.nodeTests-module.tex
+Overfull \hbox (11.5758pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 88--89
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 88--89
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 88--89
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 94--95
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+[51
+
+
+]) [52]
+\openout2 = `UnBlockMeSolver.test.PathFinding.pathFindingTests-module.aux'.
+
+ (./UnBlockMeSolver.test.PathFinding.pathFindingTests-module.tex
+Overfull \hbox (97.39526pt too wide) in paragraph at lines 64--83
+[] 
+ []
+
+
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 160--161
+\OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
+ert-NotE-quals(), as-sert-NotIn(),
+ []
+
+
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 160--161
+\OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
+-tRaises(), as-ser-tRais-es-Reg-
+ []
+
+
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 160--161
+\OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
+ses(), id(), run(), setUp(),
+ []
+
+[53
+
+
+]
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 166--167
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [54]
+\openout2 = `UnBlockMeSolver.test.files-module.aux'.
+
+ (./UnBlockMeSolver.test.files-module.tex) [55
+
+
+] (./api.ind
+Overfull \hbox (10.32677pt too wide) in paragraph at lines 5--7
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.Map.Map \OT1/cmr/m/it/12 (mod-ule)\OT1/cm
+r/m/n/12 , [][][][][][]--
+ []
+
+
+Overfull \hbox (13.2042pt too wide) in paragraph at lines 7--9
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.Map.MapReader \OT1/cmr/m/it/12 (mod-
+ []
+
+
+Overfull \hbox (19.5708pt too wide) in paragraph at lines 15--17
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.AStar \OT1/cmr/m/it/12 (mod-
+ []
+
+
+Overfull \hbox (13.71892pt too wide) in paragraph at lines 17--19
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.AStarNode
+ []
+
+
+Overfull \hbox (3.97374pt too wide) in paragraph at lines 19--21
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.bfs \OT1/cmr/m/it/12 (mod-
+ []
+
+
+Overfull \hbox (3.97374pt too wide) in paragraph at lines 21--23
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.dfs \OT1/cmr/m/it/12 (mod-
+ []
+
+
+Overfull \hbox (7.32593pt too wide) in paragraph at lines 23--25
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.Heuristics
+ []
+
+
+Overfull \hbox (15.98056pt too wide) in paragraph at lines 25--27
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.Node \OT1/cmr/m/it/12 (mod-
+ []
+
+
+Overfull \hbox (15.02864pt too wide) in paragraph at lines 27--29
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.PathFinder
+ []
+
+
+Overfull \hbox (20.55412pt too wide) in paragraph at lines 29--31
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.Solver \OT1/cmr/m/it/12 (mod-
+ []
+
+
+Overfull \hbox (2.6324pt too wide) in paragraph at lines 32--34
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.test.files \OT1/cmr/m/it/12 (mod-ule)\OT1
+/cmr/m/n/12 , [][][][][][] 
+ []
+
+
+Overfull \hbox (0.73491pt too wide) in paragraph at lines 34--36
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.test.MapTests \OT1/cmr/m/it/12 (pack-
+ []
+
+
+Overfull \hbox (15.29172pt too wide) in paragraph at lines 36--38
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.test.PathFinding \OT1/cmr/m/it/12 (pack-
+ []
+
+[56
+
+
+
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 147.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 147.
+ (./api.aux (./UnBlockMeSolver-module.aux)
+(./UnBlockMeSolver.Map-module.aux) (./UnBlockMeSolver.Map.Map-module.aux)
+(./UnBlockMeSolver.Map.MapReader-module.aux)
+(./UnBlockMeSolver.Map.Move-module.aux) (./UnBlockMeSolver.Map.Piece-module.aux
+) (./UnBlockMeSolver.PathFinder-module.aux)
+(./UnBlockMeSolver.PathFinder.AStar-module.aux)
+(./UnBlockMeSolver.PathFinder.AStarNode-module.aux)
+(./UnBlockMeSolver.PathFinder.Heuristics-module.aux)
+(./UnBlockMeSolver.PathFinder.Node-module.aux)
+(./UnBlockMeSolver.PathFinder.PathFinder-module.aux)
+(./UnBlockMeSolver.PathFinder.Solver-module.aux)
+(./UnBlockMeSolver.PathFinder.bfs-module.aux)
+(./UnBlockMeSolver.PathFinder.dfs-module.aux)
+(./UnBlockMeSolver.test-module.aux) (./UnBlockMeSolver.test.MapTests-module.aux
+) (./UnBlockMeSolver.test.MapTests.mapTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.moveTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.pieceTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.readerTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding-module.aux)
+(./UnBlockMeSolver.test.PathFinding.AStarNodeTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding.heuristicTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding.nodeTests-module.aux)
+(./UnBlockMeSolver.test.PathFinding.pathFindingTests-module.aux)
+(./UnBlockMeSolver.test.files-module.aux))
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 147.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 147.
+
+
+Package rerunfilecheck Warning: File `api.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `api.out':
+(rerunfilecheck)             Before: 95EFAD767A7252F6F919431A93377F83;8955
+(rerunfilecheck)             After:  47FE456B2966D1896E665B3D49CB09CB;8998.
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 147.
+ ) 
+Here is how much of TeX's memory you used:
+ 6412 strings out of 493015
+ 111333 string characters out of 6133377
+ 209840 words of memory out of 5000000
+ 9683 multiletter control sequences out of 15000+600000
+ 13889 words of font info for 53 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 36i,12n,43p,1192b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on api.dvi (56 pages, 307188 bytes).
