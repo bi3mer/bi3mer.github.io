@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2016.5.22)  20 JUL 2017 18:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2016.5.22)  22 JUL 2017 10:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -743,7 +743,7 @@ Overfull \hbox (97.68115pt too wide) in paragraph at lines 44--63
 
 
 ]
-Overfull \hbox (59.00017pt too wide) in paragraph at lines 198--199
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 154--155
 [][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
 [][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
@@ -788,9 +788,9 @@ Overfull \hbox (59.00017pt too wide) in paragraph at lines 142--143
 \openout2 = `UnBlockMeSolver.PathFinder.PathFinder-module.aux'.
 
  (./UnBlockMeSolver.PathFinder.PathFinder-module.tex
-Overfull \hbox (48.41307pt too wide) in paragraph at lines 55--59
+Overfull \hbox (72.10448pt too wide) in paragraph at lines 55--59
 []\OT1/cmr/bx/n/12 Known Sub-classes: \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFin
-der.bfs.BFS, Un-BlockMe-Solver.PathFinder.dfs.DFS,
+der.AStar.AStar, Un-BlockMe-Solver.PathFinder.dfs.DFS,
  []
 
 
@@ -1108,37 +1108,37 @@ Overfull \hbox (97.39526pt too wide) in paragraph at lines 64--83
 [] 
  []
 
+[53
 
-Overfull \hbox (17.21136pt too wide) in paragraph at lines 160--161
+
+]
+Overfull \hbox (17.21136pt too wide) in paragraph at lines 204--205
 \OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
 ert-NotE-quals(), as-sert-NotIn(),
  []
 
 
-Overfull \hbox (2.6893pt too wide) in paragraph at lines 160--161
+Overfull \hbox (2.6893pt too wide) in paragraph at lines 204--205
 \OT1/cmr/m/n/12 as-sert-No-tIsIn-stance(), as-sert-NotReg-exp-Matches(), as-ser
 -tRaises(), as-ser-tRais-es-Reg-
  []
 
 
-Overfull \hbox (2.39763pt too wide) in paragraph at lines 160--161
+Overfull \hbox (2.39763pt too wide) in paragraph at lines 204--205
 \OT1/cmr/m/n/12 failUn-lessAlmostE-qual(), failUn-lessE-qual(), failUn-less-Rai
 ses(), id(), run(), setUp(),
  []
 
-[53
 
-
-]
-Overfull \hbox (3.2405pt too wide) in paragraph at lines 166--167
+Overfull \hbox (3.2405pt too wide) in paragraph at lines 210--211
 [][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-) [54]
+[54]) [55]
 \openout2 = `UnBlockMeSolver.test.files-module.aux'.
 
- (./UnBlockMeSolver.test.files-module.tex) [55
+ (./UnBlockMeSolver.test.files-module.tex) [56
 
 
 ] (./api.ind
@@ -1208,7 +1208,7 @@ Overfull \hbox (15.29172pt too wide) in paragraph at lines 36--38
 []| \OT1/cmr/m/n/12 Un-BlockMe-Solver.test.PathFinding \OT1/cmr/m/it/12 (pack-
  []
 
-[56
+[57
 
 
 
@@ -1260,11 +1260,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 147.
  ) 
 Here is how much of TeX's memory you used:
  6412 strings out of 493015
- 111333 string characters out of 6133377
- 209840 words of memory out of 5000000
+ 111360 string characters out of 6133377
+ 209842 words of memory out of 5000000
  9683 multiletter control sequences out of 15000+600000
  13889 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,12n,43p,1192b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,12n,43p,1192b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on api.dvi (56 pages, 307188 bytes).
+Output written on api.dvi (57 pages, 308208 bytes).
