@@ -56,77 +56,92 @@
 \BOOKMARK [3][-]{subsubsection.12.2.2}{Properties}{subsection.12.2}% 56
 \BOOKMARK [1][-]{section.13}{Module UnBlockMeSolver.PathFinder.Solver}{}% 57
 \BOOKMARK [2][-]{subsection.13.1}{Variables}{section.13}% 58
-\BOOKMARK [1][-]{section.14}{Module UnBlockMeSolver.PathFinder.bfs}{}% 59
+\BOOKMARK [1][-]{section.14}{Module UnBlockMeSolver.PathFinder.TreeSearch}{}% 59
 \BOOKMARK [2][-]{subsection.14.1}{Variables}{section.14}% 60
-\BOOKMARK [2][-]{subsection.14.2}{Class BFS}{section.14}% 61
+\BOOKMARK [2][-]{subsection.14.2}{Class TreeSearch}{section.14}% 61
 \BOOKMARK [3][-]{subsubsection.14.2.1}{Methods}{subsection.14.2}% 62
 \BOOKMARK [3][-]{subsubsection.14.2.2}{Properties}{subsection.14.2}% 63
-\BOOKMARK [1][-]{section.15}{Module UnBlockMeSolver.PathFinder.dfs}{}% 64
+\BOOKMARK [1][-]{section.15}{Module UnBlockMeSolver.PathFinder.bfs}{}% 64
 \BOOKMARK [2][-]{subsection.15.1}{Variables}{section.15}% 65
-\BOOKMARK [2][-]{subsection.15.2}{Class DFS}{section.15}% 66
+\BOOKMARK [2][-]{subsection.15.2}{Class BFS}{section.15}% 66
 \BOOKMARK [3][-]{subsubsection.15.2.1}{Methods}{subsection.15.2}% 67
 \BOOKMARK [3][-]{subsubsection.15.2.2}{Properties}{subsection.15.2}% 68
-\BOOKMARK [1][-]{section.16}{Package UnBlockMeSolver.test}{}% 69
-\BOOKMARK [2][-]{subsection.16.1}{Modules}{section.16}% 70
-\BOOKMARK [2][-]{subsection.16.2}{Variables}{section.16}% 71
-\BOOKMARK [1][-]{section.17}{Package UnBlockMeSolver.test.MapTests}{}% 72
-\BOOKMARK [2][-]{subsection.17.1}{Modules}{section.17}% 73
-\BOOKMARK [2][-]{subsection.17.2}{Variables}{section.17}% 74
-\BOOKMARK [1][-]{section.18}{Module UnBlockMeSolver.test.MapTests.mapTests}{}% 75
-\BOOKMARK [2][-]{subsection.18.1}{Variables}{section.18}% 76
-\BOOKMARK [2][-]{subsection.18.2}{Class FakeMapReader}{section.18}% 77
-\BOOKMARK [3][-]{subsubsection.18.2.1}{Methods}{subsection.18.2}% 78
-\BOOKMARK [3][-]{subsubsection.18.2.2}{Properties}{subsection.18.2}% 79
-\BOOKMARK [2][-]{subsection.18.3}{Class TestMap}{section.18}% 80
-\BOOKMARK [3][-]{subsubsection.18.3.1}{Methods}{subsection.18.3}% 81
-\BOOKMARK [3][-]{subsubsection.18.3.2}{Properties}{subsection.18.3}% 82
-\BOOKMARK [3][-]{subsubsection.18.3.3}{Class Variables}{subsection.18.3}% 83
-\BOOKMARK [1][-]{section.19}{Module UnBlockMeSolver.test.MapTests.moveTests}{}% 84
-\BOOKMARK [2][-]{subsection.19.1}{Variables}{section.19}% 85
-\BOOKMARK [2][-]{subsection.19.2}{Class TestMove}{section.19}% 86
-\BOOKMARK [3][-]{subsubsection.19.2.1}{Methods}{subsection.19.2}% 87
-\BOOKMARK [3][-]{subsubsection.19.2.2}{Properties}{subsection.19.2}% 88
-\BOOKMARK [3][-]{subsubsection.19.2.3}{Class Variables}{subsection.19.2}% 89
-\BOOKMARK [1][-]{section.20}{Module UnBlockMeSolver.test.MapTests.pieceTests}{}% 90
-\BOOKMARK [2][-]{subsection.20.1}{Variables}{section.20}% 91
-\BOOKMARK [2][-]{subsection.20.2}{Class TestPiece}{section.20}% 92
-\BOOKMARK [3][-]{subsubsection.20.2.1}{Methods}{subsection.20.2}% 93
-\BOOKMARK [3][-]{subsubsection.20.2.2}{Properties}{subsection.20.2}% 94
-\BOOKMARK [3][-]{subsubsection.20.2.3}{Class Variables}{subsection.20.2}% 95
-\BOOKMARK [1][-]{section.21}{Module UnBlockMeSolver.test.MapTests.readerTests}{}% 96
-\BOOKMARK [2][-]{subsection.21.1}{Variables}{section.21}% 97
-\BOOKMARK [2][-]{subsection.21.2}{Class TestReader}{section.21}% 98
-\BOOKMARK [3][-]{subsubsection.21.2.1}{Methods}{subsection.21.2}% 99
-\BOOKMARK [3][-]{subsubsection.21.2.2}{Properties}{subsection.21.2}% 100
-\BOOKMARK [3][-]{subsubsection.21.2.3}{Class Variables}{subsection.21.2}% 101
-\BOOKMARK [1][-]{section.22}{Package UnBlockMeSolver.test.PathFinding}{}% 102
-\BOOKMARK [2][-]{subsection.22.1}{Modules}{section.22}% 103
-\BOOKMARK [2][-]{subsection.22.2}{Variables}{section.22}% 104
-\BOOKMARK [1][-]{section.23}{Module UnBlockMeSolver.test.PathFinding.AStarNodeTests}{}% 105
-\BOOKMARK [2][-]{subsection.23.1}{Variables}{section.23}% 106
-\BOOKMARK [2][-]{subsection.23.2}{Class NodeTest}{section.23}% 107
-\BOOKMARK [3][-]{subsubsection.23.2.1}{Methods}{subsection.23.2}% 108
-\BOOKMARK [3][-]{subsubsection.23.2.2}{Properties}{subsection.23.2}% 109
-\BOOKMARK [3][-]{subsubsection.23.2.3}{Class Variables}{subsection.23.2}% 110
-\BOOKMARK [1][-]{section.24}{Module UnBlockMeSolver.test.PathFinding.heuristicTests}{}% 111
-\BOOKMARK [2][-]{subsection.24.1}{Variables}{section.24}% 112
-\BOOKMARK [2][-]{subsection.24.2}{Class TestMap}{section.24}% 113
-\BOOKMARK [3][-]{subsubsection.24.2.1}{Methods}{subsection.24.2}% 114
-\BOOKMARK [3][-]{subsubsection.24.2.2}{Properties}{subsection.24.2}% 115
-\BOOKMARK [3][-]{subsubsection.24.2.3}{Class Variables}{subsection.24.2}% 116
-\BOOKMARK [1][-]{section.25}{Module UnBlockMeSolver.test.PathFinding.nodeTests}{}% 117
-\BOOKMARK [2][-]{subsection.25.1}{Variables}{section.25}% 118
-\BOOKMARK [2][-]{subsection.25.2}{Class NodeTest}{section.25}% 119
-\BOOKMARK [3][-]{subsubsection.25.2.1}{Methods}{subsection.25.2}% 120
-\BOOKMARK [3][-]{subsubsection.25.2.2}{Properties}{subsection.25.2}% 121
-\BOOKMARK [3][-]{subsubsection.25.2.3}{Class Variables}{subsection.25.2}% 122
-\BOOKMARK [1][-]{section.26}{Module UnBlockMeSolver.test.PathFinding.pathFindingTests}{}% 123
-\BOOKMARK [2][-]{subsection.26.1}{Functions}{section.26}% 124
-\BOOKMARK [2][-]{subsection.26.2}{Variables}{section.26}% 125
-\BOOKMARK [2][-]{subsection.26.3}{Class PathFindingTest}{section.26}% 126
-\BOOKMARK [3][-]{subsubsection.26.3.1}{Methods}{subsection.26.3}% 127
-\BOOKMARK [3][-]{subsubsection.26.3.2}{Properties}{subsection.26.3}% 128
-\BOOKMARK [3][-]{subsubsection.26.3.3}{Class Variables}{subsection.26.3}% 129
-\BOOKMARK [1][-]{section.27}{Module UnBlockMeSolver.test.files}{}% 130
-\BOOKMARK [2][-]{subsection.27.1}{Variables}{section.27}% 131
-\BOOKMARK [1][-]{section*.2}{Index}{}% 132
+\BOOKMARK [1][-]{section.16}{Module UnBlockMeSolver.PathFinder.dfs}{}% 69
+\BOOKMARK [2][-]{subsection.16.1}{Variables}{section.16}% 70
+\BOOKMARK [2][-]{subsection.16.2}{Class DFS}{section.16}% 71
+\BOOKMARK [3][-]{subsubsection.16.2.1}{Methods}{subsection.16.2}% 72
+\BOOKMARK [3][-]{subsubsection.16.2.2}{Properties}{subsection.16.2}% 73
+\BOOKMARK [1][-]{section.17}{Package UnBlockMeSolver.Utility}{}% 74
+\BOOKMARK [2][-]{subsection.17.1}{Modules}{section.17}% 75
+\BOOKMARK [2][-]{subsection.17.2}{Variables}{section.17}% 76
+\BOOKMARK [1][-]{section.18}{Module UnBlockMeSolver.Utility.MovesTo}{}% 77
+\BOOKMARK [2][-]{subsection.18.1}{Variables}{section.18}% 78
+\BOOKMARK [1][-]{section.19}{Module UnBlockMeSolver.Utility.Stack}{}% 79
+\BOOKMARK [2][-]{subsection.19.1}{Variables}{section.19}% 80
+\BOOKMARK [2][-]{subsection.19.2}{Class Stack}{section.19}% 81
+\BOOKMARK [3][-]{subsubsection.19.2.1}{Methods}{subsection.19.2}% 82
+\BOOKMARK [3][-]{subsubsection.19.2.2}{Properties}{subsection.19.2}% 83
+\BOOKMARK [1][-]{section.20}{Package UnBlockMeSolver.test}{}% 84
+\BOOKMARK [2][-]{subsection.20.1}{Modules}{section.20}% 85
+\BOOKMARK [2][-]{subsection.20.2}{Variables}{section.20}% 86
+\BOOKMARK [1][-]{section.21}{Package UnBlockMeSolver.test.MapTests}{}% 87
+\BOOKMARK [2][-]{subsection.21.1}{Modules}{section.21}% 88
+\BOOKMARK [2][-]{subsection.21.2}{Variables}{section.21}% 89
+\BOOKMARK [1][-]{section.22}{Module UnBlockMeSolver.test.MapTests.mapTests}{}% 90
+\BOOKMARK [2][-]{subsection.22.1}{Variables}{section.22}% 91
+\BOOKMARK [2][-]{subsection.22.2}{Class FakeMapReader}{section.22}% 92
+\BOOKMARK [3][-]{subsubsection.22.2.1}{Methods}{subsection.22.2}% 93
+\BOOKMARK [3][-]{subsubsection.22.2.2}{Properties}{subsection.22.2}% 94
+\BOOKMARK [2][-]{subsection.22.3}{Class TestMap}{section.22}% 95
+\BOOKMARK [3][-]{subsubsection.22.3.1}{Methods}{subsection.22.3}% 96
+\BOOKMARK [3][-]{subsubsection.22.3.2}{Properties}{subsection.22.3}% 97
+\BOOKMARK [3][-]{subsubsection.22.3.3}{Class Variables}{subsection.22.3}% 98
+\BOOKMARK [1][-]{section.23}{Module UnBlockMeSolver.test.MapTests.moveTests}{}% 99
+\BOOKMARK [2][-]{subsection.23.1}{Variables}{section.23}% 100
+\BOOKMARK [2][-]{subsection.23.2}{Class TestMove}{section.23}% 101
+\BOOKMARK [3][-]{subsubsection.23.2.1}{Methods}{subsection.23.2}% 102
+\BOOKMARK [3][-]{subsubsection.23.2.2}{Properties}{subsection.23.2}% 103
+\BOOKMARK [3][-]{subsubsection.23.2.3}{Class Variables}{subsection.23.2}% 104
+\BOOKMARK [1][-]{section.24}{Module UnBlockMeSolver.test.MapTests.pieceTests}{}% 105
+\BOOKMARK [2][-]{subsection.24.1}{Variables}{section.24}% 106
+\BOOKMARK [2][-]{subsection.24.2}{Class TestPiece}{section.24}% 107
+\BOOKMARK [3][-]{subsubsection.24.2.1}{Methods}{subsection.24.2}% 108
+\BOOKMARK [3][-]{subsubsection.24.2.2}{Properties}{subsection.24.2}% 109
+\BOOKMARK [3][-]{subsubsection.24.2.3}{Class Variables}{subsection.24.2}% 110
+\BOOKMARK [1][-]{section.25}{Module UnBlockMeSolver.test.MapTests.readerTests}{}% 111
+\BOOKMARK [2][-]{subsection.25.1}{Variables}{section.25}% 112
+\BOOKMARK [2][-]{subsection.25.2}{Class TestReader}{section.25}% 113
+\BOOKMARK [3][-]{subsubsection.25.2.1}{Methods}{subsection.25.2}% 114
+\BOOKMARK [3][-]{subsubsection.25.2.2}{Properties}{subsection.25.2}% 115
+\BOOKMARK [3][-]{subsubsection.25.2.3}{Class Variables}{subsection.25.2}% 116
+\BOOKMARK [1][-]{section.26}{Package UnBlockMeSolver.test.PathFinding}{}% 117
+\BOOKMARK [2][-]{subsection.26.1}{Modules}{section.26}% 118
+\BOOKMARK [2][-]{subsection.26.2}{Variables}{section.26}% 119
+\BOOKMARK [1][-]{section.27}{Module UnBlockMeSolver.test.PathFinding.AStarNodeTests}{}% 120
+\BOOKMARK [2][-]{subsection.27.1}{Variables}{section.27}% 121
+\BOOKMARK [2][-]{subsection.27.2}{Class NodeTest}{section.27}% 122
+\BOOKMARK [3][-]{subsubsection.27.2.1}{Methods}{subsection.27.2}% 123
+\BOOKMARK [3][-]{subsubsection.27.2.2}{Properties}{subsection.27.2}% 124
+\BOOKMARK [3][-]{subsubsection.27.2.3}{Class Variables}{subsection.27.2}% 125
+\BOOKMARK [1][-]{section.28}{Module UnBlockMeSolver.test.PathFinding.heuristicTests}{}% 126
+\BOOKMARK [2][-]{subsection.28.1}{Variables}{section.28}% 127
+\BOOKMARK [2][-]{subsection.28.2}{Class TestMap}{section.28}% 128
+\BOOKMARK [3][-]{subsubsection.28.2.1}{Methods}{subsection.28.2}% 129
+\BOOKMARK [3][-]{subsubsection.28.2.2}{Properties}{subsection.28.2}% 130
+\BOOKMARK [3][-]{subsubsection.28.2.3}{Class Variables}{subsection.28.2}% 131
+\BOOKMARK [1][-]{section.29}{Module UnBlockMeSolver.test.PathFinding.nodeTests}{}% 132
+\BOOKMARK [2][-]{subsection.29.1}{Variables}{section.29}% 133
+\BOOKMARK [2][-]{subsection.29.2}{Class NodeTest}{section.29}% 134
+\BOOKMARK [3][-]{subsubsection.29.2.1}{Methods}{subsection.29.2}% 135
+\BOOKMARK [3][-]{subsubsection.29.2.2}{Properties}{subsection.29.2}% 136
+\BOOKMARK [3][-]{subsubsection.29.2.3}{Class Variables}{subsection.29.2}% 137
+\BOOKMARK [1][-]{section.30}{Module UnBlockMeSolver.test.PathFinding.pathFindingTests}{}% 138
+\BOOKMARK [2][-]{subsection.30.1}{Functions}{section.30}% 139
+\BOOKMARK [2][-]{subsection.30.2}{Variables}{section.30}% 140
+\BOOKMARK [2][-]{subsection.30.3}{Class PathFindingTest}{section.30}% 141
+\BOOKMARK [3][-]{subsubsection.30.3.1}{Methods}{subsection.30.3}% 142
+\BOOKMARK [3][-]{subsubsection.30.3.2}{Properties}{subsection.30.3}% 143
+\BOOKMARK [3][-]{subsubsection.30.3.3}{Class Variables}{subsection.30.3}% 144
+\BOOKMARK [1][-]{section.31}{Module UnBlockMeSolver.test.files}{}% 145
+\BOOKMARK [2][-]{subsection.31.1}{Variables}{section.31}% 146
+\BOOKMARK [1][-]{section*.2}{Index}{}% 147

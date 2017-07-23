@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2016.5.22)  22 JUL 2017 10:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2016.5.22)  23 JUL 2017 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -577,10 +577,14 @@ Writing index file api.idx
 (./UnBlockMeSolver.PathFinder.Node-module.aux)
 (./UnBlockMeSolver.PathFinder.PathFinder-module.aux)
 (./UnBlockMeSolver.PathFinder.Solver-module.aux)
+(./UnBlockMeSolver.PathFinder.TreeSearch-module.aux)
 (./UnBlockMeSolver.PathFinder.bfs-module.aux)
 (./UnBlockMeSolver.PathFinder.dfs-module.aux)
-(./UnBlockMeSolver.test-module.aux) (./UnBlockMeSolver.test.MapTests-module.aux
-) (./UnBlockMeSolver.test.MapTests.mapTests-module.aux)
+(./UnBlockMeSolver.Utility-module.aux)
+(./UnBlockMeSolver.Utility.MovesTo-module.aux)
+(./UnBlockMeSolver.Utility.Stack-module.aux) (./UnBlockMeSolver.test-module.aux
+) (./UnBlockMeSolver.test.MapTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.mapTests-module.aux)
 (./UnBlockMeSolver.test.MapTests.moveTests-module.aux)
 (./UnBlockMeSolver.test.MapTests.pieceTests-module.aux)
 (./UnBlockMeSolver.test.MapTests.readerTests-module.aux)
@@ -788,13 +792,13 @@ Overfull \hbox (59.00017pt too wide) in paragraph at lines 142--143
 \openout2 = `UnBlockMeSolver.PathFinder.PathFinder-module.aux'.
 
  (./UnBlockMeSolver.PathFinder.PathFinder-module.tex
-Overfull \hbox (72.10448pt too wide) in paragraph at lines 55--59
-[]\OT1/cmr/bx/n/12 Known Sub-classes: \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFin
-der.AStar.AStar, Un-BlockMe-Solver.PathFinder.dfs.DFS,
+Overfull \hbox (97.19197pt too wide) in paragraph at lines 55--60
+\OT1/cmr/m/n/12 Solver.PathFinder.AStar.AStar, Un-BlockMe-Solver.PathFinder.dfs
+.DFS, Un-BlockMe-Solver.PathFinder.bfs.BFS 
  []
 
 
-Overfull \hbox (59.00017pt too wide) in paragraph at lines 132--133
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 133--134
 [][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
 [][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
@@ -809,11 +813,11 @@ Overfull \hbox (59.00017pt too wide) in paragraph at lines 132--133
 
 
 ]
-\openout2 = `UnBlockMeSolver.PathFinder.bfs-module.aux'.
+\openout2 = `UnBlockMeSolver.PathFinder.TreeSearch-module.aux'.
 
 
-(./UnBlockMeSolver.PathFinder.bfs-module.tex
-Overfull \hbox (70.17282pt too wide) in paragraph at lines 44--63
+(./UnBlockMeSolver.PathFinder.TreeSearch-module.tex
+Overfull \hbox (157.55609pt too wide) in paragraph at lines 44--63
 [] 
  []
 
@@ -821,16 +825,16 @@ Overfull \hbox (70.17282pt too wide) in paragraph at lines 44--63
 
 
 ]
-Overfull \hbox (59.00017pt too wide) in paragraph at lines 160--161
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 204--205
 [][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
 [][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
 ) [31]
-\openout2 = `UnBlockMeSolver.PathFinder.dfs-module.aux'.
+\openout2 = `UnBlockMeSolver.PathFinder.bfs-module.aux'.
 
- (./UnBlockMeSolver.PathFinder.dfs-module.tex
-Overfull \hbox (70.92282pt too wide) in paragraph at lines 44--63
+ (./UnBlockMeSolver.PathFinder.bfs-module.tex
+Overfull \hbox (70.17282pt too wide) in paragraph at lines 44--63
 [] 
  []
 
@@ -844,16 +848,59 @@ Overfull \hbox (59.00017pt too wide) in paragraph at lines 160--161
  []
 
 ) [33]
+\openout2 = `UnBlockMeSolver.PathFinder.dfs-module.aux'.
+
+ (./UnBlockMeSolver.PathFinder.dfs-module.tex
+Overfull \hbox (70.92282pt too wide) in paragraph at lines 44--63
+[] 
+ []
+
+[34
+
+
+]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 160--161
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [35]
+\openout2 = `UnBlockMeSolver.Utility-module.aux'.
+
+ (./UnBlockMeSolver.Utility-module.tex) [36
+
+
+]
+\openout2 = `UnBlockMeSolver.Utility.MovesTo-module.aux'.
+
+
+(./UnBlockMeSolver.Utility.MovesTo-module.tex) [37
+
+
+]
+\openout2 = `UnBlockMeSolver.Utility.Stack-module.aux'.
+
+
+(./UnBlockMeSolver.Utility.Stack-module.tex [38
+
+
+]
+Overfull \hbox (59.00017pt too wide) in paragraph at lines 170--171
+[][][]\OT1/cmr/m/n/12 delattr[][](), [][]format[][](), [][]getattribute[][](), 
+[][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
+ []
+
+) [39]
 \openout2 = `UnBlockMeSolver.test-module.aux'.
 
- (./UnBlockMeSolver.test-module.tex) [34
+ (./UnBlockMeSolver.test-module.tex) [40
 
 
 ]
 \openout2 = `UnBlockMeSolver.test.MapTests-module.aux'.
 
 
-(./UnBlockMeSolver.test.MapTests-module.tex) [35
+(./UnBlockMeSolver.test.MapTests-module.tex) [41
 
 
 ]
@@ -866,10 +913,10 @@ Overfull \hbox (59.00017pt too wide) in paragraph at lines 96--97
 [][]hash[][](), [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[36
+[42
 
 
-] [37]
+] [43]
 Overfull \hbox (17.21136pt too wide) in paragraph at lines 456--457
 \OT1/cmr/m/n/12 qual(), as-sert-No-tAl-mostE-quals(), as-sert-NotE-qual(), as-s
 ert-NotE-quals(), as-sert-NotIn(),
@@ -893,7 +940,7 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 462--463
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[38]) [39]
+[44]) [45]
 \openout2 = `UnBlockMeSolver.test.MapTests.moveTests-module.aux'.
 
  (./UnBlockMeSolver.test.MapTests.moveTests-module.tex
@@ -914,7 +961,7 @@ Overfull \hbox (2.39763pt too wide) in paragraph at lines 179--180
 ses(), id(), run(), setUp(),
  []
 
-[40
+[46
 
 
 ]
@@ -923,7 +970,7 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 185--186
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-) [41]
+) [47]
 \openout2 = `UnBlockMeSolver.test.MapTests.pieceTests-module.aux'.
 
  (./UnBlockMeSolver.test.MapTests.pieceTests-module.tex
@@ -950,10 +997,10 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 107--108
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[42
+[48
 
 
-]) [43]
+]) [49]
 \openout2 = `UnBlockMeSolver.test.MapTests.readerTests-module.aux'.
 
  (./UnBlockMeSolver.test.MapTests.readerTests-module.tex
@@ -985,13 +1032,13 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 120--121
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[44
+[50
 
 
-]) [45]
+]) [51]
 \openout2 = `UnBlockMeSolver.test.PathFinding-module.aux'.
 
- (./UnBlockMeSolver.test.PathFinding-module.tex) [46
+ (./UnBlockMeSolver.test.PathFinding-module.tex) [52
 
 
 ]
@@ -1027,10 +1074,10 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 94--95
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[47
+[53
 
 
-]) [48]
+]) [54]
 \openout2 = `UnBlockMeSolver.test.PathFinding.heuristicTests-module.aux'.
 
  (./UnBlockMeSolver.test.PathFinding.heuristicTests-module.tex
@@ -1062,10 +1109,10 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 107--108
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[49
+[55
 
 
-]) [50]
+]) [56]
 \openout2 = `UnBlockMeSolver.test.PathFinding.nodeTests-module.aux'.
 
  (./UnBlockMeSolver.test.PathFinding.nodeTests-module.tex
@@ -1097,10 +1144,10 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 94--95
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[51
+[57
 
 
-]) [52]
+]) [58]
 \openout2 = `UnBlockMeSolver.test.PathFinding.pathFindingTests-module.aux'.
 
  (./UnBlockMeSolver.test.PathFinding.pathFindingTests-module.tex
@@ -1108,7 +1155,7 @@ Overfull \hbox (97.39526pt too wide) in paragraph at lines 64--83
 [] 
  []
 
-[53
+[59
 
 
 ]
@@ -1135,10 +1182,10 @@ Overfull \hbox (3.2405pt too wide) in paragraph at lines 210--211
 [][]new[][](), [][]reduce[][](), [][]reduce[]ex[][](),
  []
 
-[54]) [55]
+[60]) [61]
 \openout2 = `UnBlockMeSolver.test.files-module.aux'.
 
- (./UnBlockMeSolver.test.files-module.tex) [56
+ (./UnBlockMeSolver.test.files-module.tex) [62
 
 
 ] (./api.ind
@@ -1193,28 +1240,44 @@ Overfull \hbox (20.55412pt too wide) in paragraph at lines 29--31
  []
 
 
-Overfull \hbox (2.6324pt too wide) in paragraph at lines 32--34
+Overfull \hbox (12.7481pt too wide) in paragraph at lines 31--33
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.PathFinder.TreeSearch
+ []
+
+
+Overfull \hbox (2.6324pt too wide) in paragraph at lines 34--36
 []| \OT1/cmr/m/n/12 Un-BlockMe-Solver.test.files \OT1/cmr/m/it/12 (mod-ule)\OT1
 /cmr/m/n/12 , [][][][][][] 
  []
 
 
-Overfull \hbox (0.73491pt too wide) in paragraph at lines 34--36
+Overfull \hbox (0.73491pt too wide) in paragraph at lines 36--38
 []| \OT1/cmr/m/n/12 Un-BlockMe-Solver.test.MapTests \OT1/cmr/m/it/12 (pack-
  []
 
 
-Overfull \hbox (15.29172pt too wide) in paragraph at lines 36--38
+Overfull \hbox (15.29172pt too wide) in paragraph at lines 38--40
 []| \OT1/cmr/m/n/12 Un-BlockMe-Solver.test.PathFinding \OT1/cmr/m/it/12 (pack-
  []
 
-[57
+
+Overfull \hbox (8.86534pt too wide) in paragraph at lines 41--43
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.Utility.MovesTo \OT1/cmr/m/it/12 (mod-
+ []
+
+
+Overfull \hbox (10.06982pt too wide) in paragraph at lines 43--45
+[]| \OT1/cmr/m/n/12 Un-BlockMe-Solver.Utility.Stack \OT1/cmr/m/it/12 (mod-ule)\
+OT1/cmr/m/n/12 ,
+ []
+
+[63
 
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 147.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 147.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 151.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 151.
  (./api.aux (./UnBlockMeSolver-module.aux)
 (./UnBlockMeSolver.Map-module.aux) (./UnBlockMeSolver.Map.Map-module.aux)
 (./UnBlockMeSolver.Map.MapReader-module.aux)
@@ -1226,10 +1289,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 147.
 (./UnBlockMeSolver.PathFinder.Node-module.aux)
 (./UnBlockMeSolver.PathFinder.PathFinder-module.aux)
 (./UnBlockMeSolver.PathFinder.Solver-module.aux)
+(./UnBlockMeSolver.PathFinder.TreeSearch-module.aux)
 (./UnBlockMeSolver.PathFinder.bfs-module.aux)
 (./UnBlockMeSolver.PathFinder.dfs-module.aux)
-(./UnBlockMeSolver.test-module.aux) (./UnBlockMeSolver.test.MapTests-module.aux
-) (./UnBlockMeSolver.test.MapTests.mapTests-module.aux)
+(./UnBlockMeSolver.Utility-module.aux)
+(./UnBlockMeSolver.Utility.MovesTo-module.aux)
+(./UnBlockMeSolver.Utility.Stack-module.aux) (./UnBlockMeSolver.test-module.aux
+) (./UnBlockMeSolver.test.MapTests-module.aux)
+(./UnBlockMeSolver.test.MapTests.mapTests-module.aux)
 (./UnBlockMeSolver.test.MapTests.moveTests-module.aux)
 (./UnBlockMeSolver.test.MapTests.pieceTests-module.aux)
 (./UnBlockMeSolver.test.MapTests.readerTests-module.aux)
@@ -1239,8 +1306,8 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 147.
 (./UnBlockMeSolver.test.PathFinding.nodeTests-module.aux)
 (./UnBlockMeSolver.test.PathFinding.pathFindingTests-module.aux)
 (./UnBlockMeSolver.test.files-module.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 147.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 147.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 151.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 151.
 
 
 Package rerunfilecheck Warning: File `api.out' has changed.
@@ -1248,23 +1315,23 @@ Package rerunfilecheck Warning: File `api.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `api.out':
-(rerunfilecheck)             Before: 95EFAD767A7252F6F919431A93377F83;8955
-(rerunfilecheck)             After:  47FE456B2966D1896E665B3D49CB09CB;8998.
+(rerunfilecheck)             Before: DFAE5CAB98B560B213F82AC6C73F0E41;9983
+(rerunfilecheck)             After:  DA57533BB448880015F564C59FD0BE1E;10026.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 147.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 151.
  ) 
 Here is how much of TeX's memory you used:
- 6412 strings out of 493015
- 111360 string characters out of 6133377
- 209842 words of memory out of 5000000
- 9683 multiletter control sequences out of 15000+600000
+ 6481 strings out of 493015
+ 114268 string characters out of 6133377
+ 213502 words of memory out of 5000000
+ 9724 multiletter control sequences out of 15000+600000
  13889 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,12n,43p,1192b,435s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on api.dvi (57 pages, 308208 bytes).
+Output written on api.dvi (63 pages, 341048 bytes).
