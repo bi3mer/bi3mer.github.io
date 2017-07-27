@@ -5,8 +5,8 @@ rm -r documentation
 rm -r coverage
 
 # get new ones
-mv ../../UnBlockMeSolver/UnBlockMeSolver/docs/documentation .
-mv ../../UnBlockMeSolver/UnBlockMeSolver/docs/htmlcov .
+mv ../../UnBlockMeSolver/UnBlockMe/docs/documentation .
+mv ../../UnBlockMeSolver/UnBlockMe/docs/htmlcov .
 
 # rename htmlcov
 mv htmlcov coverage
