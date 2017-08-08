@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>UnBlockMe.PathFinder.AStar</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="UnBlockMe-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Unblock Me Solver</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="UnBlockMe-module.html">Package&nbsp;UnBlockMe</a> ::
+        <a href="UnBlockMe.PathFinder-module.html">Package&nbsp;PathFinder</a> ::
+        Module&nbsp;AStar
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="UnBlockMe.PathFinder.AStar-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="UnBlockMe.PathFinder.AStar-module.html">Module UnBlockMe.PathFinder.AStar</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package UnBlockMe.PathFinder=UnBlockMe.PathFinder-module.html,Module UnBlockMe.PathFinder.PathFinder=UnBlockMe.PathFinder.PathFinder-module.html,Class UnBlockMe.PathFinder.PathFinder.PathFinder=UnBlockMe.PathFinder.PathFinder.PathFinder-class.html"><a title="UnBlockMe.PathFinder
+UnBlockMe.PathFinder.PathFinder
+UnBlockMe.PathFinder.PathFinder.PathFinder" class="py-name" href="#" onclick="return doclink('link-0', 'PathFinder', 'link-0');">PathFinder</a></tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name"><a title="UnBlockMe.PathFinder
+UnBlockMe.PathFinder.PathFinder
+UnBlockMe.PathFinder.PathFinder.PathFinder" class="py-name" href="#" onclick="return doclink('link-1', 'PathFinder', 'link-0');">PathFinder</a></tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">Queue</tt> <tt class="py-keyword">import</tt> <tt class="py-name">PriorityQueue</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-2" class="py-name" targets="Module UnBlockMe.PathFinder.AStarNode=UnBlockMe.PathFinder.AStarNode-module.html,Class UnBlockMe.PathFinder.AStarNode.AStarNode=UnBlockMe.PathFinder.AStarNode.AStarNode-class.html"><a title="UnBlockMe.PathFinder.AStarNode
+UnBlockMe.PathFinder.AStarNode.AStarNode" class="py-name" href="#" onclick="return doclink('link-2', 'AStarNode', 'link-2');">AStarNode</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name"><a title="UnBlockMe.PathFinder.AStarNode
+UnBlockMe.PathFinder.AStarNode.AStarNode" class="py-name" href="#" onclick="return doclink('link-3', 'AStarNode', 'link-2');">AStarNode</a></tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
+<a name="AStar"></a><div id="AStar-def"><a name="L5"></a><tt class="py-lineno"> 5</tt> <a class="py-toggle" href="#" id="AStar-toggle" onclick="return toggle('AStar');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="UnBlockMe.PathFinder.AStar.AStar-class.html">AStar</a><tt class="py-op">(</tt><tt class="py-base-class">PathFinder</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AStar-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="AStar-expanded"><a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"> </tt>
+<a name="AStar.populateQueue"></a><div id="AStar.populateQueue-def"><a name="L7"></a><tt class="py-lineno"> 7</tt> <a class="py-toggle" href="#" id="AStar.populateQueue-toggle" onclick="return toggle('AStar.populateQueue');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="UnBlockMe.PathFinder.AStar.AStar-class.html#populateQueue">populateQueue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">graph</tt><tt class="py-op">,</tt> <tt class="py-param">queue</tt><tt class="py-op">,</tt> <tt class="py-param">parent</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AStar.populateQueue-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="AStar.populateQueue-expanded"><a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-docstring">                Populate the priority queue with nodes and their cost.</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-docstring">                @type graph:   Map</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-docstring">                @param graph:  Graph to get moves from to populate queue</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-docstring">                @type queue:   Queue</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-docstring">                @param queue:  Queue with nodes being added to it with the cost</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"><tt class="py-docstring">                @type parent:  AStarNode</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-docstring">                @param parent: Parent for the nodes that will be created</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">                <tt class="py-comment"># get possible moves</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">                <tt class="py-name">moves</tt> <tt class="py-op">=</tt> <tt class="py-name">graph</tt><tt class="py-op">.</tt><tt id="link-4" class="py-name" targets="Method UnBlockMe.Map.Map.Map.getMoves()=UnBlockMe.Map.Map.Map-class.html#getMoves"><a title="UnBlockMe.Map.Map.Map.getMoves" class="py-name" href="#" onclick="return doclink('link-4', 'getMoves', 'link-4');">getMoves</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">                <tt class="py-comment"># put into queue all the moves possible</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt id="link-5" class="py-name" targets="Method UnBlockMe.Map.Piece.Piece.move()=UnBlockMe.Map.Piece.Piece-class.html#move"><a title="UnBlockMe.Map.Piece.Piece.move" class="py-name" href="#" onclick="return doclink('link-5', 'move', 'link-5');">move</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">moves</tt><tt class="py-op">:</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">                        <tt class="py-comment"># make move and get copy</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">                        <tt class="py-name">newBoard</tt> <tt class="py-op">=</tt> <tt class="py-name">graph</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Method UnBlockMe.Map.Map.Map.copyConfidentMove()=UnBlockMe.Map.Map.Map-class.html#copyConfidentMove"><a title="UnBlockMe.Map.Map.Map.copyConfidentMove" class="py-name" href="#" onclick="return doclink('link-6', 'copyConfidentMove', 'link-6');">copyConfidentMove</a></tt><tt class="py-op">(</tt><tt id="link-7" class="py-name"><a title="UnBlockMe.Map.Piece.Piece.move" class="py-name" href="#" onclick="return doclink('link-7', 'move', 'link-5');">move</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">                        <tt class="py-comment"># calculate heuristic for this move that was made</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">                        <tt id="link-8" class="py-name" targets="Variable UnBlockMe.PathFinder.AStarNode.AStarNode.h=UnBlockMe.PathFinder.AStarNode.AStarNode-class.html#h"><a title="UnBlockMe.PathFinder.AStarNode.AStarNode.h" class="py-name" href="#" onclick="return doclink('link-8', 'h', 'link-8');">h</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">heuristic</tt><tt class="py-op">(</tt><tt class="py-name">newBoard</tt><tt class="py-op">)</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">                        <tt class="py-comment"># create node</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">                        <tt class="py-name">node</tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="UnBlockMe.PathFinder.AStarNode
+UnBlockMe.PathFinder.AStarNode.AStarNode" class="py-name" href="#" onclick="return doclink('link-9', 'AStarNode', 'link-2');">AStarNode</a></tt><tt class="py-op">(</tt><tt class="py-name">newBoard</tt><tt class="py-op">,</tt> <tt id="link-10" class="py-name"><a title="UnBlockMe.Map.Piece.Piece.move" class="py-name" href="#" onclick="return doclink('link-10', 'move', 'link-5');">move</a></tt><tt class="py-op">,</tt> <tt class="py-name">parent</tt><tt class="py-op">,</tt> <tt class="py-name">parent</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Variable UnBlockMe.PathFinder.AStarNode.AStarNode.g=UnBlockMe.PathFinder.AStarNode.AStarNode-class.html#g"><a title="UnBlockMe.PathFinder.AStarNode.AStarNode.g" class="py-name" href="#" onclick="return doclink('link-11', 'g', 'link-11');">g</a></tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt id="link-12" class="py-name"><a title="UnBlockMe.PathFinder.AStarNode.AStarNode.h" class="py-name" href="#" onclick="return doclink('link-12', 'h', 'link-8');">h</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">                        <tt class="py-comment"># put the node in priority queue</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">                        <tt class="py-name">queue</tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Method UnBlockMe.Utility.Stack.Stack.put()=UnBlockMe.Utility.Stack.Stack-class.html#put"><a title="UnBlockMe.Utility.Stack.Stack.put" class="py-name" href="#" onclick="return doclink('link-13', 'put', 'link-13');">put</a></tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method UnBlockMe.PathFinder.AStarNode.AStarNode.cost()=UnBlockMe.PathFinder.AStarNode.AStarNode-class.html#cost"><a title="UnBlockMe.PathFinder.AStarNode.AStarNode.cost" class="py-name" href="#" onclick="return doclink('link-14', 'cost', 'link-14');">cost</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-name">node</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
+<a name="AStar.getPath"></a><div id="AStar.getPath-def"><a name="L35"></a><tt class="py-lineno">35</tt> <a class="py-toggle" href="#" id="AStar.getPath-toggle" onclick="return toggle('AStar.getPath');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="UnBlockMe.PathFinder.AStar.AStar-class.html#getPath">getPath</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">heuristic</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AStar.getPath-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="AStar.getPath-expanded"><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-docstring">                Get the best path to solve the given graph.</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-docstring">                @rtype:  [Move]</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-docstring">                @return: Array of moves which represent the path found to solve the puzzle</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">                <tt class="py-comment"># make sure the board isn't already solved</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">board</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method UnBlockMe.Map.Map.Map.isSolved()=UnBlockMe.Map.Map.Map-class.html#isSolved"><a title="UnBlockMe.Map.Map.Map.isSolved" class="py-name" href="#" onclick="return doclink('link-15', 'isSolved', 'link-15');">isSolved</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">                <tt class="py-comment"># make sure the given heuristic is a function that can be called</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">callable</tt><tt class="py-op">(</tt><tt class="py-name">heuristic</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">                        <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">heuristic</tt> <tt class="py-op">=</tt> <tt class="py-name">heuristic</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">                <tt class="py-comment"># initialize data structures for A*</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">                <tt class="py-name">queue</tt>    <tt class="py-op">=</tt> <tt class="py-name">PriorityQueue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">                <tt class="py-name">explored</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">board</tt><tt class="py-op">.</tt><tt class="py-name">hash</tt><tt class="py-op">:</tt> <tt class="py-name">True</tt><tt class="py-op">}</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line"> </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">                <tt class="py-comment"># populate queue with moves and nodes</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method UnBlockMe.PathFinder.AStar.AStar.populateQueue()=UnBlockMe.PathFinder.AStar.AStar-class.html#populateQueue,Method UnBlockMe.PathFinder.TreeSearch.TreeSearch.populateQueue()=UnBlockMe.PathFinder.TreeSearch.TreeSearch-class.html#populateQueue"><a title="UnBlockMe.PathFinder.AStar.AStar.populateQueue
+UnBlockMe.PathFinder.TreeSearch.TreeSearch.populateQueue" class="py-name" href="#" onclick="return doclink('link-16', 'populateQueue', 'link-16');">populateQueue</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">board</tt><tt class="py-op">,</tt> <tt class="py-name">queue</tt><tt class="py-op">,</tt> <tt id="link-17" class="py-name"><a title="UnBlockMe.PathFinder.AStarNode
+UnBlockMe.PathFinder.AStarNode.AStarNode" class="py-name" href="#" onclick="return doclink('link-17', 'AStarNode', 'link-2');">AStarNode</a></tt><tt class="py-op">(</tt><tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">                <tt class="py-keyword">while</tt> <tt class="py-keyword">not</tt> <tt class="py-name">queue</tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Variable UnBlockMe.Map.Map.Map.empty=UnBlockMe.Map.Map.Map-class.html#empty,Method UnBlockMe.Utility.Stack.Stack.empty()=UnBlockMe.Utility.Stack.Stack-class.html#empty"><a title="UnBlockMe.Map.Map.Map.empty
+UnBlockMe.Utility.Stack.Stack.empty" class="py-name" href="#" onclick="return doclink('link-18', 'empty', 'link-18');">empty</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line">                        <tt class="py-comment"># get the next position from the queue</tt> </tt>
+<a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">                        <tt id="link-19" class="py-name"><a title="UnBlockMe.PathFinder.AStarNode.AStarNode.cost" class="py-name" href="#" onclick="return doclink('link-19', 'cost', 'link-14');">cost</a></tt><tt class="py-op">,</tt> <tt class="py-name">node</tt> <tt class="py-op">=</tt> <tt class="py-name">queue</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name" targets="Method UnBlockMe.Map.MapReader.MapReader.get()=UnBlockMe.Map.MapReader.MapReader-class.html#get,Method UnBlockMe.Utility.Stack.Stack.get()=UnBlockMe.Utility.Stack.Stack-class.html#get"><a title="UnBlockMe.Map.MapReader.MapReader.get
+UnBlockMe.Utility.Stack.Stack.get" class="py-name" href="#" onclick="return doclink('link-20', 'get', 'link-20');">get</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line">                        <tt class="py-comment"># make sure this position hasn't been explored</tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line">                        <tt class="py-keyword">if</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">graph</tt><tt class="py-op">.</tt><tt class="py-name">hash</tt> <tt class="py-keyword">not</tt> <tt class="py-keyword">in</tt> <tt class="py-name">explored</tt><tt class="py-op">:</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line">                                <tt class="py-comment"># check if the board is solved</tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line">                                <tt class="py-keyword">if</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">graph</tt><tt class="py-op">.</tt><tt id="link-21" class="py-name"><a title="UnBlockMe.Map.Map.Map.isSolved" class="py-name" href="#" onclick="return doclink('link-21', 'isSolved', 'link-15');">isSolved</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line">                                        <tt class="py-keyword">return</tt> <tt class="py-name">node</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Method UnBlockMe.PathFinder.Node.Node.reconstructPath()=UnBlockMe.PathFinder.Node.Node-class.html#reconstructPath"><a title="UnBlockMe.PathFinder.Node.Node.reconstructPath" class="py-name" href="#" onclick="return doclink('link-22', 'reconstructPath', 'link-22');">reconstructPath</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line"> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line">                                <tt class="py-comment"># if not solved, add to explored and populate queue</tt> </tt>
+<a name="L69"></a><tt class="py-lineno">69</tt>  <tt class="py-line">                                <tt class="py-name">explored</tt><tt class="py-op">[</tt><tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">graph</tt><tt class="py-op">.</tt><tt class="py-name">hash</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">                                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name"><a title="UnBlockMe.PathFinder.AStar.AStar.populateQueue
+UnBlockMe.PathFinder.TreeSearch.TreeSearch.populateQueue" class="py-name" href="#" onclick="return doclink('link-23', 'populateQueue', 'link-16');">populateQueue</a></tt><tt class="py-op">(</tt><tt class="py-name">node</tt><tt class="py-op">.</tt><tt class="py-name">graph</tt><tt class="py-op">,</tt> <tt class="py-name">queue</tt><tt class="py-op">,</tt> <tt class="py-name">node</tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno">72</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div></div><a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="UnBlockMe-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Unblock Me Solver</th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Mon Aug  7 22:31:54 2017
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
