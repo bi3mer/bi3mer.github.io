@@ -1,0 +1,45 @@
+<script type="text/javascript">
+
+	var RESUME   = "resume";
+	var PROJECTS = "projects";
+	var BLOG     = "blog";
+
+	var H_RESUME   = "#resume";
+	var H_PROJECTS = "#projects";
+	var H_BLOG     = "#blog";
+
+	function resume() {
+		$(H_RESUME).css("display", "block");
+		$(H_PROJECTS).css("display", "none");
+		$("#blog").css("display", "none");
+
+		document.location.hash = RESUME;
+	};
+
+	function projects() {
+		$(H_RESUME).css("display", "none");
+		$(H_PROJECTS).css("display", "inline-block");
+		$(H_BLOG).css("display", "none");
+
+		document.location.hash = PROJECTS;
+	};
+
+	function blog() {
+		$(H_RESUME).css("display", "none");
+		$(H_PROJECTS).css("display", "none");
+		$(H_BLOG).css("display", "inline");
+
+		document.location.hash = BLOG;
+	};
+</script>
+
+<div class="card mb-3">
+	<center>
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-success" onclick="resume()">Resume</button>
+			<button type="button" class="btn btn-success" onclick="projects()">Projects</button>
+			<button type="button" class="btn btn-success" onclick="blog()">Blog</button>
+		</div>
+	</center>
+</div>
+<br/>

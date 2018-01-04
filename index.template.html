@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		{{header.plugin.html}}
+		<title>Colan Biemer</title>
+	</head>
+	<body>
+		{{bar.plugin.html}}
+		{{resume.plugin.html}}
+		{{projects.plugin.html}}
+		{{blogs.customfunction.html}}
+
+		<script type="text/javascript">
+			if(document.location.hash === H_BLOG) {
+				blog();
+			} else if(document.location.hash === H_PROJECTS) {
+				projects();
+			} else {
+				resume();
+			}
+		</script>
+	</body>
+</html>
