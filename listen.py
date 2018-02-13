@@ -1,4 +1,4 @@
-# put in the #environment thing
+#!/usr/bin/python
 
 from build_sites import build_templates, reimport
 import time
