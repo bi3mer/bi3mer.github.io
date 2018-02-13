@@ -17,7 +17,7 @@ def build_template(file_name, path):
 	f = open(file_name, 'r')
 
 	output_file = file_name.replace('.template', '')
-	output_str  = '<!-- generated document -->\n'
+	output_str  = '<!-- auto-generated document -->\n'
 
 	for line in f:
 		if '{{' in line and '}}' in line:
