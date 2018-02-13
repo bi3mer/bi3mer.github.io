@@ -2,13 +2,25 @@ import os
 
 blog_directory = './blog'
 
+def get_meta_data(path):
+	# get path to meta data in post
+	meta_data_path = os.path.join(path, "meta_data.txt")
+
+	f = open(meta_data_path, 'r')
+	return f.read().split(',')
+
 def build_blog_post_item(post):
 	path = os.path.join(blog_directory, post)
 	if os.path.isdir(path):
-		return  path + " is directory"
-	else:
-		return path + " is not a directory and all is wrong."
+		title, date = get_meta_data(path)
 
+		# remove the ./ in the path
+		path = path[2:] + "/index.html"
+
+		return  "<a href=\"" + path + "\">" + date + ": " + title + "</a>"
+	else:
+		print path + " is not a directory and all is wrong."
+		return ""
 
 def blogs():
 	output_str = '<div class="container" id="blog">'
