@@ -11,7 +11,7 @@
 	function resume() {
 		$(H_RESUME).css("display", "block");
 		$(H_PROJECTS).css("display", "none");
-		$("#blog").css("display", "none");
+		$(H_BLOG).css("display", "none");
 
 		document.location.hash = RESUME;
 	};
@@ -32,14 +32,26 @@
 		document.location.hash = BLOG;
 	};
 </script>
+<style>
+	h3:hover {
+		color: #6fe7db;
+	}
+</style>
 
 <div class="card mb-3">
 	<center>
-		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-success" onclick="resume()">Resume</button>
-			<button type="button" class="btn btn-success" onclick="projects()">Projects</button>
-			<button type="button" class="btn btn-success" onclick="blog()">Blog</button>
-		</div>
+		<h1>
+			Colan Biemer
+		</h1>
+		<h3 style="display:inline">
+			<element onclick="resume()">Resume</element>
+		</h3>
+		<h3 style="display:inline">
+			<element onclick="projects()">Projects</element>
+		</h3>
+		<h3 style="display:inline">
+			<element onclick="blog()">Blog</element>
+		</h3>
 	</center>
 </div>
 <br/>
