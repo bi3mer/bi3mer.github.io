@@ -18,7 +18,7 @@ def build_blog_post_item(post):
 			# remove the ./ in the path
 			path = path[2:] + "/index.html"
 
-			return  "<a target=\"_blank\" href=\"" + path + "\">" + date + ": " + title + "</a><br/>"
+			return  date + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a target=\"_blank\" href=\"" + path + "\">" + title + "</a><br/>"
 		else:
 			return ''
 	else:
