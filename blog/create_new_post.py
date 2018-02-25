@@ -20,5 +20,5 @@ f.write("")
 f.close()
 
 f = open(os.path.join(path, 'meta_data.txt'), 'w')
-f.write('Title' + ',' + strftime('%m/%d/%y', gmtime()))
+f.write('Title' + '||' + strftime('%m/%d/%y', gmtime() + '||true'))
 f.close()

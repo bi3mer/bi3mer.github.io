@@ -7,17 +7,20 @@ def get_meta_data(path):
 	meta_data_path = os.path.join(path, "meta_data.txt")
 
 	f = open(meta_data_path, 'r')
-	return f.read().split(',')
+	return f.read().split('||')
 
 def build_blog_post_item(post):
 	path = os.path.join(blog_directory, post)
 	if os.path.isdir(path):
-		title, date = get_meta_data(path)
+		title, date, visible = get_meta_data(path)
 
-		# remove the ./ in the path
-		path = path[2:] + "/index.html"
+		if visible == 'true':
+			# remove the ./ in the path
+			path = path[2:] + "/index.html"
 
-		return  "<a target=\"_blank\" href=\"" + path + "\">" + date + ": " + title + "</a><br/>"
+			return  "<a target=\"_blank\" href=\"" + path + "\">" + date + ": " + title + "</a><br/>"
+		else:
+			return ''
 	else:
 		print path + " is not a directory and all is wrong."
 		return ""
