@@ -1,1 +1,1 @@
-Making a Game for Research: Part 1||02/12/18||false
+GDMC Part 1: MCEdit Basics||02/26/18||true

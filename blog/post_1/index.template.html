@@ -14,147 +14,365 @@
 		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
 
 		<!-- set title on top of the tab -->
-		<title>Making a Game for Research: Part 1</title>
+		<title>GDMC Part 1: MCEdit Basics</title>
 	</head>
 	<body>
 		<center class="jumbotron">
 			<h2> 
-				Making a Game for Research: Part 1
+				GDMC Part 1: MCEdit Basics
 			</h2>
 		</center>
+
 		<div class="container">
 			<h3 class="card mb-3">
 				<div class="container">
-					Structuring the Project
+					Generative Design in Minecraft (GDMC)
 				</div>
 			</h3>
 			<p>
-				Welcome to a mutlipart series of posts where I'm going to discuss implementing a game, very similar to <a href= "https://itunes.apple.com/us/app/unblock-me-classic-block-puzzle-game/id315019111?mt=8" target="_blank">Unblock Me</a> and <a href="http://www.thinkfun.com/play-online/rush-hour/" target="_blank">Rush Hour</a>, sample screenshots in figure one. I decided to use <a href="https://www.python.org/downloads/release/python-2714/" target="_blank">Python 2.7.14</a>, but the goal I aim to make the majority of these tutorials language independent so anyone can follow along. To facilitate this, there will be a focus on design decisions so that these go beyond a copy and paste tutorials. Upon completion of the game, I plan to go into creating a server to solve puzzles, generating boards on the fly for the game, and looking into valid heuristics for search techinques in the game.
-			</p>
-			<figure align="center">
-				<img src="https://i.ytimg.com/vi/bc_AmUlH05E/maxresdefault.jpg" width="200"/>
-				<img src="http://www.thinkfun.com/wp-content/uploads/2015/10/playonline-rh-btn.jpg" width="200"/>
-				<figcaption>
-					Figure 1: Left image shows Unblock Me and right image shows Rush Hour
-				</figcaption>
-			</figure>
-		</div>
-		<div class="container">
-			<h3 class="card mb-3">
-				<div class="container">
-					Building Requirements
-				</div>
-			</h3>
-			<p>
-				We will be implementing a board game which features the one main function of sliding pieces to utlimately solve the puzzle by getting the red block, hereby known as the main piece, to the goal. In both games, the goal is the main piece in the same place, upper right one space below the corner. This rule could be enforced in the software, but is really not necessary. To get the main piece to the goal the user will have to slide pieces around the board to free space for the main piece. A restriciton is that each piece can only move in a certain direction, horizontal or vertical. For example, a piece with the dimensions of three vertial and one can move up or down but not left or right. Similarly a one vertical and two horizontal piece can move horizontally but not vertically. In the future, our representation of a board can take advantage of this fact to simplify map definiitons.
-			</p>
-			<p>
-				We now now arrived at the most important task a programmer will ever have, building the requirements. When working with other people it is essential to build this list out so everyone is on the same page. The more thorough this list is, the easier your life as a programmer will be in the future. It also has the added benefit of allowing you to think about the problem as a whole which will allow you to break it into smaller chunks. An important note is that it is possible to go overboard. Finding the right balance between brevity for clarity and depth for specification is paramount. For example, you could write down each functionality of the application and every single unique use case that that function will deal with. In my experience I have found that a higher level requirements document will work best when working with non-programmers. With that tangent aside here is a higher level list of our requirements:
-			<ul>
-				<li>
-					The board will be represented by a series of blocks in a grid.
-				</li>
-				<li>
-					A piece is represented by a series of blocks that are identified on the board by a unique id that is one character in length.
-				</li>
-				<li>
-					Pieces can slide horizontally or vertically, depending on their orientation.
-			    </li>
-			    <ul>
-				    <li>
-				    	Sliding means that it will move positions on the board. This can be either by one space or more.
-				    </li>
-				    <li>
-				    	A piece cannot slide through another piece to get to its target position.
-				    </li>
-				    <li>
-				    	A piece that can slide horizontally will have more components in the horizontal direction than the vertical.
-				    </li>
-				    <li>
-				    	 A piece that can slide vertically will have more components in the vertical direction than the the horizontal.
-				    </li>
-				</ul>
-				<li>
-					All pieces cannot slide into the goal besides the main piece.
-				</li>
-				<li>
-					The main piece, when in the goal, will solve the puzzle.
-				</li>
-			</ul>
-			<p>
-				For more on creating a requirements document you can view <a href="https://belitsoft.com/php-development-services/software-requirements-specification-document-example-international-standard" target="_blank">BelitSoft's standard</a>.This is only a barebones set of requirements for the game and much more is required in a professional, and even academic, setting. Regardless, this provides a clear scope and gives everyone a solid idea as to what is going to be built.
+				<a href="http://gendesignmc.engineering.nyu.edu/" target="_blank">GDMC</a> 
+				is a competition to generate settlements within a selection of a minecraft map. The 
+				<a href="http://gendesignmc.engineering.nyu.edu/" target="_blank">project's website</a>
+				 provides details on how the competition works and what is expected. However, the main point to get across right now is that they are judging based on adaptability, functionality, narrative, and aesthetics. Adaptability is about the generation technique working with the map rather than ignoring it. An example of ignoring the environment would be generating a wooden village where there are no trees. The functionality component is based on real world criteria such as access to food, defenses, etc. The narrative component is about how every area has a story to tell. An example is a castle with part of the tower knocked down. Lastly, aesthetics is about how it looks both in terms of believability and general appeal.
 			</p>
 		</div>
+
 		<div class="container">
 			<h3 class="card mb-3">
 				<div class="container">
-					Software Structure
+					MCEdit
 				</div>
 			</h3>
 			<p>
-				Despite having requirements we still have more work to do before we can write our first line of code. Next up is disussing the direction we see the software taking and the algorithms we know we will need to implement. At the start of this project I can think of seven:
+				To generate settlements, the competition has gone the route of using 
+				<a href="http://www.mcedit.net/" target="_blank">MCEdit</a>
+				to allow competitors to view, generate, and modify minecraft maps. GDMC provides a 
+				<a href="https://github.com/mcgreentn/GDMC/wiki" target="_blank">wiki</a>
+				with easy to use instructions for installing and general set up. The wiki also provides an 
+				<a href="https://github.com/mcgreentn/GDMC/blob/master/stock-filters/CASG_Example.py" target="_blank">example</a>
+				cellular automata script for generating structures seen in figure one. As you can see, the output isn’t great, but it provides a nice starting point. It, also, shows how to work with the MCEdit filters which is how we can interact with the maps.
 			</p>
-			<ol>
-				<li>
-					Check if a move made is valid.
-				</li>
-				<li>
-					Check if puzzle is solved.
-				</li>
-				<li>
-					Get available moves.
-				</li>
-				<li>
-					Make move.
-				</li>
-				<li>
-					Copy board.
-				</li>
-				<li>
-					<a href="https://en.wikipedia.org/wiki/Search_algorithm" target="_blank">Search Algorithm</a>
-				</li>
-				<li>
-					Text file to describe a board and ability to parse said text file.
-					<ul>
-				    	<li>
-				    		Should be able to validate the generated map is valid.
-				    	</li>
-				    </ul>
-				</li>
-			</ol>
-			<p>
-				If we hadn't planned on implementing search algorithms or any AI, algorithms three and five could be safely removed along with six. Three can be moved because after the player has made their move can we either validate or invalidate it. With a better GUI we can also check if each move is valid as the move and prevent invalid directions to drag the piece in. Five is only important if we want to keep track of previous states which is important for search algorithms but not for any of our other requirements. If we, however, decided to add an undo function then five would become necessary again. Despite the extra leg work required for search algorithms, it will be well worth the effort because we can now learn about the common structure of board game AI and how it can helps us create an easy to use interface when we are implementing search algorithms. 
-			</p>
-		</div>
-		<div class="container">
-			<h3 class="card mb-3">
-				<div class="container">
-					Board Game AI Structure
-				</div>
-			</h3>
-			<p>
-				Due to the simplicity of our game we can actually vastly simplify the structure of our AI aswell as the game interface itself. In figure 2 we see the difference between the two structures where one includes complicated tasks, such as defining a strategy and making decisions based on the strategy, whereas the second only requires <a href="https://en.wikipedia.org/wiki/Pathfinding" target="_blank"> pathfinding</a> to work. With this in mind we can move onto defining the functionality required to create a helpful interface for our AI.
-			</p>
+
 			<center>
-				<figure>
-					<img src="pictures/board_game_ai.png" width="300"/>
-					<img src="pictures/board_game_ai_part-2.png" width="300"/>
-					<figcaption>
-						Figure 2: The right image shows a standard game AI whereas the right image displays a pathfinding AI.
-					</figcaption>
-				</figure>
+				<img src="pictures/image4.png" width=300>
+				<br>
+				<p>
+					<small>
+						Figure 1: example cellular automata output from CASG_Example.py
+					</small>
+				</p>
 			</center>
+		</div>
+
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container">
+					Filters
+				</div>
+			</h3>
 			<p>
-				We can use these figures to define the components we want our game states to expose
+				A filter is how we are able to modify maps. To activate a filter, a user makes a selection on the map via a left click and dragging your mouse. From there, on the bottom of the screen, there is a potion looking icon that when pressed will open the filter menu. This provides a drop down menu of available filters. Each of these filters provides a set of options and the ability to perform their respective actions. When activated they will make modifications to the map given the users selection area. Each of the filters are Python 2.7 scripts located in the <code>stock-filters</code> directory.
 			</p>
+		</div>
+
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container">
+					Filter Basics
+				</div>
+			</h3>
+			<p>
+				The 
+				<a href="https://github.com/mcgreentn/GDMC/wiki" target="_blank">wiki</a>
+				 provides some helpful commentary in getting started with filters, but the script is a bit too complicated for a starting point. There are, however, two things that every filter has in common: the perform function and inputs tuple.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Replace Eight Corners&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+	<span style="color: #66d9ef">pass</span>
+</pre></div>
+
+			<br>
+			<p>
+				When a filter is activated, the engine will call the perform function and pass the level data (this data structure will be explored further in the next post), the bounding box, and the set of options a user has defined. The bounding box defines the origin of the box the user created and the size. The options is a dictionary based on the <code>inputs</code> defined in the above script. Therefore, to access the materials you could use <code>options[“Material”]</code> to be able to see what the user set. 
+			</p>
+		</div>
+
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container">
+					Box in all Eight Corners of Selection
+				</div>
+			</h3>
+			<p>
+				Now that we understand the basics, we can start with a simple filter. The goal of this filter is to place a user defined material in all eight corners of the user’s selection. The end result can be seen in figure two. The first step here is to define the inputs for the user. In this case, the above <code>inputs</code> code is exactly what we need.
+			</p>
+
+			<center>
+				<img src="pictures/image2.png" width=300>
+				<br>
+				<small>
+					Figure 2: Example of placing blocks at all eight corners of user's selection space
+				</small>
+			</center>
+
+			<br>
+			<p>
+				Now we need to know how to draw a block and this can be found in the 
+				<a href="https://github.com/mcgreentn/GDMC/blob/master/stock-filters/utilityFunctions.py#L17" target="_blank">utility functions</a> 
+				provided by NYU. I haven’t figured out the point of the function <code>setBlockDataAt</code> yet, but in the second post I intend to investigate more to figure it out. In the meantime, I wrote a simpler function because the data was always set to 0 in the examples I could find.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+</pre></div>
+
+		<br>
+
+		<p>
+			With that complete, the only problem now is figuring out how to use the bounding box to find the eight corners. As noted above, the way the bounding box works is by providing an origin and size vector. All variations of adding these two together will provide eight values which are, coincidentally, the corners of the cube. The full filter can be seen below.
+		</p>
+
+		<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Replace Eight Corners&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+	<span style="color: #f8f8f2">material</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">options[</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">]</span>
+
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+</pre></div>
+
+		</div>
+
+		<br>
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container">
+					Fill Selection
+				</div>
+			</h3>
+			<p>
+				In comparison to the eight boxes, this is a lot easier conceptually. All we want to do is fill the entire users selection with a material. The end result can be seen in figure three.
+			</p>
+
+			<center>
+				<img src="pictures/image1.png" width=300>
+				<br>
+				<small>
+					Figure 3: Two examples of filling in users selection with a different materials
+				</small>
+			</center>
+
+			<br>
+
+			<p>
+				The setup is exactly the same as last time where you can use the <code>inputs</code> to define the material. We can even use the <code>draw_block</code> function. At this point, it is probably best to create a script that contains common functions that could be useful in the future. From there, we need to create a function <code>fill_box</code> which takes in the level, origin, size, and material. To fill the box, it is as simple as three for loops that go through all possible x, y, and z values. It is important that you loop from the minimum to the maximum of these, else there is a chance you will not completely fill in the box. 
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Replace All&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fill_box</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">final_x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span>
+	<span style="color: #f8f8f2">final_y</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span>
+	<span style="color: #f8f8f2">final_z</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span>
+
+	<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x)):</span>
+		<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y)):</span>
+			<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z)):</span>
+				<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+	<span style="color: #f8f8f2">fill_box(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size,</span> <span style="color: #f8f8f2">options[</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">])</span>
+</pre></div>
+		
+		</div>
+
+		<br>
+
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container">
+					Box Outline
+				</div>
+			</h3>
+			<p>
+				In this case we want to take the user’s selection and draw blocks along the edges, an example can be seen in figure four. The complexity for this problem is creating a function that will properly draw lines. Specifically, it is necessary to make sure it can draw diagonal lines for the sake of completeness.
+			</p>
+
+			<center>
+				<img src="pictures/image3.png" width=300>
+				<br>
+				<small>
+					Figure 4: Example of drawing the edges for a user's selection
+				</small>
+			</center>
+			<br>
+
+			<p>
+				The main difficulty in this problem is making sure every direction a line can move is accounted for. The list is quite long but mainly requires some attentiveness on our our part when defining all the possibilities.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">directions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)]</span>
+</pre></div>
+			<br>
+
+			<p>
+				We now have the task of using the directions array to draw the line along the shortest path from the starting point to the end point. I first wrote this with a recursive method, where it would find the point closest, with the 
+				<a href="https://en.wikipedia.org/wiki/Taxicab_geometry" target="_blank">manhattan distance,</a>
+				and then draw a block. It would recursively call itself again, drawing a block at the next closest point, until it had reached the end point. Please note that I did not put in object avoidance into this method as it was beyond the scope of the problem. With the recursive method complete, it became clear a while loop would be just as clear with minimal code changes and be more performant since 
+				<a href="https://www.geeksforgeeks.org/tail-recursion/" target="_blank">tail recursion</a>
+				is not supported by Python.
+			</p>
+			<p>
+				Once drawing a line was completed, the last step was to use the vertices I defined in the section dedicated to drawing materials in all eight corners to draw the edges as well. The code for the filter is below.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel.box</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Vector</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Replace All&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock),</span>
+	<span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">vector_equals</span><span style="color: #f8f8f2">(v1,</span> <span style="color: #f8f8f2">v2):</span>
+	<span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">v1</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">v2</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">v1</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">v2</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">v1</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">v2</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">manhattan_distance</span><span style="color: #f8f8f2">(start,</span> <span style="color: #f8f8f2">end):</span>
+	<span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">abs(end</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">-</span> <span style="color: #f8f8f2">start</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x)</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">abs(end</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">-</span> <span style="color: #f8f8f2">start</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y)</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">abs(end</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">-</span> <span style="color: #f8f8f2">start</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">point,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+	<span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">point</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fill_box</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">final_x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span>
+	<span style="color: #f8f8f2">final_y</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span>
+	<span style="color: #f8f8f2">final_z</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span>
+
+	<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x)):</span>
+		<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y)):</span>
+			<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z)):</span>
+				<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_line</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">start,</span> <span style="color: #f8f8f2">end,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">directions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+	              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+	              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+	              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span>\
+	              <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)]</span>
+	<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">start,</span> <span style="color: #f8f8f2">material)</span>
+
+	<span style="color: #66d9ef">while</span> <span style="color: #f92672">not</span> <span style="color: #f8f8f2">vector_equals(start,</span> <span style="color: #f8f8f2">end):</span>
+		<span style="color: #f8f8f2">new_s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">start</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">directions[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">]</span>
+		<span style="color: #f8f8f2">dist</span>  <span style="color: #f92672">=</span> <span style="color: #f8f8f2">manhattan_distance(start,</span> <span style="color: #f8f8f2">end)</span>
+
+		<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">len(directions)):</span>
+			<span style="color: #f8f8f2">s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">start</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">directions[i]</span>
+			<span style="color: #f8f8f2">d</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">manhattan_distance(s,</span> <span style="color: #f8f8f2">end)</span>
+
+			<span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">d</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">dist:</span>
+				<span style="color: #f8f8f2">new_s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">s</span>
+				<span style="color: #f8f8f2">dist</span>  <span style="color: #f92672">=</span> <span style="color: #f8f8f2">d</span>
+
+		<span style="color: #f8f8f2">start</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">new_s</span>
+		<span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">start,</span> <span style="color: #f8f8f2">material)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_box_outline</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">material):</span>
+	<span style="color: #f8f8f2">point_1</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span>
+	<span style="color: #f8f8f2">point_2</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+	<span style="color: #f8f8f2">point_3</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+	<span style="color: #f8f8f2">point_4</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+	<span style="color: #f8f8f2">point_5</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+	<span style="color: #f8f8f2">point_6</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+	<span style="color: #f8f8f2">point_7</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,)</span>
+	<span style="color: #f8f8f2">point_8</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_1,</span> <span style="color: #f8f8f2">point_2,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_1,</span> <span style="color: #f8f8f2">point_3,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_1,</span> <span style="color: #f8f8f2">point_4,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_2,</span> <span style="color: #f8f8f2">point_6,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_4,</span> <span style="color: #f8f8f2">point_6,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_3,</span> <span style="color: #f8f8f2">point_7,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_4,</span> <span style="color: #f8f8f2">point_7,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_7,</span> <span style="color: #f8f8f2">point_8,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_6,</span> <span style="color: #f8f8f2">point_8,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_8,</span> <span style="color: #f8f8f2">point_5,</span> <span style="color: #f8f8f2">material)</span> 
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_5,</span> <span style="color: #f8f8f2">point_2,</span> <span style="color: #f8f8f2">material)</span>
+	<span style="color: #f8f8f2">draw_line(level,</span> <span style="color: #f8f8f2">point_5,</span> <span style="color: #f8f8f2">point_3,</span> <span style="color: #f8f8f2">material)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+	<span style="color: #f8f8f2">draw_box_outline(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options[</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">])</span>
+</pre></div>
+
+		</div>
+		<br>
+
+		<div class="container">
 			<h3 class="card mb-3">
 				<div class="container">
 					Next Time
 				</div>
 			</h3>
 			<p>
-				In the next post we'll actually start with project structure and then the start of implement the board game. Along the way we'll discuss various approaches to solve the  problems this game presents and why I ultimately went with each decision. At anytime feel free to checkout the [github page](https://github.com/bi3mer/UnBlockMeSolver) where this project is hosted, please note that it does contains spoilers for what is to come. 
+				In the next post, I intend to start learning how the level data structure works and how it can be explored. The first step will probably be something simple like finding how many times a material appears in the user’s selection. From there, I’ll look to replicate something similar to what 
+				<a href="https://twitter.com/ChristophSalge/status/967148791248932864" target="_blank">Christoph Salge</a>
+				did with replacing the top layer with a new material. I'm also planning for a small digression into 
+				<a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a>
+				just for fun.
 			</p>
 		</div>
+		<br>
+		<br>
+		<br>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
 	</body>
 </html>
