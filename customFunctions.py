@@ -1,3 +1,4 @@
+import datetime
 import os
 
 blog_directory = './blog'
@@ -18,24 +19,40 @@ def build_blog_post_item(post):
 			# remove the ./ in the path
 			path = path[2:] + "/index.html"
 
-			return  date + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "<a target=\"_blank\" href=\"" + path + "\">" + title + "</a><br/>"
+			return date, "<font face='verdana'>" + \
+				date + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + \
+				 "<a target=\"_blank\" href=\"" + path + "\">" + title + "</a><br/>" + \
+				 "</font>"
 		else:
-			return ''
+			return date, ''
 	else:
 		print path + " is not a directory and all is wrong."
-		return ""
+		return None, ""
 
 def blogs():
 	output_str = '<div class="container" name="blog">'
 	output_str += '<div class="container">'
-	output_str += '<ul>'
 
 	items = os.listdir(blog_directory)
 
-	for file_name in items:
-		output_str += build_blog_post_item(file_name)
+	dates   = []
+	outputs = []
 
-	output_str += '</ul>'
+	for file_name in items:
+		date, output= build_blog_post_item(file_name)
+
+		if date == None or date == "" or output == "":
+			continue
+
+		dates.append(date)
+		outputs.append(output)
+
+	indexes = range(len(dates))
+	indexes.sort(key=lambda x: datetime.datetime.strptime(dates[x], '%m/%d/%y'), reverse=True)
+
+	for i in range(len(indexes)):
+		output_str += outputs[indexes[i]]
+
 	output_str += '</div>'
 	output_str += '</div>'
 
