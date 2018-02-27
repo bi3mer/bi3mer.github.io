@@ -9,25 +9,25 @@
 	var H_BLOG     = "#blog";
 
 	function resume() {
-		$(H_RESUME).css("display", "block");
-		$(H_PROJECTS).css("display", "none");
-		$(H_BLOG).css("display", "none");
+		document.getElementsByName(RESUME)[0].style["display"]   = "block"
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
+		document.getElementsByName(BLOG)[0].style["display"]     = "none"
 
 		document.location.hash = RESUME;
 	};
 
 	function projects() {
-		$(H_RESUME).css("display", "none");
-		$(H_PROJECTS).css("display", "inline-block");
-		$(H_BLOG).css("display", "none");
+		document.getElementsByName(RESUME)[0].style["display"]   = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block"
+		document.getElementsByName(BLOG)[0].style["display"]     = "none"
 
 		document.location.hash = PROJECTS;
 	};
 
 	function blog() {
-		$(H_RESUME).css("display", "none");
-		$(H_PROJECTS).css("display", "none");
-		$(H_BLOG).css("display", "inline");
+		document.getElementsByName(RESUME)[0].style["display"]   = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
+		document.getElementsByName(BLOG)[0].style["display"]     = "inline"
 
 		document.location.hash = BLOG;
 	};

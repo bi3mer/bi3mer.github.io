@@ -26,7 +26,7 @@ def build_blog_post_item(post):
 		return ""
 
 def blogs():
-	output_str = '<div class="container" id="blog">'
+	output_str = '<div class="container" name="blog">'
 	output_str += '<div class="container">'
 	output_str += '<ul>'
 

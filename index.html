@@ -21,25 +21,25 @@
 	var H_BLOG     = "#blog";
 
 	function resume() {
-		$(H_RESUME).css("display", "block");
-		$(H_PROJECTS).css("display", "none");
-		$(H_BLOG).css("display", "none");
+		document.getElementsByName(RESUME)[0].style["display"]   = "block"
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
+		document.getElementsByName(BLOG)[0].style["display"]     = "none"
 
 		document.location.hash = RESUME;
 	};
 
 	function projects() {
-		$(H_RESUME).css("display", "none");
-		$(H_PROJECTS).css("display", "inline-block");
-		$(H_BLOG).css("display", "none");
+		document.getElementsByName(RESUME)[0].style["display"]   = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block"
+		document.getElementsByName(BLOG)[0].style["display"]     = "none"
 
 		document.location.hash = PROJECTS;
 	};
 
 	function blog() {
-		$(H_RESUME).css("display", "none");
-		$(H_PROJECTS).css("display", "none");
-		$(H_BLOG).css("display", "inline");
+		document.getElementsByName(RESUME)[0].style["display"]   = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
+		document.getElementsByName(BLOG)[0].style["display"]     = "inline"
 
 		document.location.hash = BLOG;
 	};
@@ -66,7 +66,7 @@
 		</h3>
 	</center>
 </div>
-<br/><div class="container" id="resume">
+<br/><div class="container" name="resume">
 	<h2>
 		Work Experience
 	</h2>
@@ -199,7 +199,7 @@
 			</li>
 	</div>
 </div><!-- Set up columns for cleaner display -->
-<div class="container-fluid" id="projects">
+<div class="container-fluid" name="projects">
 	<div class="row">
 		<div class="col-sm-4">
 			<ul>
@@ -336,7 +336,7 @@
 			</ul>
 		</div>
 	</div>
-</div><div class="container" id="blog"><div class="container"><ul>02/26/18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="blog/post_1/index.html">GDMC Part 1: MCEdit Basics</a><br/>10/25/17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="blog/post_0/index.html">C++ to Python: Bindings with Swig</a><br/></ul></div></div>
+</div><div class="container" name="blog"><div class="container"><ul>02/26/18&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="blog/post_1/index.html">GDMC Part 1: MCEdit Basics</a><br/>10/25/17&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="blog/post_0/index.html">C++ to Python: Bindings with Swig</a><br/></ul></div></div>
 		<script type="text/javascript">
 			if(document.location.hash === H_BLOG) {
 				blog();
