@@ -15,22 +15,28 @@
 		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
 
 		<!-- set title on top of the tab -->
-		<title>Making a Game for Research: Part 1</title>
+		<title>Making Rush Hour Part 1: Requirements and Basic Structuring</title>
 	</head>
 	<body>
 		<center class="jumbotron">
 			<h2> 
-				Making a Game for Research: Part 1
+				Making Rush Hour Part 1: Requirements and Basic Structuring
 			</h2>
 		</center>
 		<div class="container">
 			<h3 class="card mb-3">
 				<div class="container">
-					Structuring the Project
+					Introduction
 				</div>
 			</h3>
 			<p>
-				Welcome to a mutlipart series of posts where I'm going to discuss implementing a game, very similar to <a href= "https://itunes.apple.com/us/app/unblock-me-classic-block-puzzle-game/id315019111?mt=8" target="_blank">Unblock Me</a> and <a href="http://www.thinkfun.com/play-online/rush-hour/" target="_blank">Rush Hour</a>, sample screenshots in figure one. I decided to use <a href="https://www.python.org/downloads/release/python-2714/" target="_blank">Python 2.7.14</a>, but the goal I aim to make the majority of these tutorials language independent so anyone can follow along. To facilitate this, there will be a focus on design decisions so that these go beyond a copy and paste tutorials. Upon completion of the game, I plan to go into creating a server to solve puzzles, generating boards on the fly for the game, and looking into valid heuristics for search techinques in the game.
+				This is the first in a series of posts where I discuss implementing a version of 
+				<a target="_blank" href="https://itunes.apple.com/us/app/unblock-me-classic-block-puzzle-game/id315019111?mt=8">Unblock Me</a> 
+				and 
+				<a target="_blank" href="http://www.thinkfun.com/play-online/rush-hour/">Rush Hour;</a>
+				sample screen shots can be seen in figure one. For the implementation, I’ve decided to use 
+				<a target="_blank" href="https://www.python.org/downloads/release/python-2714/">Python 2.7,</a>
+				however, you should be able to follow along with any language. My hope is that each of these posts will be more than just a copy and paste tutorial. To facilitate this, I will be taking deep dives into design decisions, test-driven design, common game AI architecture, general software structure, requirements gathering, servers, and more.
 			</p>
 			<figure align="center">
 				<img src="https://i.ytimg.com/vi/bc_AmUlH05E/maxresdefault.jpg" width="200"/>
@@ -40,124 +46,119 @@
 				</figcaption>
 			</figure>
 		</div>
+
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container">
+					Why Python?
+				</div>
+			</h3>
+
+			<p>
+				Choosing a language for a project is one of the most important decisions that you’ll have to make. It will define how you approach problems, what problems you feel comfortable solving, and even how fast your code will execute. For these reasons, and more, it is imperative to choose a language for a better reason than, “It’s my favorite programming language.” 
+			</p>
+
+			<p>
+				Ironically, one of the main reasons I decided to use python for this project is that it is favorite language. My original goal was to show prospective employers an example project that goes beyond the usual, “I stopped once I got it working.” I wanted to create something that I would feel comfortable showing off not only for the functionality but also the code quality. WIth that in mind, I decided to use python because it would allow me to completely focus on the design and code quality thanks to my level of familiarity with the language.
+			</p>
+
+			<p>
+				In addition, I knew python would be the best bet in the long run because after implementing the game I intend to look into procedural generation of valid boards and machine learning techniques to generate a valid heuristic for A* pathfinding. Both of these goals are well suited for python and the bonus isomorphism makes a life a tad bit easier in the future.
+			</p>
+		</div>
+		
 		<div class="container">
 			<h3 class="card mb-3">
 				<div class="container">
 					Building Requirements
 				</div>
 			</h3>
+
 			<p>
-				We will be implementing a board game which features the one main function of sliding pieces to utlimately solve the puzzle by getting the red block, hereby known as the main piece, to the goal. In both games, the goal is the main piece in the same place, upper right one space below the corner. This rule could be enforced in the software, but is really not necessary. To get the main piece to the goal the user will have to slide pieces around the board to free space for the main piece. A restriciton is that each piece can only move in a certain direction, horizontal or vertical. For example, a piece with the dimensions of three vertial and one can move up or down but not left or right. Similarly a one vertical and two horizontal piece can move horizontally but not vertically. In the future, our representation of a board can take advantage of this fact to simplify map definiitons.
+				It may seem like common sense, but the most important part in programming is knowing exactly what the end goal is for the project. If you know the end goal, you can quickly program to those exact specifications without worry that something will change midway through. Unfortunately, the reality of software development is that things will change and the program will have to change with them. Therefore, it is necessary to develop fully knowing that code you’ve written yesterday will change to accomodate a new feature or idea. The best way to handle these changes is to design with flexibility in mind. Usually this means expecting the changes before they have been requested.
 			</p>
+
 			<p>
-				We now now arrived at the most important task a programmer will ever have, building the requirements. When working with other people it is essential to build this list out so everyone is on the same page. The more thorough this list is, the easier your life as a programmer will be in the future. It also has the added benefit of allowing you to think about the problem as a whole which will allow you to break it into smaller chunks. An important note is that it is possible to go overboard. Finding the right balance between brevity for clarity and depth for specification is paramount. For example, you could write down each functionality of the application and every single unique use case that that function will deal with. In my experience I have found that a higher level requirements document will work best when working with non-programmers. With that tangent aside here is a higher level list of our requirements:
-			<ul>
-				<li>
-					The board will be represented by a series of blocks in a grid.
-				</li>
-				<li>
-					A piece is represented by a series of blocks that are identified on the board by a unique id that is one character in length.
-				</li>
-				<li>
-					Pieces can slide horizontally or vertically, depending on their orientation.
-			    </li>
-			    <ul>
-				    <li>
-				    	Sliding means that it will move positions on the board. This can be either by one space or more.
-				    </li>
-				    <li>
-				    	A piece cannot slide through another piece to get to its target position.
-				    </li>
-				    <li>
-				    	A piece that can slide horizontally will have more components in the horizontal direction than the vertical.
-				    </li>
-				    <li>
-				    	 A piece that can slide vertically will have more components in the vertical direction than the the horizontal.
-				    </li>
+				This can lead some to make the program so flexible that becomes unreasonable and out of scope. One particular moment of mine that stands as is when I decided to make a simple chess game. At the start I was programming with the obvious constraint of the board being in two dimensions. But I had a thought that it may be cool to make the game configurable so someone could play in two dimensions or higher. What resulted was a series of headaches and unnecessary pain for a feature that would never be used. Knowing the right kind of flexibility to add when developing software is key and something that comes with time. 
+			</p>
+
+			<p>
+				In our case, we won’t have to worry about a project manager changing requirements midway through the project but we still have to worry about getting a bright idea that can change everything. Therefore, before even writing our first line of code we need to develop a set of requirements that will be true throughout the project. These requirements will define the core of the game.
+
+				<ul>
+					<li>
+						The board will be represented by a two dimensional matrix that contains unique identifiers for each block.
+					</li>
+					<li>
+						The board will have a unique identifier which represents the goal.
+					</li>
+					<li>
+						The board will have a unique identifier which represents the red block or main block.
+					</li>
+					<li>
+						A block that is longer lengthwise than heightwise can only be moved horizontally one space or more.
+					</li>
+					<li>
+						A block that is longer heightwise than lengthwise can only be moved vertically one space or more.
+					</li>
+					<li>
+						A block that is equal in length and height cannot exist.
+					</li>
+					<li>
+						A block can not be moved through another block.
+					</li>
+					<li>
+						Only the main block can take the spot of the goal on the board.
+					</li>
+					<li>
+						The game will end when the player has managed to slide the main block into the goal.
+					</li>
 				</ul>
-				<li>
-					All pieces cannot slide into the goal besides the main piece.
-				</li>
-				<li>
-					The main piece, when in the goal, will solve the puzzle.
-				</li>
-			</ul>
+			</p>
+
 			<p>
-				For more on creating a requirements document you can view <a href="https://belitsoft.com/php-development-services/software-requirements-specification-document-example-international-standard" target="_blank">BelitSoft's standard</a>.This is only a barebones set of requirements for the game and much more is required in a professional, and even academic, setting. Regardless, this provides a clear scope and gives everyone a solid idea as to what is going to be built.
+				This is not a complete set of requirements, for more on this topic you can view 
+				<a target="_blank" href="https://belitsoft.com/php-development-services/software-requirements-specification-document-example-international-standard">BelitSoft's standard,</a>
+				but it does serve as a baseline for future development. Nothing we develop will go against these requirements. More rigorous requirements building in a professional environment is essential because they force everyone to be on the same page for what is going to be built. 
 			</p>
 		</div>
+
 		<div class="container">
 			<h3 class="card mb-3">
 				<div class="container">
-					Software Structure
+					Structuring the Project
 				</div>
 			</h3>
+
 			<p>
-				Despite having requirements we still have more work to do before we can write our first line of code. Next up is disussing the direction we see the software taking and the algorithms we know we will need to implement. At the start of this project I can think of seven:
+				With our requirements complete, we can now work on defining how we want everything to be structured. The first decision is to figure out a proper file structure knowing we will have one main project with multiple, dependent, side projects. Therefore, a simple flat structure of python files being in the root directory is far too simple for our use case. We want to make everything clear and streamlined so users can easily find what they want.
 			</p>
-			<ol>
-				<li>
-					Check if a move made is valid.
-				</li>
-				<li>
-					Check if puzzle is solved.
-				</li>
-				<li>
-					Get available moves.
-				</li>
-				<li>
-					Make move.
-				</li>
-				<li>
-					Copy board.
-				</li>
-				<li>
-					<a href="https://en.wikipedia.org/wiki/Search_algorithm" target="_blank">Search Algorithm</a>
-				</li>
-				<li>
-					Text file to describe a board and ability to parse said text file.
-					<ul>
-				    	<li>
-				    		Should be able to validate the generated map is valid.
-				    	</li>
-				    </ul>
-				</li>
-			</ol>
+
 			<p>
-				If we hadn't planned on implementing search algorithms or any AI, algorithms three and five could be safely removed along with six. Three can be moved because after the player has made their move can we either validate or invalidate it. With a better GUI we can also check if each move is valid as the move and prevent invalid directions to drag the piece in. Five is only important if we want to keep track of previous states which is important for search algorithms but not for any of our other requirements. If we, however, decided to add an undo function then five would become necessary again. Despite the extra leg work required for search algorithms, it will be well worth the effort because we can now learn about the common structure of board game AI and how it can helps us create an easy to use interface when we are implementing search algorithms. 
+				The two popular solutions for this problem are to create separate repositories with 
+				<a target="_blank" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">submodules</a> 
+				to the required repositories or to use a a monolithic repository. The first solution isn’t ideal because it sets up cases where we can make changes to one repository that will force multiple dependent repositories to update. This issue becomes exacerbated when repositories  are thrown of sync due to simply forgetting to update. Meaning, the main weakness of this approach is that we have to be hyper vigilant when making changes to any repository. The second option means we will have folders at the root for each part of the project we’ll want to build. This means linking them up may not be ideal. For example, one folder will contain the implementation of the game’s logic where another may be an implementation of the GUI. The GUI will be dependent on the games folder, just like with the submodule approach, and there will have to be a weird import set up to go to the root directory and grab the requirements. However, everything will always be in sync and thorough unit testing will make it clear when something has broken.
 			</p>
+
+			<p>
+				Neither of the two approaches are necessarily better than the other, but I ultimately went with the monolithic approach. The inconvenience of getting imports to work seemed minor to the headaches that would ensue with the submodules approach. 
+			</p>
+
 		</div>
+
 		<div class="container">
-			<h3 class="card mb-3">
-				<div class="container">
-					Board Game AI Structure
-				</div>
-			</h3>
-			<p>
-				Due to the simplicity of our game we can actually vastly simplify the structure of our AI aswell as the game interface itself. In figure 2 we see the difference between the two structures where one includes complicated tasks, such as defining a strategy and making decisions based on the strategy, whereas the second only requires <a href="https://en.wikipedia.org/wiki/Pathfinding" target="_blank"> pathfinding</a> to work. With this in mind we can move onto defining the functionality required to create a helpful interface for our AI.
-			</p>
-			<center>
-				<figure>
-					<img src="pictures/board_game_ai.png" width="300"/>
-					<img src="pictures/board_game_ai_part-2.png" width="300"/>
-					<figcaption>
-						Figure 2: The right image shows a standard game AI whereas the right image displays a pathfinding AI.
-					</figcaption>
-				</figure>
-			</center>
-			<p>
-				We can use these figures to define the components we want our game states to expose
-			</p>
 			<h3 class="card mb-3">
 				<div class="container">
 					Next Time
 				</div>
 			</h3>
+
 			<p>
-				In the next post we'll actually start with project structure and then the start of implement the board game. Along the way we'll discuss various approaches to solve the  problems this game presents and why I ultimately went with each decision. At anytime feel free to checkout the [github page](https://github.com/bi3mer/UnBlockMeSolver) where this project is hosted, please note that it does contains spoilers for what is to come. 
+				Next time, we’ll be starting off with setting up our 
+				<a target="_blank" href="https://github.com/">github</a>
+				repository with our monolithic structure in mind. Once that is complete, we can get the basics of the game working by defining a format for a board that can be read from text files. Lastly, we’ll look into a structure for AI in games and how it will affect our design and implementation. 
 			</p>
 		</div>
-
 <!-- Disqus for comments -->
 <div id="disqus_thread" class="container"></div>
 <script>
