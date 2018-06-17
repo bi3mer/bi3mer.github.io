@@ -46,90 +46,10 @@
 		<div class="container">
 			<h3 class="card mb-3">
 				<div class="container" id="the_sorting_algorithms">
-					The Sorting Algorithms
+					Quicksort
 				</div>
 			</h3>
 
-			<p>
-				At the beginning of this undertaking I had written versions of 
-				<a target="_blank" href="https://en.wikipedia.org/wiki/Bubble_sort">bubble sort,</a> 
-				<a target="_blank" href="https://en.wikipedia.org/wiki/Cocktail_shaker_sort">cocktail shaker sort,</a>
-				and 
-				<a target="_blank" href="https://en.wikipedia.org/wiki/Quicksort">quicksort.</a> 
-				Below I’ve included code snippets for each algorithm.
-			</p>
-
-			<h4>
-				Bubble Sort
-			</h4>
-
-			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">void</span> <span style="color: #a6e22e">bubbleSort</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span><span style="color: #f92672">*</span> <span style="color: #f8f8f2">a,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">size)</span>
-<span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">bool</span> <span style="color: #f8f8f2">swapped;</span>
-
-    <span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">size</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span> <span style="color: #f92672">++</span><span style="color: #f8f8f2">i)</span>
-    <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">swapped</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
-
-        <span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">j</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #f8f8f2">j</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">size</span> <span style="color: #f92672">-</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span> <span style="color: #f92672">++</span><span style="color: #f8f8f2">j)</span>
-        <span style="color: #f8f8f2">{</span>
-            <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(a[j]</span> <span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">a[j</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">])</span>
-            <span style="color: #f8f8f2">{</span>
-                <span style="color: #f8f8f2">swapped</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
-                <span style="color: #f8f8f2">std</span><span style="color: #f92672">::</span><span style="color: #f8f8f2">swap(a[j],</span> <span style="color: #f8f8f2">a[j</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]);</span>
-            <span style="color: #f8f8f2">}</span>
-        <span style="color: #f8f8f2">}</span>
-
-        <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(swapped</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">false)</span>
-        <span style="color: #f8f8f2">{</span>
-            <span style="color: #66d9ef">break</span><span style="color: #f8f8f2">;</span>
-        <span style="color: #f8f8f2">}</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-		
-		<br/>
-		<h4>
-			Cocktail Shaker Sort
-		</h4>
-		<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">void</span> <span style="color: #a6e22e">cocktailShakerSort</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f92672">*</span><span style="color: #f8f8f2">a,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">size)</span>
-<span style="color: #f8f8f2">{</span>
-    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">startIndex</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">endIndex</span>   <span style="color: #f92672">=</span> <span style="color: #f8f8f2">size</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #66d9ef">bool</span> <span style="color: #f8f8f2">swapped</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
-
-    <span style="color: #66d9ef">while</span><span style="color: #f8f8f2">(swapped)</span>
-    <span style="color: #f8f8f2">{</span>
-        <span style="color: #f8f8f2">swapped</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">false;</span>
-
-        <span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">startIndex;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">endIndex;</span> <span style="color: #f92672">++</span><span style="color: #f8f8f2">i)</span>
-        <span style="color: #f8f8f2">{</span>
-            <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(a[i]</span> <span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">a[i</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">])</span>
-            <span style="color: #f8f8f2">{</span>
-                <span style="color: #f8f8f2">std</span><span style="color: #f92672">::</span><span style="color: #f8f8f2">swap(a[i],</span> <span style="color: #f8f8f2">a[i</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]);</span>
-                <span style="color: #f8f8f2">swapped</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
-            <span style="color: #f8f8f2">}</span>
-        <span style="color: #f8f8f2">}</span>
-
-        <span style="color: #f8f8f2">startIndex</span> <span style="color: #f92672">+=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
-
-        <span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">endIndex;</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">&gt;=</span> <span style="color: #f8f8f2">startIndex;</span> <span style="color: #f92672">--</span><span style="color: #f8f8f2">i)</span>
-        <span style="color: #f8f8f2">{</span>
-            <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(a[i]</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">a[i</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">])</span>
-            <span style="color: #f8f8f2">{</span>
-                <span style="color: #f8f8f2">std</span><span style="color: #f92672">::</span><span style="color: #f8f8f2">swap(a[i],</span> <span style="color: #f8f8f2">a[i</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]);</span>
-                <span style="color: #f8f8f2">swapped</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">true;</span>
-            <span style="color: #f8f8f2">}</span>
-        <span style="color: #f8f8f2">}</span>
-
-        <span style="color: #f8f8f2">endIndex</span> <span style="color: #f92672">-=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>
-    <span style="color: #f8f8f2">}</span>
-<span style="color: #f8f8f2">}</span>
-</pre></div>
-			<br/>
-			<h4>
-				Quicksort
-			</h4>
 			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">int</span> <span style="color: #a6e22e">partition</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">int</span><span style="color: #f92672">*</span> <span style="color: #f8f8f2">a,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">low,</span> <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">high)</span>
 <span style="color: #f8f8f2">{</span>
     <span style="color: #66d9ef">int</span> <span style="color: #f8f8f2">lowIndex</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">low</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>

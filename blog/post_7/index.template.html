@@ -1,0 +1,577 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>GDMC Part 2: Manipulating the Ground</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				GDMC Part 2: Manipulating the Ground
+			</h2>
+		</center>
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container" id="a_quick_note">
+					A Quick Note
+				</div>
+			</h3>
+
+			<p>
+				I ended up getting pretty sick and I was out of commission for about two months. The good news is that I’m now in perfectly good health. The bad news is that it kind of destroyed my hopes of building a decent submission for GDMC. The competition ends in about thirteen days which is not enough time to come up with a submission I would be proud of. In addition, my 40+ hours at the 
+				<a target="_blank" href="https://braingamecenter.ucr.edu/">Brain Game Center,</a>
+				where I work, every week is the very large nail in the coffin. Regardless, I plan on continuing to work on this problem until I have something cool I can show off. 
+			</p>
+		</div>
+
+		<div class="container"> 
+			<h3 class="card mb-3">
+				<div class="container" id="counting_materials_in_a_selection">
+					Counting Materials In a Selection
+				</div>
+			</h3>
+
+			<p>
+				The 
+				<a target="_blank" href="https://bi3mer.github.io/blog/post_1/index.html">last post</a>
+				featured basic drawing methods to be able to write changes to the map. In this post, I’m attempting to get a better understanding of the level data structure we are given. WIth that in mind, the first thing I want to do is go over how to inspect a block in 
+				<a target="_blank" href="http://www.mcedit.net/">MCEdit.</a>
+			</p>
+			<p>
+				My initial attempt at this was a failure because I assumed getting a block would follow a similar naming convention to the <code>setBlockAt</code> function. Much to my surprise, this was not the case. Searching through the the code showed that the correct function is actually <code>blockAt</code>. With that unfortunate mistake behind, it was super easy to modify my 
+				<a target="_blank" href="https://bi3mer.github.io/blog/post_1/index.html#fill_selection">fill selection</a>
+				code from the last post.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Selection Material Counter&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+    <span style="color: #f8f8f2">final_x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span>
+    <span style="color: #f8f8f2">final_y</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span>
+    <span style="color: #f8f8f2">final_z</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span>
+
+    <span style="color: #f8f8f2">materials</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{}</span>
+
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x),</span> <span style="color: #f8f8f2">max(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y),</span> <span style="color: #f8f8f2">max(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y)):</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z),</span> <span style="color: #f8f8f2">max(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z)):</span>
+                <span style="color: #f8f8f2">material</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span>
+
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">material</span> <span style="color: #f92672">not</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">materials:</span>
+                    <span style="color: #f8f8f2">materials[material]</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span>
+
+                <span style="color: #f8f8f2">materials[material]</span> <span style="color: #f92672">+=</span> <span style="color: #ae81ff">1</span>
+
+    <span style="color: #66d9ef">print</span> <span style="color: #e6db74">&quot;Material Counts&quot;</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">key</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">materials:</span>
+        <span style="color: #66d9ef">print</span> <span style="color: #e6db74">&quot;</span><span style="color: #ae81ff">\t</span><span style="color: #e6db74">&quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">str(key)</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;: &quot;</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">str(materials[key])</span>
+</pre></td></tr></table></div>
+			<br/>
+			<p>
+				I used a dictionary with a key to the material and a value of the count. Each material checks to see if it exists in the dictionary and if not it adds itself with a value of 0. After this check, the dictionary value for the key is incremented. After looping through the selection, a loop is used to print out all the values. The output after running on a random selection I made can be seen below.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">Material</span> <span style="color: #f8f8f2">Counts</span>
+    <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">2361</span>
+    <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">80</span>
+    <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">728</span>
+    <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">917</span>
+    <span style="color: #ae81ff">37</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">7</span>
+    <span style="color: #ae81ff">12</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">12</span>
+    <span style="color: #ae81ff">17</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">93</span>
+    <span style="color: #ae81ff">18</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">726</span>
+    <span style="color: #ae81ff">31</span><span style="color: #f8f8f2">:</span> <span style="color: #ae81ff">44</span>
+</pre></div>
+ 			<br/>
+		</div>
+
+		<div class="container"> 
+			<h3 class="card mb-3">
+				<div class="container" id="rewriting_every_block_except_empty">
+					Rewriting Every Block Except Empty
+				</div>
+			</h3>
+
+			<p>
+				From the 
+				<a target="_blank" href="../post_1/index.html">last post</a>
+				we already know how to fill in a space with a material and even make it modifiable from the the UI. We can take the exact same code and add an if statement at the end of the three for loops to check if the block in question is empty and does not have an <code>ID</code> of 0. If it doesn't we can overwrite it, else we can continue onwards. 
+			</p>
+
+			<center>
+				<figure align="center">
+					<img src="pictures/replace_all_except_air" width="400"/>
+					<figcaption>
+						Figure 1: Sample where all non-empty blocks are turned into coal.
+					</figcaption>
+				</figure>
+			</center>
+
+			<p>
+				As a note, in mcedit there is a file 
+				<a target="_blank" href="https://github.com/mcgreentn/GDMC/blob/master/pymclevel/minecraft.json">minecraft.json</a>
+				which defines every block and it’s data. Unfortunately, there isn’t one for empty space. However, looking at the the code in 
+				<a target="_blank" href="https://github.com/Podshot/MCEdit-Unified/blob/master/pymclevel/materials.py#L259">materials.py</a>
+				there is a hardcoded value for air that can be used. 
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Replace All Except Air&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock),</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material):</span>
+    <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+    <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fill_box</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size,</span> <span style="color: #f8f8f2">material):</span>
+    <span style="color: #f8f8f2">final_x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span>
+    <span style="color: #f8f8f2">final_y</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span>
+    <span style="color: #f8f8f2">final_z</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span>
+
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y)):</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z)):</span>
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span> <span style="color: #f92672">!=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+    <span style="color: #f8f8f2">fill_box(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size,</span> <span style="color: #f8f8f2">options[</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">])</span>
+</pre></td></tr></table></div>
+
+			
+			<br/>
+		</div>
+
+		<div class="container"> 
+			<h3 class="card mb-3">
+				<div class="container" id="nuke">
+					Nuke
+				</div>
+			</h3>
+
+			<p>
+				Now we can focus on recreating what was done by Christoph Salge in his 
+				<a target="_blank" href="https://twitter.com/ChristophSalge/status/967148791248932864">tweet</a>
+				also seen in figure two. It replaces the top layer of the world with obsidian and tree blocks with coal. In addition, I’ve decided to replace water with lava. All of this is pretty easy except for replacing the top layer of the world. So we are going to break this problem down into two parts. First, we are going to replace the top layer of the world with any material. After that, we are going to combine the result of the first part with the extra replacements to recreate the entire filter.
+			</p>
+			<br/>
+			<center>
+				<figure align="center">
+					<img src="https://pbs.twimg.com/media/DWv_uAPW4AEg7m9.jpg" width="400"/>
+					<figcaption>
+						Figure 2: Christoph Salge’s filter in action from his
+						<a target="_blank" href="https://twitter.com/ChristophSalge/status/967148791248932864">tweet.</a>
+					</figcaption>
+				</figure>
+			</center>
+			
+			<h4 class="card mb-3">
+				<div class="container" id="replacing_the_top_layer">
+					Replacing the Top Layer
+				</div>
+			</h4>
+
+			<p>
+				Up until now every for loop that we have used has been looping through every <code>x</code>, then every <code>y</code>, and then every <code>z</code> to look through the map. This works pretty well but now we have to change it. Mcedit uses a coordinate system where the <code>y</code> coordinate is representative of the height. Therefore, we are going to change our loop to go <code>x</code>, <code>z</code>, and then <code>y</code>. In addition, instead of going from the smallest <code>y</code> to the largest <code>y</code>, we are now going to do the opposite. This means that for every <code>x</code> and <code>z</code> coordinate we will loop from the top of the users selection to the bottom.
+			</p>
+
+			<center>
+				<figure align="center">
+					<img src="pictures/replace_top_layer.png" width="400"/>
+					<figcaption>
+						Figure 3: Replacing the to layer with coal.
+					</figcaption>
+				</figure>
+			</center>
+
+			<p>
+				From there, we can loop through the <code>y</code> coordinates and stop once we find a material that isn’t air. The effect can be seen in figure three and the code is directly below.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Replace Top Layer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock),</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material):</span>
+    <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+    <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fill_box</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size,</span> <span style="color: #f8f8f2">material):</span>
+    <span style="color: #f8f8f2">final_x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span>
+    <span style="color: #f8f8f2">final_y</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span>
+    <span style="color: #f8f8f2">final_z</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span>
+
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">final_x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">final_z)):</span>
+            <span style="color: #75715e"># loop from the top until we reach a material that is not empty</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">reversed(range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">final_y))):</span>
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Air</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material)</span>
+                    <span style="color: #66d9ef">break</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+    <span style="color: #f8f8f2">fill_box(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size,</span> <span style="color: #f8f8f2">options[</span><span style="color: #e6db74">&quot;Material&quot;</span><span style="color: #f8f8f2">])</span>
+</pre></td></tr></table></div>
+
+
+			<br/>
+
+			<h4 class="card mb-3">
+				<div class="container" id="replacing_the_top_layer_and_other_materials">
+					Replacing the Top Layer and All Other Materials
+				</div>
+			</h4>
+
+			<p>
+				We can break this problem into 3 parts to get the effect seen in figure four:
+
+				<ol>
+					<li>Replace the top layer with obsidian</li>
+					<li>Replace all water with lava</li>
+					<li>Replace all trees with coal and remove the leaves</li>
+				</ol>
+			</p>
+
+			<center>
+				<figure align="center">
+					<img src="pictures/nuke.png" width="400"/>
+					<figcaption>
+						Figure 4: Nuke effect in action.
+					</figcaption>
+				</figure>
+			</center>
+
+			<p>
+				The first effect is now easy, we use the code from the section above and give it the material of Obsidian. The second effect is also easy, we use our replace all function and change it to only change the value to lava if the given block is water. The only thing to note is that we have to use the materials <code>ID</code> instead of just the material. Lastly, we do the same thing as the second part but also check for leaves. With wood we replace it with coal and with leaves we replace it with air. It is important to note that the  the replace top layer function must be called last or you will end up with obsidian blocks where leaves used to be. The code below directly represents this line of thought but you’ll probably notice it is fairly inefficient. 
+			</p>
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">alphaMaterials,</span> <span style="color: #f8f8f2">MCSchematic,</span> <span style="color: #f8f8f2">MCLevel,</span> <span style="color: #f8f8f2">BoundingBox</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">pymclevel.box</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Vector</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">mcplatform</span> <span style="color: #f92672">import</span> <span style="color: #f92672">*</span>
+
+<span style="color: #f8f8f2">inputs</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Nuke&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Creator: Colan Biemer&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;label&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_block</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material):</span>
+    <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">material</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID)</span>
+    <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">setBlockDataAt(x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #75715e"># We do this last, so we can assume leaves have been destroyed and</span>
+<span style="color: #75715e"># wood has been changed to coal</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">fill_top_layer_with_obsidian</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size):</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)):</span>
+            <span style="color: #75715e"># loop from the top until we reach a material that is not empty</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">reversed(range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y))):</span>
+                <span style="color: #f8f8f2">block</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span>
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Air</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">and</span> \
+                   <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">and</span> \
+                   <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Lava</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Obsidian)</span>
+                    <span style="color: #66d9ef">break</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">replace_all_water_with_lava</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size):</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y)):</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)):</span>
+                <span style="color: #f8f8f2">block</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span>
+
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Water</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">or</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">WaterActive</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Lava)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">replace_all_trees_with_coal</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size):</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y)):</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)):</span>
+                <span style="color: #f8f8f2">block</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span>
+
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Wood</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock)</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Leaves</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Air)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">perform</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">box,</span> <span style="color: #f8f8f2">options):</span>
+    <span style="color: #f8f8f2">size</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Vector(box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)</span>
+
+    <span style="color: #f8f8f2">replace_all_water_with_lava(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size)</span>
+    <span style="color: #f8f8f2">replace_all_trees_with_coal(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size)</span>
+    <span style="color: #f8f8f2">fill_top_layer_with_obsidian(level,</span> <span style="color: #f8f8f2">box</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size)</span>
+</pre></td></tr></table></div>
+
+			<br/>
+
+			<p>
+				The above code is inefficient because it does the same three loops three times in three different functions. It was convenient to write the program this way the first time because it was clear and helped organize our thoughts. However, now that we have a working version it is worthwhile to go back and figure out a way to combine all three loops.
+			</p>
+
+			<p>
+				This means copying the inner loops and pasting them into one for loop, however there is some conflict with the replace top layer loop. A first step could be to to write two for loops for the <code>y</code> coordinate at the end: one for the water and trees and the other for the top layer. 
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">nuke</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size):</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)):</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y)):</span>
+                <span style="color: #f8f8f2">block</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span>
+                
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Water</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">or</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">WaterActive</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Lava)</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Wood</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock)</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Leaves</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Air)</span>
+
+            <span style="color: #75715e"># loop from the top until we reach a material that is not empty</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">reversed(range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y))):</span>
+                <span style="color: #f8f8f2">block</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span>
+
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Air</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">and</span> \
+                   <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">and</span> \
+                   <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Lava</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Obsidian)</span>
+                    <span style="color: #66d9ef">break</span>
+</pre></td></tr></table></div>
+
+
+			<br/>
+
+			<p>
+				This is a good first step, however, we can improve it by making it work in one loop rather than two. The only step is to create a set of <code>if</code>, <code>else if</code> statements where the top layer statement is last. You may have concerns about the break ruining the filter, however, this break actually makes it so we do less work and still get the same effect. I’m leaving it as a thought experiment for anyone who wants to figure out how this works. 
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">nuke</span><span style="color: #f8f8f2">(level,</span> <span style="color: #f8f8f2">origin,</span> <span style="color: #f8f8f2">size):</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x)):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">z</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">z)):</span>
+            <span style="color: #75715e"># loop from the top until we reach a material that is not empty</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">reversed(range(min(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y),</span> <span style="color: #f8f8f2">max(origin</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y))):</span>
+                <span style="color: #f8f8f2">block</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">level</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">blockAt(x,y,z)</span>
+
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Water</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">or</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">WaterActive</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Lava)</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Wood</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock)</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Leaves</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Air)</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Air</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">and</span> \
+                   <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">CoalBlock</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID</span> <span style="color: #f92672">and</span> \
+                   <span style="color: #f8f8f2">block</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Lava</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ID:</span>
+                    <span style="color: #f8f8f2">draw_block(level,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">z,</span> <span style="color: #f8f8f2">alphaMaterials</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Obsidian)</span>
+                    <span style="color: #66d9ef">break</span>
+</pre></td></tr></table></div>
+			<br/>
+		</div>
+		<div class="container">
+			<h3 class="card mb-3">
+				<div class="container" id="next_time">
+					Next Time
+				</div>
+			</h3>
+			<p>
+				In the next post I’ll be implementing a version of 
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway’s Game of Life</a>
+				as a breather before getting to the real meat of this project which is the settlement generation. Depending on the length of the post, I may go into some theories of how I think settlements can be generated based on the reading I have done and intend to do in the future before the next post. 
+			</p>
+		</div>
+		<br/>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+	</body>
+</html>
