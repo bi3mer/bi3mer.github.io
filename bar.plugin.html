@@ -1,33 +1,47 @@
 <script type="text/javascript">
 
 	var RESUME   = "resume";
+	var CV       = "cv";
 	var PROJECTS = "projects";
 	var BLOG     = "blog";
 
 	var H_RESUME   = "#resume";
+	var H_CV       = "#cv";
 	var H_PROJECTS = "#projects";
 	var H_BLOG     = "#blog";
 
 	function resume() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "block"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
-		document.getElementsByName(BLOG)[0].style["display"]     = "none"
+		document.getElementsByName(RESUME)[0].style["display"]   = "block";
+		document.getElementsByName(CV)[0].style["display"]       = "none";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none";
+		document.getElementsByName(BLOG)[0].style["display"]     = "none";
 
 		document.location.hash = RESUME;
 	};
 
+	function cv() {
+		document.getElementsByName(RESUME)[0].style["display"]   = "none";
+		document.getElementsByName(CV)[0].style["display"]       = "block";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none";
+		document.getElementsByName(BLOG)[0].style["display"]     = "none";
+
+		document.location.hash = CV;
+	};
+
 	function projects() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block"
-		document.getElementsByName(BLOG)[0].style["display"]     = "none"
+		document.getElementsByName(RESUME)[0].style["display"]   = "none";
+		document.getElementsByName(CV)[0].style["display"]       = "none";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block";
+		document.getElementsByName(BLOG)[0].style["display"]     = "none";
 
 		document.location.hash = PROJECTS;
 	};
 
 	function blog() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
-		document.getElementsByName(BLOG)[0].style["display"]     = "inline"
+		document.getElementsByName(RESUME)[0].style["display"]   = "none";
+		document.getElementsByName(CV)[0].style["display"]       = "none";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none";
+		document.getElementsByName(BLOG)[0].style["display"]     = "inline";
 
 		document.location.hash = BLOG;
 	};
@@ -44,13 +58,16 @@
 			Colan Biemer
 		</h1>
 		<h3 style="display:inline">
-			<element onclick="resume()">Resume</element>
+			<element onclick="resume()">Resume</element> &nbsp
 		</h3>
 		<h3 style="display:inline">
-			<element onclick="projects()">Projects</element>
+			<element onclick="cv()">CV</element> &nbsp
 		</h3>
 		<h3 style="display:inline">
-			<element onclick="blog()">Blog</element>
+			<element onclick="projects()">Projects</element> &nbsp
+		</h3>
+		<h3 style="display:inline">
+			<element onclick="blog()">Blog</element> &nbsp
 		</h3>
 	</center>
 </div>

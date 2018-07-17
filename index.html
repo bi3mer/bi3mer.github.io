@@ -13,33 +13,47 @@
 <script type="text/javascript">
 
 	var RESUME   = "resume";
+	var CV       = "cv";
 	var PROJECTS = "projects";
 	var BLOG     = "blog";
 
 	var H_RESUME   = "#resume";
+	var H_CV       = "#cv";
 	var H_PROJECTS = "#projects";
 	var H_BLOG     = "#blog";
 
 	function resume() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "block"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
-		document.getElementsByName(BLOG)[0].style["display"]     = "none"
+		document.getElementsByName(RESUME)[0].style["display"]   = "block";
+		document.getElementsByName(CV)[0].style["display"]       = "none";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none";
+		document.getElementsByName(BLOG)[0].style["display"]     = "none";
 
 		document.location.hash = RESUME;
 	};
 
+	function cv() {
+		document.getElementsByName(RESUME)[0].style["display"]   = "none";
+		document.getElementsByName(CV)[0].style["display"]       = "block";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none";
+		document.getElementsByName(BLOG)[0].style["display"]     = "none";
+
+		document.location.hash = CV;
+	};
+
 	function projects() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block"
-		document.getElementsByName(BLOG)[0].style["display"]     = "none"
+		document.getElementsByName(RESUME)[0].style["display"]   = "none";
+		document.getElementsByName(CV)[0].style["display"]       = "none";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block";
+		document.getElementsByName(BLOG)[0].style["display"]     = "none";
 
 		document.location.hash = PROJECTS;
 	};
 
 	function blog() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
-		document.getElementsByName(BLOG)[0].style["display"]     = "inline"
+		document.getElementsByName(RESUME)[0].style["display"]   = "none";
+		document.getElementsByName(CV)[0].style["display"]       = "none";
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none";
+		document.getElementsByName(BLOG)[0].style["display"]     = "inline";
 
 		document.location.hash = BLOG;
 	};
@@ -56,18 +70,66 @@
 			Colan Biemer
 		</h1>
 		<h3 style="display:inline">
-			<element onclick="resume()">Resume</element>
+			<element onclick="resume()">Resume</element> &nbsp
 		</h3>
 		<h3 style="display:inline">
-			<element onclick="projects()">Projects</element>
+			<element onclick="cv()">CV</element> &nbsp
 		</h3>
 		<h3 style="display:inline">
-			<element onclick="blog()">Blog</element>
+			<element onclick="projects()">Projects</element> &nbsp
+		</h3>
+		<h3 style="display:inline">
+			<element onclick="blog()">Blog</element> &nbsp
 		</h3>
 	</center>
 </div>
-<br/>		<!-- CV -->
-<div class="container" name="resume">
+<br/>		
+<div class="container" name="cv">
+	<h2>
+		Vitae
+	</h2>
+
+	<strong>
+		Employement
+	</strong>
+	<ul>
+		<li>
+			<a href="https://braingamecenter.ucr.edu/">University of California Riverside Brain Game Center</a>, August 2017 - Present
+		</li>
+		<li>
+			<a href="https://www.bmwusfactory.com/manufacturing/building-a-better-bmw/information-technology-research-center/">BMW</a>, April 2016 - September 2016
+		</li>
+		<li>
+			<a href="http://www.ipipeline.com/">IPipeline</a>, April 2015 - September 2015
+		</li>
+		<li>
+			<a href="http://drexel.edu/cci/academics/departments/computer-science/">Drexel University</a>
+			<ul>
+				<li>Teaching Assistant CS161, Winter 2016</li>
+				<li>Teaching Assistant CS143, Winter 2016 </li>
+				<li>Teaching Assistant <a href="https://www.cs.drexel.edu/~introcs/Fa15/people.html">CS164</a>, Fall 2015</li>
+				<li>Entrepeneurial Game Studio</li>
+				<ul>
+					<li>
+						<a href="https://www.youtube.com/watch?v=0atY4mboD4w&t=88s">Tetris Cira Center Programmer</a>, September 2013 - April 2014
+					</li>
+				</ul>
+			</ul>
+		</li>
+		<li>
+			<a href="http://theomegabase.wixsite.com/homepage">TheOmegaBase</a>, April 2014 - September 2014
+		</li>
+	</ul>
+
+	<strong>
+		Education
+	</strong>
+	<ul>
+		<li>
+			Drexel University, Philadelphia, PA. Computer Science, B.S. 2017
+		</li>
+	</ul>
+</div><div class="container" name="resume">
 	<h2>
 		Work Experience
 	</h2>
@@ -335,6 +397,8 @@
 		<script type="text/javascript">
 			if(document.location.hash === H_BLOG) {
 				blog();
+			} else if (document.location.hash === H_CV) {
+				cv();
 			} else if(document.location.hash === H_PROJECTS) {
 				projects();
 			} else {
