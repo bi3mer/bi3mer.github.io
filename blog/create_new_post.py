@@ -3,15 +3,7 @@ import os
 
 directory_contents = os.listdir('.')
 
-max_post_num = 0
-for item in directory_contents:
-	if os.path.isdir(item):
-		num = int(item.split('_')[1])
-		
-		if num > max_post_num:
-			max_post_num = num
-
-path = 'post_' + str(max_post_num + 1)
+path = 'post_RENAME_ME'
 os.mkdir(path)
 os.mkdir(os.path.join(path, 'pictures'))
 
