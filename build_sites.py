@@ -1,5 +1,7 @@
 # put in the #environment thing
 
+from importlib import reload
+
 import customFunctions
 import inspect
 import sys
@@ -10,7 +12,7 @@ def reimport():
 		reload(customFunctions) 
 	except Exception as e:
 		# print erro message and make beep to notify user of error
-		print e.message
+		print(e)
 		sys.stdout.write('\r\a')
 
 def build_template(file_name, path):
@@ -39,7 +41,7 @@ def build_template(file_name, path):
 				if function != None:
 					output_str += function()	
 				else:
-					print file_name + " is neither a vaid file nor a custom function."
+					print(file_name + " is neither a vaid file nor a custom function.")
 		else:
 			output_str += line
 

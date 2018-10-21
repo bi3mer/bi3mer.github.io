@@ -46,7 +46,7 @@ def main():
 		time.sleep(1)
 
 		if should_reset() == True:
-			print "rebuilt"
+			print("rebuilt")
 			reimport()
 			build_templates()
 

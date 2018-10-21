@@ -26,7 +26,7 @@ def build_blog_post_item(post):
 		else:
 			return date, ''
 	else:
-		print path + " is not a directory and all is wrong."
+		print(path + " is not a directory and all is wrong.")
 		return None, ""
 
 def blogs():
@@ -47,7 +47,7 @@ def blogs():
 		dates.append(date)
 		outputs.append(output)
 
-	indexes = range(len(dates))
+	indexes = [i for i in range(len(dates))]
 	indexes.sort(key=lambda x: datetime.datetime.strptime(dates[x], '%m/%d/%y'), reverse=True)
 
 	for i in range(len(indexes)):
