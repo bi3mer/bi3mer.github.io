@@ -1,0 +1,93 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Ring Buffers</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Ring Buffers
+			</h2>
+		</center>
+		<div class="container">
+			<p>
+				In my 
+				<a target="_blank" href="../post_22/index.html">last post</a>
+				I discussed n-grams and gave an example of them being used on the text of <i>Harry Potter</i> but I didn't cover the implementation and instead linked the source. Today, I want to go over a key data structure used in my implementation: ring buffers (also known as a circular buffer).
+            </p>
+            <p>
+            	A ring buffer needs a max size, <code>N</code>, that represents its max capacity. Until the buffer has reached its max capacity, it is exactly like a list. However, once the max capacity is reached the buffer will drop elements when new ones are added resulting in a first in first out (FIFO) behavior. An example of this data structure in action can be seen below. We initialize a ring buffer of size three. At first the ring buffer acts like a list but stops when the fourth element is added. On this add, the ring buffer drops the 0 because it was the first element added and the buffer has reached its max capacity of three. Say, for example, we ran this again and added a four. The buffer would then be <code>[2,3,4]</code> because the one would be the next element to be dropped.
+            </p>
+
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f92672">from</span> <span style="color: #f8f8f2">DataStructures</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">RingBuffer</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">RingBuffer(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span>
+<span style="color: #f8f8f2">[]</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">add(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span>
+<span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">add(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span>
+<span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">add(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span>
+<span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">add(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f92672">&gt;&gt;&gt;</span> <span style="color: #f8f8f2">rb</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span>
+<span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">]</span>
+</pre></div>
+	
+			<br/>
+			<p>
+				Now that we have an idea of how the ring buffer is supposed to behave, we can implement it. The first thing we should do is define are initialization function for the class. In this case, we know that we must receive <code>N</code> but don't need anything else from the user.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">__init__</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">buffer_limit):</span>
+    <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer_limit</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">buffer_limit</span>
+    <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[]</span>
+</pre></div>
+
+			<br/>
+			<p>
+				With our buffer and size handled in the initialization, we can then go into the important function of the buffer: <code>add</code>. This is the function that implements the circular behavior we saw above. To do this we have first have to check whether or not the array is full by using <code>N</code> and comparing it to the length of the buffer. If the buffer has reached max capacity then we remove the first element of the buffer with <code>self.buffer.pop(0)</code>. Afterwards, we can then add the value to the buffer by appending it to the end.
+			</p>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">add</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">value):</span>
+  <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">full():</span>
+    <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">pop(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+
+  <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(value)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">full</span><span style="color: #f8f8f2">(self):</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">len(self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer)</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">buffer_limit</span>
+</pre></div>
+
+			<br/>
+			<p>
+				You can also add additional functions like <code>get</code> as a way to get individual elements from the buffer by index which can be seen in the
+				<a target="_blank" href="https://github.com/bi3mer/nlp_experiments/blob/master/DataStructures/RingBuffer.py">
+					source implementation.
+				</a>
+				The code I have provided is not the most efficient implementation of the data structure but does, in my opinion, get across the way it is supposed to function best. It is a data structure that I use fairly regularly and wish came with languages but since it does not I recommend to most programmers to learn about it and how to implement it. It's a very good tool to have in the toolbox.
+			</p>
+
+
+		</div>
+		<br/>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+	</body>
+</html>
