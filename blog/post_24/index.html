@@ -1,0 +1,121 @@
+<!-- auto-generated document -->
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>N-Grams: Joint Probability</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				N-Grams: Joint Probability
+			</h2>
+		</center>
+		<div class="container">
+			<p>
+				Let's start by examining the simplest case of joint probability with single word probability via a uni-gram. If we want to know the probability of a word, without any context appearing before or after, then we could take a corpus of text and convert it into a dictionary with the key for the word and the count as the value: <code>{ "a": 1000, "an": 3, "animal": 12, ... }</code>. Say we want to calculate <code>P("a")</code>, meaning the likelihood of "a." We would take the count of occurrences for the word "a" and divide it by the total number of words in the corpus: <code>P("a") ≈ count("a") / corpus_word_count</code>. This is called maximum likelihood estimation (MLE) and we use the "≈" sign because our corpus is not a perfect representation of the actual likelihood of the word.
+			</p>
+			<p>
+				Say we wanted to calculate the probability of "an animal". In this case we would have <code>P("an animal") ≈ P("an")P("animal")</code> because the relationship between "an" and "animal" is independent for our model; this is not true for the english language which is why we use the approximately equals sign. With the independence we can now calculate the probability with the chain rule:
+
+				<br/>
+				<center>
+					<code>P("an animal") ≈ P("an")P("animal") = (count("an")/corpus_word_count) * (count("animal")/corpus_word_count)</code>
+				</center>
+			</p>
+
+			<p>
+				Now that we understand joint probability with uni-grams, we can generalize our knowledge to work with any n-gram where n is an integer and greater than 0. To begin, let's look at the sentence, "An animal dropped from the tree." Say we have a trained bi-gram ready to calculate the likelihood of the sentence. What would it do for the first word? The bi-gram needs to have the word that occurred before "An" to work. One way to get around this problem is build n-grams with tokens at the beginning and end of a sentence, "&lt;s&gt; An animal dropped from the tree &lt;/s&gt;." Note, if if this was a tri-gram there would be two start of sentence tokens instead of one. In our case, though, we are interested in being able to generate more than one sentence. Instead, we calculate the probability of the first word with a 1-gram, then the second word with a bi-gram, and so on for whatever n. Instead of a bi-gram here is the formulation of how a tri-gram calculates joint probability:
+
+				<center>
+					<code>
+						P(S) ≈ P(s1)P(s2|s1)P(s3|s1,s2)...P(sn|sn-2,sn-1)
+					</code>
+				</center>
+			</p>
+
+			<p>
+				If it was a bi-gram the last calculation would be <code>P(sn|sn-1)</code>. If it was a quad-gram it would be <code>P(sn|sn-3,sn-2,sn-1)</code>. There is, however, a potential problem with this formulation when we move away from theory and towards computation: 
+				<a target="_blank" href="https://en.wikipedia.org/wiki/Arithmetic_underflow">
+					underflow.
+				</a>
+				Underflow occurs when the resulting calculation of an operation is a number smaller than the computer can represent. With our current method of joint probability calculation we multiply a bunch of, potentially, small decimals together and could run into underflow. To avoid some of these inaccuracies we can run the calculation in log space, and to do so we need to know the following identity:
+			</p>
+
+			<p>
+				<center>
+					<code>
+						log(x1*x2*...*xn) = log(x1) + log(x2) + ... + log(xn)
+					</code>
+				</center>
+				<br/>
+
+				This identity tells us that we can take any multiplication and turn it into an addition problem which will reduce the likelihood of encountering extremely small numbers. In addition, 
+				<a target="_blank" href="https://www.quora.com/Is-addition-more-efficient-than-multiplication-in-programming">
+					adding is a faster operation than multiplication. 
+				</a>
+
+				With the identity, we can calculate our joint probability by first adding all the individual log probabilities and raising <code>e</code> by the result to get a probability of higher accuracy.
+
+				<br/>
+				<br/>
+				<center>
+					<code>
+						P(W) ≈ e ^ (log(P(W1) + log(P(W2|W1) + ...))
+					</code>
+				</center>
+			</p>
+
+			<p>
+				In addition to the formulation, I have implemented this on
+				<a target="_blank" href="https://github.com/bi3mer/nlp_experiments/blob/master/Models/UnsmoothedNGram.py#L103">
+					github
+				</a>
+				and you'll notice that there is an extra check for the probability of zero occurring because zero is undefined for log. However, if one of the probability calculations ends up being zero then we know the resulting probability will be zero.
+			</p>
+		</div>
+		<br/>
+<!-- Disqus for comments -->
+<div id="disqus_thread" class="container"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = 'https://bi3mer-github-io.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<script id="dsq-count-scr" src="//bi3mer-github-io.disqus.com/count.js" async></script><!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-65400911-1');
+</script>	</body>
+</html>
