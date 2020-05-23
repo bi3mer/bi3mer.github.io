@@ -160,8 +160,38 @@
 				<a target="_blank" href="https://github.com/">github</a>
 				repository with our monolithic structure in mind. Once that is complete, we can get the basics of the game working by defining a format for a board that can be read from text files. Lastly, we’ll look into a structure for AI in games and how it will affect our design and implementation. 
 			</p>
-		</div>
-<!-- Disqus for comments -->
+    </div>
+<div class="container">
+  <h3 class="card mb-3">
+    <div class="container" id="nextTime">
+      Citation
+    </div>
+  </h3>
+  <pre id="citation"> </pre>
+  <br/>
+  <br/>
+  <br/>
+</div>
+<script>
+(() => {
+  const title = document.title;
+  const journal = 'colan.biemer.us';
+  const url = window.location.href;
+  const year = url.split('=').pop();
+
+  // remove special characters and replace spaces with underscores
+  const tag = document.title.replace(/[^\w\s]/gi, '').split(' ').join('_');
+  
+  let citationText = `@article{biemer${year}${tag}\n`;
+  citationText = `${citationText}  title="${title}",\n`;
+  citationText = `${citationText}  author="Biemer, Colan",\n`;
+  citationText = `${citationText}  journal="${journal}",\n`;
+  citationText = `${citationText}  year="${year}",\n`;
+  citationText = `${citationText}  url="${url}",\n}`;
+
+  $('#citation').text(citationText);
+})();
+</script><!-- Disqus for comments -->
 <div id="disqus_thread" class="container"></div>
 <script>
 /**

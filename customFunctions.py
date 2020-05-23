@@ -20,11 +20,13 @@ def build_blog_post_item(post):
 	path = os.path.join(blog_directory, post)
 	if os.path.isdir(path):
 		title, date, visible, url = get_meta_data(path)
-
+	
 		if visible == 'true':
 			if url == None:
 				# remove the ./ in the path
 				path = path[2:] + "/index.html"
+				year = '20' + date.split('/')[-1]
+				path = f'{path}?year={year}'
 
 				return date, "<font face='verdana'>" + \
 					date + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + \

@@ -201,8 +201,37 @@
 				And that is the process I had for ProcJam 2018. My main takeaway is that I wasn’t focused enough on the MVP. I wanted to get adversarial weapon selection but didn’t have time because I didn’t have a plan going into the development. That is why for 7DRL I am planning for it now. When it comes time for development, I want to know exactly what I am going to be making. I want to know the technology I’m going to use. I want to know the procedural generation techniques I’ll be using. I want to have as many components of the game, application, etc. planned as possible for any future jam I participate in.
 			</p>
 		</div>
-		<br/>
-<!-- Disqus for comments -->
+<div class="container">
+  <h3 class="card mb-3">
+    <div class="container" id="nextTime">
+      Citation
+    </div>
+  </h3>
+  <pre id="citation"> </pre>
+  <br/>
+  <br/>
+  <br/>
+</div>
+<script>
+(() => {
+  const title = document.title;
+  const journal = 'colan.biemer.us';
+  const url = window.location.href;
+  const year = url.split('=').pop();
+
+  // remove special characters and replace spaces with underscores
+  const tag = document.title.replace(/[^\w\s]/gi, '').split(' ').join('_');
+  
+  let citationText = `@article{biemer${year}${tag}\n`;
+  citationText = `${citationText}  title="${title}",\n`;
+  citationText = `${citationText}  author="Biemer, Colan",\n`;
+  citationText = `${citationText}  journal="${journal}",\n`;
+  citationText = `${citationText}  year="${year}",\n`;
+  citationText = `${citationText}  url="${url}",\n}`;
+
+  $('#citation').text(citationText);
+})();
+</script><!-- Disqus for comments -->
 <div id="disqus_thread" class="container"></div>
 <script>
 /**

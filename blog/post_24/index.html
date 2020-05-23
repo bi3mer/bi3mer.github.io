@@ -86,8 +86,37 @@
 				and you'll notice that there is an extra check for the probability of zero occurring because zero is undefined for log. However, if one of the probability calculations ends up being zero then we know the resulting probability will be zero.
 			</p>
 		</div>
-		<br/>
-<!-- Disqus for comments -->
+<div class="container">
+  <h3 class="card mb-3">
+    <div class="container" id="nextTime">
+      Citation
+    </div>
+  </h3>
+  <pre id="citation"> </pre>
+  <br/>
+  <br/>
+  <br/>
+</div>
+<script>
+(() => {
+  const title = document.title;
+  const journal = 'colan.biemer.us';
+  const url = window.location.href;
+  const year = url.split('=').pop();
+
+  // remove special characters and replace spaces with underscores
+  const tag = document.title.replace(/[^\w\s]/gi, '').split(' ').join('_');
+  
+  let citationText = `@article{biemer${year}${tag}\n`;
+  citationText = `${citationText}  title="${title}",\n`;
+  citationText = `${citationText}  author="Biemer, Colan",\n`;
+  citationText = `${citationText}  journal="${journal}",\n`;
+  citationText = `${citationText}  year="${year}",\n`;
+  citationText = `${citationText}  url="${url}",\n}`;
+
+  $('#citation').text(citationText);
+})();
+</script><!-- Disqus for comments -->
 <div id="disqus_thread" class="container"></div>
 <script>
 /**
