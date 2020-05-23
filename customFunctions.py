@@ -26,7 +26,7 @@ def build_blog_post_item(post):
 				# remove the ./ in the path
 				path = path[2:] + "/index.html"
 				year = '20' + date.split('/')[-1]
-				path = f'{path}?year={year}'
+				path = f'{path}#year={year}'
 
 				return date, "<font face='verdana'>" + \
 					date + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + \
