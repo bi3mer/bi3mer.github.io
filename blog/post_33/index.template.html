@@ -1,0 +1,215 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Generative Art I: Circles</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Generative Art I: Circles
+			</h2>
+		</center>
+		<div class="container">
+      <p>
+        This is the first of what we'll likely be a series of blog posts on generative art, specifically images. At the start, everything will be very simple. This is mainly because the topic is new to me and the library we're going to use to generate images is also new to me. Speaking of, we're going to be using Python and <a href="https://python-pillow.org/">Pillow</a> to generate images; at least at the start, we'll see where we go. To start, I want to break this post into two parts: (1) pseudo-random and (2) generating a simple image with circles and squares.
+      </p> 
+
+      <h3 class="card mb-3">
+				<div class="container" id="a_quick_note">
+					Pseudo Random
+				</div>
+			</h3>
+      <p>
+      	<a href="https://en.wikipedia.org/wiki/Pseudorandomness">Pseudo-random</a> refers to the reality that nothing is ever truly random when it comes to computation. This is because we need to write code to generate the randomness which is inherently not random. The way we get around this is through functions that appear random to us but are pseudo-random because they output the same value every time for the same input. In the context of generative art, this isn't necessarily a bad thing. A minecraft world will always be the same if you give it the same seed. If we seed are random number generator with the same seed, we should get the same output every time. 
+      </p>
+      <p>
+      	Luckily, Python comes with a <a href="https://www.w3schools.com/python/module_random.asp">Random module</a> that we can easily use. 
+      </p>
+
+      <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3
+4
+5</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">random</span>
+<span style="color: #f8f8f2">random</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">seed(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(random</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">random())</span>
+
+<span style="color: #f92672">==&gt;</span> <span style="color: #ae81ff">0.13436424411240122</span>
+</pre></td></tr></table></div>
+
+      <br/>
+
+    
+
+      <p>
+      	On line 1, we import the random module. On line 2, we set the seed. On line 3, we ask for a random number between 0 and 1. If you are using the same interpreter as me, then you should get the same result of 0.13436424411240122. With this we will be able to generate multiple, different images using the same code. The trick will be to generate images that are different enough between seeds to be interesting. Unfortunately, I cannot find where the following analogy came from directly but I'm pretty sure it comes from <a href="https://scholar.google.com/citations?user=4bHar00AAAAJ&hl=en&oi=sra">Gillian Smith</a>. A generator can produce millions of different images. The problem is that they may be like different bowls of oatmeal. I can show you two images of oatmeal and it will be very hard to say what the difference is. If the generator falls into this trap, then, for the user, it is as if the generator only produced one image of oatmeal rather than a million. For each seed, the generator should generate images that are noticeably different.
+      </p>
+
+      <h3 class="card mb-3">
+				<div class="container" id="a_quick_note">
+					Generating Circles and Squares
+				</div>
+			</h3>
+
+
+			<p>
+				Today, we do not have the high bar of creating a generator that can make a million different images that are noticeably different. The only goal we have is to generate an image with some circles and squares. Below is all the code for the final script. Feel free to peruse, if you wish. Below we'll go over the details and then the results. As a note, I'm starting off with <a href="https://labs.hamy.xyz/posts/generative-art-in-python-with-pil/">this tutorial</a> and building from there.
+			</p>
+
+			<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">random</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">seed,</span> <span style="color: #f8f8f2">randint,</span> <span style="color: #f8f8f2">random</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">PIL</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Image,</span> <span style="color: #f8f8f2">ImageDraw,</span> <span style="color: #f8f8f2">ImageFont</span>
+
+<span style="color: #f8f8f2">TOTAL_RUNS</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span>
+<span style="color: #f8f8f2">font</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ImageFont</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">truetype(</span><span style="color: #e6db74">&quot;ProzaLibre-Medium.ttf&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">=</span><span style="color: #ae81ff">16</span><span style="color: #f8f8f2">)</span>
+
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">run_id</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(TOTAL_RUNS):</span>
+    <span style="color: #f8f8f2">seed(run_id)</span>
+
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&#39;Processing run_id: {run_id}&#39;</span><span style="color: #f8f8f2">)</span>
+
+    <span style="color: #f8f8f2">image</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">new(</span><span style="color: #e6db74">&#39;RGB&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">720</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">480</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">width,</span> <span style="color: #f8f8f2">height</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+
+    <span style="color: #f8f8f2">draw_image</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ImageDraw</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Draw(image)</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(randint(</span><span style="color: #ae81ff">30</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">300</span><span style="color: #f8f8f2">)):</span>
+        <span style="color: #f8f8f2">shape_width</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">randint(width</span><span style="color: #f92672">/</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,width</span><span style="color: #f92672">/</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">shape_height</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">randint(width</span><span style="color: #f92672">/</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,width</span><span style="color: #f92672">/</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">)</span>
+    
+        <span style="color: #f8f8f2">x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">width)</span>
+        <span style="color: #f8f8f2">y</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">height)</span>
+
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">random()</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">0.5</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">ellipse([</span>
+                    <span style="color: #f8f8f2">(x,</span> <span style="color: #f8f8f2">y),</span>
+                    <span style="color: #f8f8f2">(x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">shape_width,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">shape_height)</span>
+                <span style="color: #f8f8f2">],</span>
+                <span style="color: #f8f8f2">fill</span><span style="color: #f92672">=</span>  <span style="color: #f8f8f2">(</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">)</span>
+                <span style="color: #f8f8f2">),</span>
+                <span style="color: #f8f8f2">outline</span><span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">)</span>
+                <span style="color: #f8f8f2">),</span>
+            <span style="color: #f8f8f2">)</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">rectangle([</span>
+                <span style="color: #f8f8f2">(x,</span> <span style="color: #f8f8f2">y),</span>
+                <span style="color: #f8f8f2">(x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">shape_width,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">shape_height)</span>
+                <span style="color: #f8f8f2">],</span>
+                <span style="color: #f8f8f2">fill</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">(</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+                    <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">)</span>
+                <span style="color: #f8f8f2">)</span>
+            <span style="color: #f8f8f2">)</span>
+
+    <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">text((width</span><span style="color: #f92672">-</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,height</span><span style="color: #f92672">-</span><span style="color: #ae81ff">32</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">f</span><span style="color: #e6db74">&#39;bi3mer :: 0002 :: {run_id + 1}/{TOTAL_RUNS}&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">align</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;right&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">font</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">font)</span>
+    <span style="color: #f8f8f2">image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">save(f</span><span style="color: #e6db74">&#39;./output/0002_{run_id}.png&#39;</span><span style="color: #f8f8f2">)</span>
+</pre></td></tr></table></div>
+
+			
+			<br/>
+			<p>
+				On line 5, we define the font we're going to use. Pillow does allow you to use a default font, however, you cannot change the font size. As a result, I found a <a href="https://fontlibrary.org/en/font/proza-libre">free and open to use font</a> and downloaded it. The name of the font is actually a path, so make sure to set the path to the font you decide to use correctly else Pillow will throw an error. The for loop on line 6 is so we can generate <code>n</code> images with <code>n</code> seeds. 
+			</p>
+
+			<p>
+				Line 13 declares that a new image is going to be created. I set the resolution to 720x480 but you can easily set this to 4k or even 8k. The for loop on line 17 is where we start to generate shapes. Because I want the images between seeds to be somewhat different, I have the number of shapes to be generated as random.  Lines 18 and 19 are to choose how large the shapes will be, again this is random. lines 21 and 22 define where the shape will be placed. Line 24 is where it is randomly chosen to either draw a circle or a squares. If the random number generated is less than 0.5, a circle is drawn with the <code>ellipse</code> function. The first argument is the start x and y coordinates and the end x and y coordinates. The fill is the color of the circle and we give the <a href="https://www.w3schools.com/colors/colors_rgb.asp">RGB</a>, three random values between 0 and 255. The last is the opacity of the shape, meaning how see-through it is. The square, after the else condition on line 42, is exactly the same except we call the function <code>rectangle</code>.
+			</p>
+
+			<br/>
+			<center>
+				<img src="pictures/0002_0.png"  width="400">
+				<img src="pictures/0002_1.png"  width="400">
+				<img src="pictures/0002_2.png"  width="400">
+				<img src="pictures/0002_3.png"  width="400">
+				<br/>
+				<small>Sample images generated with the code above.</small>
+			</center>
+
+			<br/>
+			The four images above are samples of the final image we get from the python code. While we can find differences, I don't think the generator we've made passes the bowl of oatmeal test. However, I do think that this is a good starting place. From here, I'm interested in lines that form a larger picture but that, as a friend of mine frequently says, feels like I'm putting the cart before the horse. As a result, I think the next step will be to generate images with <a href="https://www.youtube.com/watch?v=akZ8JJ4gGLs">The Lightning Algorithm</a>. 
+
+
+		</div>
+		<br/>
+    <!-- {{../../cite.plugin.html}} -->
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+	</body>
+</html>
