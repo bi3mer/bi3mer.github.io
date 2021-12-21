@@ -1,0 +1,134 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Generative Art II: Lightning</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Generative Art II: Lightning
+			</h2>
+		</center>
+		<div class="container">
+    <p>
+    	In the <a href="../post_33/index.html">previous post</a> we generated images with circles and squares in Python with the package <a href="https://pillow.readthedocs.io/en/stable/">Pillow</a>. The code was simple and the results are not that compelling. So, in this post I'm looking to step it up a bit. A while back Numberphile posted a <a href="https://www.youtube.com/watch?v=akZ8JJ4gGLs">video</a> of <a href="https://twitter.com/matthen2">Matt Henderson</a> explaining how maze generation and breadth-first search can be used to generate a compelling animation of lightning. We are going to use a similar approach to generate images of lightning.
+    </p> 
+
+    <center>
+				<img src="pictures/0002_1.png"  width="400">
+				<img src="pictures/0002_3.png"  width="400">
+				<img src="pictures/0002_10.png"  width="400">
+				<img src="pictures/0002_26.png"  width="400">
+				<br/>
+				<small>Sample images generated with the code below.</small>
+		</center>
+		<br/>
+    <p>
+    	We're taking a different approach from Henderson's to generate lightning, but I have a few suggestions if you want to recreate Henderson's work. For those interested in maze generation, Wikipedia has a stellar <a href="https://en.wikipedia.org/wiki/Maze_generation_algorithm">article</a> that is an excellent starting point. Breadth-first search also has a very good Wikipedia <a href="https://www.redblobgames.com/pathfinding/tower-defense/implementation.html">article,</a> but I would recommend looking at the <a href="https://www.redblobgames.com/pathfinding/a-star/introduction.html">post</a> from the blog Red Blob Games, which has code and excellent animations with an interactive demo.
+    </p>
+    <p>
+    	When I started considering how to approach generating a lightning-like image, I initially was going to implement maze generation (probably with Kruskal's algorithm) and a breadth-first search, but it seemed like a lot of work for a blog no one reads. So, how can I do the same thing with less work? Well, the maze and the search are not actually required. They make a beautiful animation, but you can get around it if you're only generating the final image.
+    </p>
+    <p>
+    	The idea of the approach is essentially a depth-first search where we randomly choose directions (down, left, right). However, if we are currently moving to the left then we cannot move to the right. Only once we have gone down at least once can we move again to the right. And that's it. Add some bounds checking and you get the images above. The code to generate these images is below.
+    </p>
+
+    
+<br/>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">random</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">randrange,</span> <span style="color: #f8f8f2">seed,</span> <span style="color: #f8f8f2">randint,</span> <span style="color: #f8f8f2">random,</span> <span style="color: #f8f8f2">choice</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">PIL</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Image,</span> <span style="color: #f8f8f2">ImageDraw,</span> <span style="color: #f8f8f2">ImageFont</span>
+
+<span style="color: #f8f8f2">PIXEL_SIZE</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span>
+<span style="color: #f8f8f2">TOTAL_RUNS</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">50</span>
+<span style="color: #f8f8f2">font</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ImageFont</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">truetype(</span><span style="color: #e6db74">&quot;ProzaLibre-Medium.ttf&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">=</span><span style="color: #ae81ff">16</span><span style="color: #f8f8f2">)</span>
+
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_lightning</span><span style="color: #f8f8f2">(run_id):</span>
+    <span style="color: #f8f8f2">image</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">new(</span><span style="color: #e6db74">&#39;RGB&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">720</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">480</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">draw_image</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ImageDraw</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Draw(image)</span>
+    <span style="color: #f8f8f2">width,</span> <span style="color: #f8f8f2">height</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+    <span style="color: #f8f8f2">x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">randrange(</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">width</span><span style="color: #f92672">-</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">y</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span>
+
+    <span style="color: #f8f8f2">LEFT</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">PIXEL_SIZE,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">RIGHT</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(PIXEL_SIZE,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">DOWN</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">PIXEL_SIZE)</span>
+    
+    <span style="color: #f8f8f2">turned_right</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">False</span>
+    <span style="color: #f8f8f2">turned_left</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">False</span>
+
+    <span style="color: #f8f8f2">fill</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">(</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #ae81ff">255</span>
+    <span style="color: #f8f8f2">)</span>
+
+    <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">rectangle(</span>
+        <span style="color: #f8f8f2">[(x,</span> <span style="color: #f8f8f2">y),(x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE)],</span>
+        <span style="color: #f8f8f2">fill)</span>
+
+    <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">height:</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">turned_left:</span>
+            <span style="color: #f8f8f2">direction</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">choice([LEFT,</span> <span style="color: #f8f8f2">DOWN])</span>
+            <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">direction</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">LEFT:</span>
+                <span style="color: #f8f8f2">turned_left</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">False</span>
+        <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">turned_right:</span>
+            <span style="color: #f8f8f2">direction</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">choice([RIGHT,</span> <span style="color: #f8f8f2">DOWN])</span>
+            <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">direction</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">RIGHT:</span>
+                <span style="color: #f8f8f2">turned_right</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">False</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">direction</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">choice([LEFT,</span> <span style="color: #f8f8f2">RIGHT,</span> <span style="color: #f8f8f2">DOWN])</span>
+            <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">direction</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">LEFT:</span>
+                <span style="color: #f8f8f2">turned_left</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">True</span>
+            <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">direction</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">RIGHT:</span>
+                <span style="color: #f8f8f2">turned_right</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">True</span>
+
+        <span style="color: #f8f8f2">x</span> <span style="color: #f92672">+=</span> <span style="color: #f8f8f2">direction[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+=</span> <span style="color: #f8f8f2">direction[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]</span>
+
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">x</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">20</span>
+        <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">width</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">20</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">x</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">width</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">20</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">rectangle(</span>
+                <span style="color: #f8f8f2">[(x,</span> <span style="color: #f8f8f2">y),(x</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE)],</span>
+                <span style="color: #f8f8f2">fill)</span>
+
+
+    <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">text((width</span><span style="color: #f92672">-</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,height</span><span style="color: #f92672">-</span><span style="color: #ae81ff">32</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">f</span><span style="color: #e6db74">&#39;bi3mer :: 0003 :: {run_id + 1}/{TOTAL_RUNS}&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">align</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;right&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">font</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">font)</span>
+    <span style="color: #f8f8f2">image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">save(f</span><span style="color: #e6db74">&#39;./output/0002_{run_id}.png&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">run_id</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(TOTAL_RUNS):</span>
+    <span style="color: #f8f8f2">seed(run_id)</span>
+
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&#39;Processing run_id: {run_id}&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">draw_lightning(run_id)</span>
+</pre></div>
+
+<br/>
+    <p>
+    	Thanks for reading (if you did), and I hope you enjoyed the post.
+    </p>
+
+
+		</div>
+		<br/>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+	</body>
+</html>
