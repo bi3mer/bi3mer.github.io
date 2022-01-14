@@ -1,0 +1,154 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Generative Art III: Conway's Game of Life</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Generative Art III: Conway's Game of Life
+			</h2>
+		</center>
+		<div class="container">
+    <p>
+        With the <a href="../post_34/index.html">lightning algorithm</a> out of the way, let's look at <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life.</a> The idea is pretty cool: we create a grid (nxm), and randomly assign cells to alive or dead. We then apply a set of rules for some number of iterations and we get a very hard to predict result. The rules are pretty simple:
+
+        <ol>
+            <li>Any live cell with fewer than two live neighbors dies, as if by under-population.</li>
+            <li>Any live cell with two or three live neighbors lives on to the next generation.</li>
+            <li>Any live cell with more than three live neighbors dies, as if by overpopulation.</li>
+            <li>Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</li>
+        </ol>
+    </p> 
+
+    <center>
+				<img src="pictures/0004_6.png"  width="400">
+				<img src="pictures/0004_15.png"  width="400">
+				<br/>
+				<small>Sample images generated with the code below.</small>
+		</center>
+		<br/>
+    <p>
+      It turns out that despite the relative fame of Conway's Game of Life, implementing it is very simple. I think that there are three points of note. First, you are checking  not only the four cardinal directions, you are also checking the corners for a total of 8 cells. Second, Conway's Game of Life was designed for an infinite grid, but that is not feasible, nor useful is it useful in our case of generating images. In this implementation I've made the grid the size of the image. A better way would be to make the grid larger than the image to approximate the larger grid space. Third, the grid is not modified in place (i.e. a new grid is modified in each iteration, and the old grid is used to get neighbor counts).
+    </p>
+    <br/>
+
+    <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">random</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">randrange,</span> <span style="color: #f8f8f2">seed,</span> <span style="color: #f8f8f2">randint,</span> <span style="color: #f8f8f2">choice</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">PIL</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Image,</span> <span style="color: #f8f8f2">ImageDraw,</span> <span style="color: #f8f8f2">ImageFont</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">itertools</span> <span style="color: #f92672">import</span>  <span style="color: #f8f8f2">repeat</span>
+
+<span style="color: #f8f8f2">PIXEL_SIZE</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">6</span>
+<span style="color: #f8f8f2">TOTAL_RUNS</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">20</span>
+<span style="color: #f8f8f2">font</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ImageFont</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">truetype(</span><span style="color: #e6db74">&quot;ProzaLibre-Medium.ttf&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">size</span><span style="color: #f92672">=</span><span style="color: #ae81ff">16</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">is_alive</span><span style="color: #f8f8f2">(grid,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">width,</span> <span style="color: #f8f8f2">height):</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f92672">not</span> <span style="color: #f8f8f2">(x</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">width</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">height):</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">False</span>
+
+    <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">grid[y][x]</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">draw_conway</span><span style="color: #f8f8f2">(run_id):</span>
+    <span style="color: #f8f8f2">image</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">new(</span><span style="color: #e6db74">&#39;RGB&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">720</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">480</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">draw_image</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">ImageDraw</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Draw(image)</span>
+    <span style="color: #f8f8f2">width,</span> <span style="color: #f8f8f2">height</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">size</span>
+
+    <span style="color: #f8f8f2">grid_width</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">width</span> <span style="color: #f92672">//</span> <span style="color: #f8f8f2">PIXEL_SIZE</span>
+    <span style="color: #f8f8f2">grid_height</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">height</span> <span style="color: #f92672">//</span> <span style="color: #f8f8f2">PIXEL_SIZE</span>
+
+    <span style="color: #f8f8f2">alive_fill</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #ae81ff">255</span>
+    <span style="color: #f8f8f2">)</span>
+
+    <span style="color: #f8f8f2">dead_fill</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">40</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">40</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #f8f8f2">randint(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">40</span><span style="color: #f8f8f2">),</span>
+        <span style="color: #ae81ff">255</span>
+    <span style="color: #f8f8f2">)</span>
+
+    <span style="color: #f8f8f2">current</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[[choice([False,</span> <span style="color: #f8f8f2">True])</span> <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">_</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">repeat(None,</span> <span style="color: #f8f8f2">grid_width)]</span> <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">__</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">repeat(None,</span> <span style="color: #f8f8f2">grid_height)]</span>
+
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">_</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">repeat(None,</span> <span style="color: #f8f8f2">randrange(</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">250</span><span style="color: #f8f8f2">)):</span>
+        <span style="color: #f8f8f2">new</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[[False</span> <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">_</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">repeat(None,</span> <span style="color: #f8f8f2">grid_width)]</span> <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">__</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">repeat(None,</span> <span style="color: #f8f8f2">grid_height)]</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(grid_height):</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(grid_width):</span>
+                <span style="color: #f8f8f2">neighbors_alive</span> <span style="color: #f92672">=</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> <span style="color: #f92672">+</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">y,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> <span style="color: #f92672">+</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> <span style="color: #f92672">+</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> <span style="color: #f92672">+</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> <span style="color: #f92672">+</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> <span style="color: #f92672">+</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> <span style="color: #f92672">+</span> \
+                    <span style="color: #f8f8f2">is_alive(current,</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_width,</span> <span style="color: #f8f8f2">grid_height)</span> 
+
+                <span style="color: #75715e"># Any live cell with fewer than two live neighbors dies, as if by underpopulation.</span>
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">current[y][x]</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">True</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">neighbors_alive</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">:</span>
+                    <span style="color: #f8f8f2">new[y][x]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">False</span>
+                <span style="color: #75715e"># Any live cell with two or three live neighbors lives on to the next generation.</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">current[y][x]</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">True</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">neighbors_alive</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">2</span> <span style="color: #f92672">or</span> <span style="color: #f8f8f2">neighbors_alive</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">:</span>
+                    <span style="color: #f8f8f2">new[y][x]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">True</span>
+                <span style="color: #75715e"># Any live cell with more than three live neighbors dies, as if by overpopulation.</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">current[y][x]</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">True</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">neighbors_alive</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">:</span>
+                    <span style="color: #f8f8f2">new[y][x]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">False</span>
+                <span style="color: #75715e"># Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</span>
+                <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">current[y][x]</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">False</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">neighbors_alive</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">:</span>
+                    <span style="color: #f8f8f2">new[y][x]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">True</span>
+
+        <span style="color: #f8f8f2">current</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">new</span>
+    
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_height):</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">grid_width):</span>
+            <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">current[y][x]:</span>
+                <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">rectangle(</span>
+                    <span style="color: #f8f8f2">[(</span>
+                        <span style="color: #f8f8f2">x</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE,</span> <span style="color: #f8f8f2">y</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE),</span>
+                        <span style="color: #f8f8f2">(x</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE,</span> <span style="color: #f8f8f2">y</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE)],</span>
+                    <span style="color: #f8f8f2">alive_fill)</span>
+            <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+                <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">rectangle(</span>
+                    <span style="color: #f8f8f2">[(</span>
+                        <span style="color: #f8f8f2">x</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE,</span> <span style="color: #f8f8f2">y</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE),</span>
+                        <span style="color: #f8f8f2">(x</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE,</span> <span style="color: #f8f8f2">y</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">PIXEL_SIZE</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">PIXEL_SIZE)],</span>
+                    <span style="color: #f8f8f2">dead_fill)</span>
+
+    <span style="color: #f8f8f2">draw_image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">text((width</span><span style="color: #f92672">-</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,height</span><span style="color: #f92672">-</span><span style="color: #ae81ff">32</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">f</span><span style="color: #e6db74">&#39;bi3mer :: 0004 :: {run_id + 1}/{TOTAL_RUNS}&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">255</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">align</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;right&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">font</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">font)</span>
+    <span style="color: #f8f8f2">image</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">save(f</span><span style="color: #e6db74">&#39;./output/0004_{run_id}.png&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">run_id</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(TOTAL_RUNS):</span>
+    <span style="color: #f8f8f2">seed(run_id)</span>
+
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&#39;Processing run_id: {run_id}&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">draw_conway(run_id)</span>
+</pre></div>
+
+
+    <br/>
+
+    <p>
+    	Thanks for reading (if you did), and I hope you enjoyed the post.
+    </p>
+
+
+		</div>
+		<br/>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+	</body>
+</html>
