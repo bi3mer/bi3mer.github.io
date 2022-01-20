@@ -1,0 +1,281 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Direct Utility Estimation</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Direct Utility Estimation
+			</h2>
+		</center>
+		<div class="container">
+
+    <h3 class="card mb-3">
+        <div class="container" id="intro">
+            Introduction
+        </div>
+    </h3>
+    <p>
+        In this post, I'm going to take you through one approach to solving the grid world environment with reinforcement learning, specifically direct utility estimation (DUE). (If you are unfamiliar with the grid world environment, fret not because that is the section directly below.) Before DUE can be covered, I'll give a brief overview of Markov decision processes and why they are not of great for problems with large state spaces. I'll then show how DUE works and can be implemented in Python. Following that, I'll show that DUE can solve MDPs, but the speed is low enough that a DUE is best seen as introduction for more powerful approaches. 
+   </p>
+
+   <h3 class="card mb-3">
+        <div class="container" id="gridworld">
+            Grid World
+        </div>
+    </h3>
+
+    <center>
+        <table border="1">
+            <tr>
+                <th></th>
+                <th>&nbsp;&nbsp;&nbsp;</th>
+                <th>&nbsp;&nbsp;&nbsp;</th>
+                <th>1</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th style="background-color: black;"></th>
+                <th></th>
+                <th>-1</th>
+            </tr>
+            <tr>
+                <th>S</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </table>
+    </center>
+
+    <br/>
+    <p>
+        The grid world is a 4x3 grid seen above. S is where the player starts in the grid world. Empty grid locations are places where the player can move to if neighboring. At the start, the player can either move up one square or to the right one square. The black spot at (1,1) cannot be transitioned to. -1 and 1 are the locations where the player can finish their run at, where the reward for 1 is 1 and -1 is -1; the agent wants to get to the positive reward.
+    </p>
+
+
+    <h3 class="card mb-3">
+        <div class="container" id="mdp">
+            Markov Decision Process
+        </div>
+    </h3>
+    <p>
+        While working on a research project, I was asked to make a short video on Markov decision processes (MDP), and I've embedded it here.
+    </p>
+
+    <br/>
+    <center>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/05Ozahj7WsQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </center>
+    <br/>
+    <p>
+        It goes a bit beyond the scope of what we're covering in this blog post, but I do want to reiterate some of the basics. A MDP is made up of a set of states <code>S</code>, a set of actions <code>A</code>, a set of probabilities <code>P</code> that action <code>a</code> from state <code>s</code> will result in state <code>s'</code> at time <code>t</code>, and a set of rewards <code>R</code> given for transition from state <code>s</code> to state <code>s'</code>. Finally, <code>&pi;</code> represents a policy for mapping a state to an action, and <code>&pi;*</code> is the optimal policy. 
+    </p>
+    <p>
+        The problem with MDPs and attempting to find an optimal policy is that it can be costly in terms of required computation and memory. Take the example of chess where there is an estimated upper bound of 7.7*10^45 possible board states, all of which have to be represented in the MDP, which is physically impossible; further, attempting to find an optimal policy on such a large state space is computationally impossible. Despite this flaw, MDPs are a great tool for small- to medium-sized problems and can be of <a href="https://stats.stackexchange.com/a/178393">great utility.</a> 
+    </p>
+
+    <h3 class="card mb-3">
+        <div class="container" id="due">
+            Direct Utility Estimation
+        </div>
+    </h3>
+
+    <p>
+        Direct utility estimation (DUE) comes from Woodrow and Hoff in their paper <a href="https://apps.dtic.mil/sti/pdfs/AD0241531.pdf">Adaptive Switching Coordinates</a> in 1960. The idea is very simple: the utility of a state is the expected total reward from that state onward. 
+    </p>
+
+    $$ 
+    {U^*(s) = E\left[ \sum_{t=0}^{\infty} \gamma^t R(S_t) \right]} 
+    $$
+
+    <p>
+        Practically speaking, the way you train with DUE is run an agent with your policy till you get to an end state. Then update all the states encountered with the reward.
+    </p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">train</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">max_iterations):</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">_</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">trange(max_iterations):</span>
+        <span style="color: #f8f8f2">states,</span> <span style="color: #f8f8f2">reward</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">play_through(self,</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">game)</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">s</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">states:</span>
+            <span style="color: #f8f8f2">val</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">utility[s]</span>
+            <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">utility[s]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Average(val</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">num</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">reward,</span> <span style="color: #f8f8f2">val</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">div</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+</pre></div>
+
+
+<br/>
+    
+    <p>
+        The code here has a named tuple <code>Average</code> which lets you keep track of the total reward and also the number of times encountered to easily calculate the average. You'll also notice that I'm not using gamma, that is just because I have it as 1. Otherwise, this is the algorithm with one missing component. 
+    </p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">math</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">inf</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">random</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">random,</span> <span style="color: #f8f8f2">choice</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">play_through</span><span style="color: #f8f8f2">(agent,</span> <span style="color: #f8f8f2">game,</span> <span style="color: #f8f8f2">eps</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0.1</span><span style="color: #f8f8f2">):</span>
+    <span style="color: #f8f8f2">game</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">new()</span>
+    <span style="color: #f8f8f2">states</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[game</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">state]</span>
+
+    <span style="color: #66d9ef">while</span> <span style="color: #f8f8f2">game</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">reward()</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">best_s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">None</span>
+        <span style="color: #f8f8f2">best_u</span> <span style="color: #f92672">=</span> <span style="color: #f92672">-</span><span style="color: #f8f8f2">inf</span>
+
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">random()</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">eps:</span>
+            <span style="color: #f8f8f2">best_s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">choice(game</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">next_states())</span>
+            <span style="color: #f8f8f2">best_u</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">agent</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">u(best_s)</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">s</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">game</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">next_states():</span>
+                <span style="color: #f8f8f2">next_u</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">agent</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">u(s)</span>
+                <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">next_u</span> <span style="color: #f92672">&gt;</span> <span style="color: #f8f8f2">best_u:</span>
+                    <span style="color: #f8f8f2">best_u</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">next_u</span>
+                    <span style="color: #f8f8f2">best_s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">s</span>
+
+        <span style="color: #f8f8f2">states</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(best_s)</span>
+        <span style="color: #f8f8f2">game</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">state</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">best_s</span>
+
+    <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">states,</span> <span style="color: #f8f8f2">game</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">reward()</span>
+</pre></div>
+
+    <br/>
+
+    <p>
+        If you run a play through where the policy's best answer is always selected, then you can run into a local optima. By having a small epsilon, you guarantee that there is a chance that alternative paths are selected, and a better policy can be found. It has the added benefit of guaranteeing that small environments like grid world will eventually be solved, which is necessary since otherwise the training can get stuck. Without this, you have no guarantee that the optimal policy will be found; which is, surprisingly, guaranteed with DUE. The problem, though, is that this process can take a very long time, which is why other approaches like Adaptive Dynamic Programming are used instead since they explicitly optimize the <a href="https://en.wikipedia.org/wiki/Bellman_equation">Bellman Equation.</a> And to show this, let's look at DUE applied to the grid world for a select number of iterations.
+    </p>
+
+    <center>
+        $$t=100$$
+        <table border="1">
+            <tr>
+                <th><small>1.00</small></th>
+                <th><small>1.00</small></th>
+                <th><small>0.91</small></th>
+                <th>1</th>
+            </tr>
+            <tr>
+                <th><small>1.00</small></th>
+                <th style="background-color: black;"></th>
+                <th><small>0.20</small></th>
+                <th>-1</th>
+            </tr>
+            <tr>
+                <th><small>1.00</small></th>
+                <th><small>0.97</small></th>
+                <th><small>0.50</small></th>
+                <th><small>-1.00</small></th>
+            </tr>
+        </table>
+    </center>
+
+    <center>
+        $$t=1,000$$
+        <table border="1">
+            <tr>
+                <th><small>0.99</small></th>
+                <th><small>1.00</small></th>
+                <th><small>0.94</small></th>
+                <th>1</th>
+            </tr>
+            <tr>
+                <th><small>0.92</small></th>
+                <th style="background-color: black;"></th>
+                <th><small>0.71</small></th>
+                <th>-1</th>
+            </tr>
+            <tr>
+                <th><small>0.93</small></th>
+                <th><small>0.93</small></th>
+                <th><small>0.93</small></th>
+                <th><small>0.82</small></th>
+            </tr>
+        </table>
+    </center>
+
+    <center>
+        $$t=10,000$$
+        <table border="1">
+            <tr>
+                <th><small>1.00</small></th>
+                <th><small>1.00</small></th>
+                <th><small>0.99</small></th>
+                <th>1</th>
+            </tr>
+            <tr>
+                <th><small>0.99</small></th>
+                <th style="background-color: black;"></th>
+                <th><small>0.82</small></th>
+                <th>-1</th>
+            </tr>
+            <tr>
+                <th><small>0.98</small></th>
+                <th><small>0.97</small></th>
+                <th><small>0.04</small></th>
+                <th><small>-0.92</small></th>
+            </tr>
+        </table>
+    </center>
+
+    <center>
+        $$t=100,000$$
+        <table border="1">
+            <tr>
+                <th><small>0.96</small></th>
+                <th><small>0.99</small></th>
+                <th><small>1.00</small></th>
+                <th>1</th>
+            </tr>
+            <tr>
+                <th><small>0.96</small></th>
+                <th style="background-color: black;"></th>
+                <th><small>0.91</small></th>
+                <th>-1</th>
+            </tr>
+            <tr>
+                <th><small>0.96</small></th>
+                <th><small>0.96</small></th>
+                <th><small>0.95</small></th>
+                <th><small>-0.82</small></th>
+            </tr>
+        </table>
+    </center>
+
+    <br/>
+    <p>
+        Notice that at <code>t=100</code>, the agent will first go up, but then has fifty-fifty chance of going either up or down and can get stuck. At <code>t=1,000</code>, we now explicitly get stuck at the top left going back and forth between 0.99 and 1.00. The same happens at <code>t=10,000</code>, except now we get stuck one cell closer to the final goal. It isn't until <code>t=100,000</code> that a successful policy is found for grid world. Imagine if we used a more complex game or just increased the grid size to 10x10. DUE may get to the optimal answer but it sure does take its time!
+    </p>
+
+
+    <h3 class="card mb-3">
+        <div class="container" id="conclusion">
+            Conclusion
+        </div>
+    </h3>
+
+    <p>
+        In this blog post, we've covered grid world which is a common test environment for reinforcement learn algorithms, Markov Decision Processes, and Direct Utility Estimation. The full code is available on <a href="https://github.com/bi3mer/ADP_Test">GitHub</a>. We showed that DUE, while interesting and able to solve a problem like the grid world environment, is slow to converge and not well situated for modern problems. I plan to create a blog post in the near future, which will go over adaptive dynamic programming, and show how these approaches can solve the bellman equations quick enough to be of real use.
+    </p>
+
+    </p>
+    	Thanks for reading (if you did), and I hope you enjoyed the post.
+    </p>
+
+
+		</div>
+		<br/>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+	</body>
+</html>
