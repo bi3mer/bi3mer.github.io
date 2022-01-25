@@ -1,0 +1,88 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Revised Direct Utility Estimation For Better MDP</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Revised Direct Utility Estimation For Better MDP
+			</h2>
+		</center>
+		<div class="container">
+
+    <p>
+        In the <a href="../post_36/index.html">previous post</a>, I provided an implementation that was technically correct but lacking in two ways: (1) optimization and (2) formalism. The optimization was weak, because I was using the function <code>game.next_states()</code> which was computing the next possible states given a state. Instead, precompute all valid transitions and your code will be much more efficient. This also leads to formalism where I had a MDP but I never directly defined the set of actions or transitions. So, let's do that.
+   </p>
+
+   <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">action_to_tuple</span><span style="color: #f8f8f2">(action):</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">action</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">LEFT:</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Position(</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">action</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">RIGHT:</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">action</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">UP:</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">action</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DOWN:</span>
+        <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+    
+    <span style="color: #66d9ef">raise</span> <span style="color: #a6e22e">ValueError</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&#39;Unregistered action type: {action}&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f8f8f2">MAX_X</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">4</span>
+<span style="color: #f8f8f2">MAX_Y</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span>
+<span style="color: #f8f8f2">BLANK_STATE</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">START</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">)</span>   
+
+<span style="color: #f8f8f2">S</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[Position(x,</span> <span style="color: #f8f8f2">y)</span> <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">y</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">x</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)]</span>
+<span style="color: #f8f8f2">A</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">LEFT,</span> <span style="color: #f8f8f2">Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">RIGHT,</span> <span style="color: #f8f8f2">Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">UP,</span> <span style="color: #f8f8f2">Action</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DOWN]</span>
+<span style="color: #f8f8f2">P</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{}</span>
+<span style="color: #f8f8f2">R</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{}</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">s</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">S:</span>
+    <span style="color: #75715e"># slight movement penalty</span>
+    <span style="color: #f8f8f2">R[s]</span> <span style="color: #f92672">=</span> <span style="color: #f92672">-</span><span style="color: #ae81ff">0.04</span> 
+
+    <span style="color: #75715e"># probability for actions</span>
+    <span style="color: #f8f8f2">P[s]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{}</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">a</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">A:</span>
+        <span style="color: #f8f8f2">new_s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">add_pos(s,</span> <span style="color: #f8f8f2">action_to_tuple(a))</span>  
+
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">new_s</span> <span style="color: #f92672">!=</span> <span style="color: #f8f8f2">BLANK_STATE</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">new_s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">new_s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">x</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">MAX_X</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">new_s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">0</span> <span style="color: #f92672">and</span> <span style="color: #f8f8f2">new_s</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">y</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">MAX_Y:</span>
+            <span style="color: #f8f8f2">P[s][new_s]</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">P[s][new_s]</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span>
+
+<span style="color: #f8f8f2">WIN_STATE</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">LOSE_STATE</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">R[Position(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">)]</span> <span style="color: #f92672">=</span> <span style="color: #f92672">-</span><span style="color: #ae81ff">1</span>
+<span style="color: #f8f8f2">R[Position(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)]</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span>
+
+<span style="color: #f8f8f2">E</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[Position(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">),</span> <span style="color: #f8f8f2">Position(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)]</span> <span style="color: #75715e"># End states</span>
+</pre></div>
+
+   <br/>
+
+   <p>
+        Now, we can do <code>reinforcment_learning(S, A, P, R, E, START)</code> and direct utility estimation or any other solver will work. This change makes the code not only much faster, but also much more flexible. The updated code is available on <a href="https://github.com/bi3mer/ADP_Test/tree/4e4e5af40d5aff53fd55367709cff22e928c6c48">GitHub.</a> The impetus for this update was not only optimization and flexibility; in future posts, I'll be implementing policy iteration, value iteration, and q-learning. This update will make the implementation of those algorithms much simpler.
+   </p>
+
+
+		</div>
+		<br/>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+	</body>
+</html>
