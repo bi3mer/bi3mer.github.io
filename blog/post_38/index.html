@@ -1,0 +1,128 @@
+<!-- auto-generated document -->
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Value Iteration</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Value Iteration
+			</h2>
+		</center>
+		<div class="container">
+
+    <p>
+        This is part of a series of posts on reinforcement learning and Markov Decision Processes (MDP) (<a href="../post_36/index.html">Direct Utility Estimation</a> and <a href="../post_37/index.html">Updated MPD</a>), and in this post I'll be covering value iteration. To best understand why it works, I want to first cover the Bellman equation:
+   </p>
+
+   $$
+   U(s) = R(s) + \gamma \max_{s \in S} \sum_{s'} P(s' | s, a)U(s')
+   $$
+
+ 	<p>
+ 		We've already covered R(s), P(s' | s, a), and U(s') so I won't waste your time on those. Gamma is a discount constant that is greater than 0 and less than or equal to 1. What this equation is saying is that the utility of state s is the reward plus a discount of the best neighboring state according to the transition probability multiplied by that states utility. Value iteration is the application of this formula over multiple iterations till convergence.
+	</p>	
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">train</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">max_iterations):</span>
+    <span style="color: #f8f8f2">GAMMA</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0.75</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">trange(max_iterations):</span>
+        <span style="color: #f8f8f2">new_u</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">utility</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">copy()</span>
+        <span style="color: #f8f8f2">delta</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span>
+
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">s</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">S:</span>
+            <span style="color: #f8f8f2">new_u[s]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">R[s]</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">GAMMA</span> <span style="color: #f92672">*</span> <span style="color: #f8f8f2">max([self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">P[s][next_s]</span> <span style="color: #f92672">*</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">utility[next_s]</span> <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">next_s</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">P[s]</span> <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">P[s][next_s]</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">])</span>
+            <span style="color: #f8f8f2">delta</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">max(delta,</span> <span style="color: #f8f8f2">abs(self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">utility[s]</span> <span style="color: #f92672">-</span> <span style="color: #f8f8f2">new_u[s]))</span>
+
+        <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">utility</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">new_u</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">delta</span> <span style="color: #f92672">&lt;</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">theta:</span>
+            <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&#39;Stopped after {i} iterations&#39;</span><span style="color: #f8f8f2">)</span>
+            <span style="color: #66d9ef">break</span>
+        
+</pre></div>
+
+
+<br/>
+
+	<p>
+		Apologies for that one line of code which runs a bit longer than I'd like. This code shows a python implementation of value iteration. There is a small optimization in this code which runs for every possible neighboring state rather than all states. Otherwise the code is essentially a direct translation of the formula. There is also a convergence check with delta and theta, where theta should be some small number and delta is the absolute value of the difference between the previous utility and the newly calculated utility. Once delta is smaller than theta after a full value iteration update, we stop iterations. 
+	</p>
+
+	<p>
+		With that, we can look at how efficient this thing is, and it is pretty crazy when you compare to <a href="../post_36/index.html">Direct Utility Estimation</a>. Recall that DUE took about 100,000 iterations to find an optimal policy. I did slightly change the grid world problem so now R(s) is going to be -0.04 unless it is one of the end states, and this did not affect how long it took DUE to find the best result. That said, value iteration takes thirteen iterations! I've included the utility table below. I hope you enjoyed reading this post and the code can be found on <a href="https://github.com/bi3mer/ADP_Test/tree/9857949a05ec9ac64cae59365fb6b3bbeed0efb3">GitHub.</a>
+	</p>
+
+	<center>
+        $$t=13$$
+        <table border="1">
+            <tr>
+                <th><small>0.81</small></th>
+                <th><small>0.1.14</small></th>
+                <th><small>1.59</small></th>
+                <th><small>2.18</small></th>
+            </tr>
+            <tr>
+                <th><small>0.55</small></th>
+                <th style="background-color: black;"></th>
+                <th><small>1.14</small></th>
+                <th><small>0.63</small></th>
+            </tr>
+            <tr>
+                <th><small>0.38</small></th>
+                <th><small>0.55</small></th>
+                <th><small>0.81</small></th>
+                <th><small>-0.55</small></th>
+            </tr>
+        </table>
+    </center>
+    <br/>
+
+
+		</div>
+		<br/>
+<!-- Disqus for comments -->
+<div id="disqus_thread" class="container"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+	var d = document, s = d.createElement('script');
+	s.src = 'https://bi3mer-github-io.disqus.com/embed.js';
+	s.setAttribute('data-timestamp', +new Date());
+	(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>
+	Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<script id="dsq-count-scr" src="//bi3mer-github-io.disqus.com/count.js" async></script><!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-65400911-1');
+</script>        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+	</body>
+</html>
