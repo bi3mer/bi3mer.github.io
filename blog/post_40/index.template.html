@@ -1,0 +1,81 @@
+<html lang = "en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<!-- <link href="https://bootswatch.com/4/solar/bootstrap.min.css" rel="stylesheet"> -->
+		<link href="https://bootswatch.com/4/slate/bootstrap.min.css" rel="stylesheet">
+		
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<!-- set picture -->
+		<link rel="icon" href="https://vignette1.wikia.nocookie.net/harrypotter/images/2/23/Hallows.png/revision/latest?cb=20090309113642">
+
+		<!-- set title on top of the tab -->
+		<title>Temporal Difference Learning</title>
+	</head>
+	<body>
+		<center class="jumbotron">
+			<h2> 
+				Temporal Difference Learning
+			</h2>
+		</center>
+		<div class="container">
+
+		    <p>
+		        This is part of a series of posts on reinforcement learning and Markov Decision Processes (MDP) (<a href="../post_36/index.html">Direct Utility Estimation</a>, <a href="../post_37/index.html">Updated MDP</a>, <a href="../post_38/index.html">Value Iteration</a>, and <a href="../post_39/index.html">Policy Iteration</a>), and this will be the last post on passive reinforcement learning methods. This last method is called, as you may have guessed from the title of this blog post, temporal difference learning (TDL). TDL does not rely on a a Markov Decision Process (MDP). Instead, it traditionally uses a table where each state has a row and column so that the table represents the utility of all possible transitions. TDL uses observations to learn which transitions are valid.
+		   </p>
+
+		   $$
+		   U^\pi(s) \leftarrow U^\pi + \alpha*(R(s) + \gamma U^\pi(s') - U^\pi(s))
+		   $$
+
+		   <p>
+		   		This is a very similar to the Bellman equation that we've seen in the past posts, but we aren't using neighbors because temporal difference learning does not assume a model. Instead, an agent plays through the game, and returns a set of states that were taken along the path. So, the utility of a state <code>s</code> is determined by itself plus the reward of that state plus the utility of the state next in the path minus its own utility all multiplied by a learning rate alpha, which is typically a small number between 0 and 1.
+		   </p>
+
+		   <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">train</span><span style="color: #f8f8f2">(self,</span> <span style="color: #f8f8f2">max_iterations):</span>
+    <span style="color: #f8f8f2">GAMMA</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0.9</span>
+
+    <span style="color: #f8f8f2">N</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">{}</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">s</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">S:</span>
+        <span style="color: #f8f8f2">N[s]</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span>
+
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">_</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(max_iterations):</span>
+        <span style="color: #f8f8f2">states,</span> <span style="color: #f8f8f2">reward</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">play_through()</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">states</span> <span style="color: #f92672">==</span> <span style="color: #66d9ef">None</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #66d9ef">continue</span>
+
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">range(len(states)</span> <span style="color: #f92672">-</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">):</span>
+            <span style="color: #f8f8f2">s</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">states[i]</span>
+            <span style="color: #f8f8f2">s_p</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">states[i</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]</span>
+            <span style="color: #f8f8f2">r_p</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">reward[i</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]</span>
+
+            <span style="color: #f8f8f2">N[s]</span> <span style="color: #f92672">+=</span> <span style="color: #ae81ff">1</span>
+            <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">U[s]</span> <span style="color: #f92672">+=</span> <span style="color: #f8f8f2">(</span><span style="color: #ae81ff">60.0</span><span style="color: #f92672">/</span><span style="color: #f8f8f2">(</span><span style="color: #ae81ff">59</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">N[s]))</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">(r_p</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">GAMMA</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">U[s_p]</span> <span style="color: #f92672">-</span> <span style="color: #f8f8f2">self</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">U[s])</span>
+</pre></div>
+
+
+			<br/>
+
+			<p>
+				TDL is a two step algorithm, which is run for <code>k</code> iterations: (1) play through and (2) update the utility table. Not that complicated. One addition, you'll notice, is that I'm not using a fixed learning rate alpha. Instead, I use <code>N</code> to keep track of how many times a state has been visited. The first time the state has been seen, the weight is (60/59+1)=1. The second time it is 60/61, and then 60/62, and then 60/63, and so on. The result is that the weight of the state slowly gets smaller and smaller to improve the likelihood of convergence the longer the algorithm runs. On the topic of convergence, one issue with TDL is that there does not appear to be a nice stopping criteria like with Policy Iteration, and instead the algorithm just stops after some number of iterations.
+			</p>
+			<p>
+				When TDL runs on 4x3 grid  world, it consistently finds solutions after 20 iterations, but there are rare occasions where it does fail. Meaning, it is is better to overestimate the minimum number of iterations when running TDL. More interesting is a problem when you increase the size of the grid in grid world. As we saw before, this results in a larger number of iterations for policy and value iterations, but both algorithms do not rely on a play through like TDL. On larger grids, we start with a random policy, which means we have to luck into a solution at the start. By the time we get to an 8x8 grid, this becomes very unlikely and TDL fails even at 10,000 iterations of the random agent trying to find a solution. 
+			</p>
+			<p>
+				I hope you enjoyed this post. You can find the code on <a href="https://github.com/bi3mer/ADP_Test/tree/87b965f0abe5165195f72dc08c5d2e94db751189">GitHub.</a>
+			</p>
+
+
+
+		</div>
+		<br/>
+		{{../../comments.plugin.html}}
+		{{../../google_analytics.plugin.html}}
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=default'></script>
+	</body>
+</html>
