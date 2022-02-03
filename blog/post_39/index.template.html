@@ -134,6 +134,10 @@
     	Recall that value iteration converged after 13 iterations and this algorithm is taking 100, but that was due to the stopping criteria. In that example, I gave value iteration a theta of 0.03. If I increase the size of grid world to 10x10, then theta is large enough that value iteration fails to find a suitable solution. I have to give it <code>theta = 1e-10</code> for value iteration to work. and it takes 81 iterations. Policy iteration actually takes more iterations at 300, but it is faster in terms of time taken at 0.049 seconds compared to 0.056 seconds, which is in line with the common wisdom that policy iteration is quicker to converge. On the note of convergence, a problem I ran into with value iteration is that it eventually fails to find solutions given a large enough grid world. At a certain point, you can only make theta so small, whereas the policy approach had no such issue. Likely there are other convergence metrics you can use for value iteration, but I have not yet looked into them. 
     </p>
 
+    <br/>
+    <br/>
+    <b>EDIT 2021/02/03:</b> <code>self.utility[s] = self.R[s] + self.P[s][self.pi[s]] * self.utility[self.pi[s]]</code> should be <code>self.utility[s] = self.R[s] + GAMMA*self.P[s][self.pi[s]] * self.utility[self.pi[s]]</code>, which has gamma. This mistake is why the table above has such large values. Policy iteration also converges after 80 iterations for <code>1e-13</code>.
+
 
 		</div>
 		<br/>
