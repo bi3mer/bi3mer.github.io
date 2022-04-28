@@ -3,15 +3,18 @@
 	var RESUME   = "resume";
 	var PROJECTS = "projects";
 	var BLOG     = "blog";
+	var GAMES     = "webgames";
 
 	var H_RESUME   = "#resume";
 	var H_PROJECTS = "#projects";
 	var H_BLOG     = "#blog";
+  var H_GAMES    = "#webgames"
 
 	function resume() {
 		document.getElementsByName(RESUME)[0].style["display"]   = "block"
 		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
 		document.getElementsByName(BLOG)[0].style["display"]     = "none"
+		document.getElementsByName(GAMES)[0].style["display"]    = "none"
 
 		document.location.hash = RESUME;
 	};
@@ -20,6 +23,7 @@
 		document.getElementsByName(RESUME)[0].style["display"]   = "none"
 		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block"
 		document.getElementsByName(BLOG)[0].style["display"]     = "none"
+		document.getElementsByName(GAMES)[0].style["display"]    = "none"
 
 		document.location.hash = PROJECTS;
 	};
@@ -28,8 +32,18 @@
 		document.getElementsByName(RESUME)[0].style["display"]   = "none"
 		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
 		document.getElementsByName(BLOG)[0].style["display"]     = "inline"
+		document.getElementsByName(GAMES)[0].style["display"]    = "none"
 
 		document.location.hash = BLOG;
+	};
+
+  function games() {
+		document.getElementsByName(RESUME)[0].style["display"]   = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
+		document.getElementsByName(BLOG)[0].style["display"]     = "none"
+		document.getElementsByName(GAMES)[0].style["display"]    = "inline"
+
+		document.location.hash = GAMES;
 	};
 </script>
 <style>
@@ -49,6 +63,10 @@
     &nbsp;
 		<h3 style="display:inline">
 			<element onclick="projects()">Projects</element>
+		</h3>
+    &nbsp;
+    <h3 style="display:inline">
+			<element onclick="games()">Web Games</element>
 		</h3>
     &nbsp;
 		<h3 style="display:inline">
