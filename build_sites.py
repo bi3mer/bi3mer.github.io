@@ -17,12 +17,18 @@ def reimport():
 
 def build_template(file_name, path):
 	f = open(file_name, 'r')
+	if file_name == 'projects.plugin.html':
+		print('here')
+
 
 	output_file = file_name.replace('.template', '')
 	output_str  = '<!-- auto-generated document -->\n'
 
 	for line in f:
 		if '{{' in line and '}}' in line:
+			if file_name == 'projects.plugin.html':
+				print(line)
+
 			# remove brackets and ending new line to get file name
 			file_name = os.path.join(path, line.split('{{')[1].replace('}}', '')[:-1])
 			
