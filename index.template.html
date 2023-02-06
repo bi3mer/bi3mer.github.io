@@ -12,6 +12,19 @@
 		{{blogs.customfunction.html}}
     {{webgames.plugin.html}}
 
+    <script>
+      // default is resume
+      if (window.location.hash === H_BLOG) {
+        blog();
+      } else if (window.location.hash == H_PROJECTS) {
+        projects();
+      } else if (window.location.hash == H_GAMES) {
+        games();
+      } else {
+        resume();
+      }
+    </script>
+
 		{{google_analytics.plugin.html}}
 	</body>
 </html>

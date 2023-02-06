@@ -45,19 +45,6 @@
 
 		document.location.hash = GAMES;
 	};
-
-  // default is resume
-  setTimeout(() => {
-    if (window.location.hash === H_BLOG) {
-      blog();
-    } else if (window.location.hash == H_PROJECTS) {
-      projects();
-    } else if (window.location.hash == H_GAMES) {
-      games();
-    } else {
-      console.log(window.location.hash);
-    }
-  }, 1);
 </script>
 <style>
 	h3:hover {

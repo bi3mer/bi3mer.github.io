@@ -57,19 +57,6 @@
 
 		document.location.hash = GAMES;
 	};
-
-  // default is resume
-  setTimeout(() => {
-    if (window.location.hash === H_BLOG) {
-      blog();
-    } else if (window.location.hash == H_PROJECTS) {
-      projects();
-    } else if (window.location.hash == H_GAMES) {
-      games();
-    } else {
-      console.log(window.location.hash);
-    }
-  }, 1);
 </script>
 <style>
 	h3:hover {
@@ -657,6 +644,19 @@
   </div>
 </div>
     
+    <script>
+      // default is resume
+      if (window.location.hash === H_BLOG) {
+        blog();
+      } else if (window.location.hash == H_PROJECTS) {
+        projects();
+      } else if (window.location.hash == H_GAMES) {
+        games();
+      } else {
+        resume();
+      }
+    </script>
+
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
 <script>
