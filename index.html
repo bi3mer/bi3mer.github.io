@@ -12,15 +12,15 @@
 	<body>
 <script type="text/javascript">
 
-	var RESUME   = "resume";
-	var PROJECTS = "projects";
-	var BLOG     = "blog";
-	var GAMES     = "webgames";
+	const RESUME   = "resume";
+	const PROJECTS = "projects";
+	const BLOG     = "blog";
+	const GAMES    = "webgames";
 
-	var H_RESUME   = "#resume";
-	var H_PROJECTS = "#projects";
-	var H_BLOG     = "#blog";
-  var H_GAMES    = "#webgames"
+	const H_RESUME   = "#resume";
+	const H_PROJECTS = "#projects";
+	const H_BLOG     = "#blog";
+  const H_GAMES    = "#webgames"
 
 	function resume() {
 		document.getElementsByName(RESUME)[0].style["display"]   = "block"
@@ -57,6 +57,19 @@
 
 		document.location.hash = GAMES;
 	};
+
+  // default is resume
+  setTimeout(() => {
+    if (window.location.hash === H_BLOG) {
+      blog();
+    } else if (window.location.hash == H_PROJECTS) {
+      projects();
+    } else if (window.location.hash == H_GAMES) {
+      games();
+    } else {
+      console.log(window.location.hash);
+    }
+  }, 1);
 </script>
 <style>
 	h3:hover {
@@ -644,15 +657,6 @@
   </div>
 </div>
     
-		<script type="text/javascript">
-			if(document.location.hash === H_BLOG) {
-				blog();
-			} else if(document.location.hash === H_PROJECTS) {
-				projects();
-			} else {
-				resume();
-			}
-		</script>
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
 <script>
