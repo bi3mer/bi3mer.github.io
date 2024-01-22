@@ -11,51 +11,76 @@
 	</head>
 	<body>
 <script type="text/javascript">
+	const HOME         = "home";
+	const PROJECTS     = "projects";
+	const BLOG         = "blog";
+	const GAMES        = "webgames";
+  const PUBLICATIONS = "publications";
 
-	const RESUME   = "resume";
-	const PROJECTS = "projects";
-	const BLOG     = "blog";
-	const GAMES    = "webgames";
+	const H_HOME         = "#home";
+	const H_PROJECTS     = "#projects";
+	const H_BLOG         = "#blog";
+  const H_GAMES        = "#webgames"
+  const H_PUBLICATIONS = "#publications"
 
-	const H_RESUME   = "#resume";
-	const H_PROJECTS = "#projects";
-	const H_BLOG     = "#blog";
-  const H_GAMES    = "#webgames"
+	function home() {
+		document.getElementsByName(HOME)[0].style["display"]         = "block"
+		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
 
-	function resume() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "block"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
-		document.getElementsByName(BLOG)[0].style["display"]     = "none"
-		document.getElementsByName(GAMES)[0].style["display"]    = "none"
+		document.location.hash = HOME;
+	};
 
-		document.location.hash = RESUME;
+  function publications() {
+		document.getElementsByName(HOME)[0].style["display"]         = "block"
+		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
+
+		document.location.hash = HOME;
 	};
 
 	function projects() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "inline-block"
-		document.getElementsByName(BLOG)[0].style["display"]     = "none"
-		document.getElementsByName(GAMES)[0].style["display"]    = "none"
+		document.getElementsByName(HOME)[0].style["display"]         = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"]     = "inline-block"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
 
 		document.location.hash = PROJECTS;
 	};
 
 	function blog() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
-		document.getElementsByName(BLOG)[0].style["display"]     = "inline"
-		document.getElementsByName(GAMES)[0].style["display"]    = "none"
+		document.getElementsByName(HOME)[0].style["display"]         = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "inline"
+		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
 
 		document.location.hash = BLOG;
 	};
 
   function games() {
-		document.getElementsByName(RESUME)[0].style["display"]   = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"] = "none"
-		document.getElementsByName(BLOG)[0].style["display"]     = "none"
-		document.getElementsByName(GAMES)[0].style["display"]    = "inline"
+		document.getElementsByName(HOME)[0].style["display"]         = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(GAMES)[0].style["display"]        = "inline"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
 
 		document.location.hash = GAMES;
+	};
+
+  function publications() {
+		document.getElementsByName(HOME)[0].style["display"]         = "none"
+		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "inline"
+
+		document.location.hash = PUBLICATIONS;
 	};
 </script>
 <style>
@@ -70,11 +95,7 @@
 			Colan F. Biemer
 		</h1>
 		<h3 style="display:inline">
-			<element onclick="resume()">Resume</element>
-		</h3>
-    &nbsp;
-		<h3 style="display:inline">
-			<element onclick="projects()">Projects</element>
+			<element onclick="home()">Home</element>
 		</h3>
     &nbsp;
     <h3 style="display:inline">
@@ -82,162 +103,27 @@
 		</h3>
     &nbsp;
 		<h3 style="display:inline">
+			<element onclick="publications()">Publications</element>
+		</h3>
+    &nbsp;
+		<h3 style="display:inline">
 			<element onclick="blog()">Blog</element>
 		</h3>
+    &nbsp;
+		<h3 style="display:inline">
+			<element onclick="projects()">Miscellaneous</element>
+		</h3>
+    
 	</center>
 </div>
 <br/>		<!-- CV -->
-<div class="container" name="resume">
-  <h2>
-		Education
-	</h2>
-	<div class="container">
-    <ul style="list-style-type: none;">
-      <li>
-        Northeastern University, MS/PhD Computer Science, 2019-Present
-      </li>
-      <li>
-        Northeastern University, MS Computer Science, 2021
-      </li>
-      <li>
-        Drexel University, BS Computer Science, 2017
-      </li>
-    </ul>
-	</div>
-  <h2>
-    Publications
-  </h2>
-	<div class="container">
-    <ul style="list-style-type: none;">
-      <li style="padding: 5px 0px;">
-        Biemer, C. F. (2023, October). Dynamic difficulty adjustment via procedural level generation guided by a Markov decision process for platformers and roguelikes. In Proceedings of the AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment (Vol. 19, No. 1, pp. 436-439).
-        <br/>
-        <a href="https://ojs.aaai.org/index.php/AIIDE/article/view/27540">Paper</a>
-      </li>
-      <li style="padding: 5px 0px;">
-        Biemer, C., & Cooper, S. (2022, October). Level Assembly as a Markov Decision Process. In 2022 Proceedings of the Experimental AI in Games Workshop.<br/>
-        <a href="https://arxiv.org/pdf/2304.13922.pdf">Paper</a>, <a href="https://www.youtube.com/watch?v=XpLm_AyimTw">Talk</a>, <a href="https://github.com/crowdgames/mdp-level-assembly">Code</a> 
-      </li>
-      <li style="padding: 5px 0px;">
-        Biemer, C., & Cooper, S. (2022, August). On Linking Level Segments. In 2022 IEEE Conference on Games (CoG) (pp. 199-205). 
-        <br/>
-        <a href="https://arxiv.org/pdf/2203.05057.pdf">Paper</a>, <a href="https://www.youtube.com/watch?v=VrOBNP6UbRU&t">Talk</a>, <a href="https://github.com/bi3mer/LinkingLevelSegments">Code</a> 
-        <br/>
-        ★ Best Paper Nominee
-      </li>
-      <li style="padding: 5px 0px;">
-        Biemer, C., Hervella, A., & Cooper, S. (2021, August). Gram-Elites: N-Gram Based Quality-Diversity Search. In The 16th International Conference on the Foundations of Digital Games (FDG) 2021 (pp. 1-6).
-        <br/>
-        <a href="pdf/2021_gram_elites.pdf">Paper</a>, <a href="https://www.youtube.com/watch?v=CRK1YlSFb3c">Talk</a>, <a href="https://github.com/bi3mer/GramElites">Code</a> 
-      </li>
-      <li style="padding: 5px 0px;">
-        Villareale, J., Biemer, C., Seif El-Nasr, M., & Zhu, J. (2020, September). Reflection in Game-Based Learning: A Survey of Programming Games. In International Conference on the Foundations of Digital Games (pp. 1-9).
-        <br/>
-        <a href="https://dl.acm.org/doi/pdf/10.1145/3402942.3403011?casa_token=_BhwKVV78p0AAAAA:zprP0P0pyLYQk5jwFe_H3AHj11uuTo5IthdXD6iUmJj8j58XBibbCKqVHmYsEp-c9QepSsUNetRR">Paper</a>
-      </li>
-    </ul>
-  </div>
-	<h2>
-		Work Experience
-	</h2>
-	<div class="container">
-		<b>
-			Applications Programmer, University of California Riverside Brain Game Center
-		</b>
-		<br>
-		Riverside, CA — August 2017 - June 2019
-		<ul>
-			<li>
-				Created a submodule used across all game repositories that contains generic tools, generic scripts, and core game functionality to prevent previous issue of out of sync code across multiple repositories
-			</li>
-			<li>
-				Developed HIPAA compliant serverless architecture with AWS to be used by multiple organizations for managing users, storing logs, producing analytics, delivering configurations, automatically assigning users to configurations, and uploading assets to applications to reduce initial download size 
-			</li>
-			<li>
-				To reduce miscommunication between researchers and programmers, implemented configuration driven games that researchers could easily modify without a programmer’s help
-			</li>
-		</ul>
-		<b>
-			Information Technology Research Center Co-op, BMW
-		</b>
-		<br>
-		Greenville, SC — April 2016 - September 2016
-		<br>
-		<ul>
-			<li>
-				Administrator for ELK stack and cluster to provide NHTSA data for analysts
-			</li>
-			<li>
-				Merged Hive tables to provide data standardization for analysts to search and find trends
-				<ul>
-					<li>
-						Developed multi-threaded algorithm that reduced run time of monthly data pushes from Hive to ELK by several days to free cluster resources
-					</li>
-					<li>
-						Created distributed machine learning algorithm using dataset of engines to classify defects in the factory which outperformed AlexNet by ~35%
-					</li>
-				</ul>
-			</li>
-			<li>
-				Developed flexible Python server for delivering fake data to applications to demo the Amazon Echo
-			</li>
-			<li>
-				Developed Oculus VR walkthrough and car demo in Unity to demonstrate VR restraints and possibilities
-			<li>
-				Built eight node Raspberry Pi cluster for training new interns on cluster computing
-			</li>
-		</ul>
-		<b>
-			Programmer, Entrepreneurial Game Studio
-		</b>
-		<br>
-		Philadelphia, PA — October 2013 - August 2017
-		<br>
-		<ul>
-			<li>
-				Programmer for the “World's Largest Architectural Video Game”. Created single and multiplayer Tetris on both sides of the Cira Center building
-				<ul>
-					<li>
-						Improved codebase to feature better design principles and faster execution (e.g. built in double buffering)
-					</li>
-					<li>
-						Media coverage included over 1,500 articles and mentions along with an <a href="https://drive.google.com/file/d/1a2tGOTH5f1kjWgcazNGzon2tUcOUOJtx/view?usp=sharing">estimated 2.2 billion views</a>
-					</li>
-				</ul>
-			</li>
-			<li>
-				Developer for IOS augmented reality game using city buildings as objectives for players to capture as a team using a chat system to communicate. Project was discontinued due to hardware restraints at time of development.
-			</li>
-			<li>
-				Built website to show number of tweets from each country on world map for Dalai Lama visit to Philadelphia
-			</li>
-		</ul>
-		<b>
-			R&D Innovations Team Development Co-op, iPipeline
-		</b>
-		<br>
-		Philadelphia, PA — April 2015 - September 2015
-		<ul>
-			<li>
-				Coordinated with outside vendor to implement form tracking and analytics into existing product
-			</li>
-			<li>
-				Developed SMS based systems with Node.js and Twilio
-			</li>
-			<ul>
-				<li>
-					Created “Text-a-Quote,” which received basic information from the user and sent back a life insurance quote. This included recommendations for the user to remedy errors encountered
-				</li>
-				<li>
-					Lead Developer of “Pipe-SMS,” a one-way texting service designed for iPipeline applications to text users
-				</li>
-			</ul>
-			<li>
-				Researched wearable tech for in-house fitness hackathon and developed OAuth service to verify data retrieval from available REST services
-			</li>
-		</ul>
-	</div>
-  <h2>
+<div class="container" name="home">
+  I'm currently rethinking this part of the website, so there is nothing here for right now. The rest of the pages aren't broken though. If you want a copy of my resume, please click 
+  <a href="pdf/resume.pdf">here.</a>
+</div>
+
+
+  <!-- <h2>
     Teaching
   </h2>
   <div id="container">
@@ -261,19 +147,7 @@
         Drexel, Introduction to Computer Science, Teaching Assistant (Fall 2015)
       </li>
     </ul>
-  </div>
-	<h2>
-		Other
-	</h2>
-  <ul style="list-style-type: none;">
-    <li>
-      Vice President of Upsilon Pi Epsilon, 2016-2017, Computer Science Honor Society
-    </li>
-    <li>
-      Built computer for deep learning and data science experiments
-    </li>
-  </ul>
-</div><!-- Set up columns for cleaner display -->
+  </div> --><!-- Set up columns for cleaner display -->
 <div class="container-fluid" name="projects" id="projects">
   <!-- <ul style="list-style-type: none;">
     <li>
@@ -747,7 +621,38 @@
     </div>
   </div>
 </div>
-    
+    <div class="container" name="publications">
+	<div class="container">
+    <ul style="list-style-type: none;">
+      <li style="padding: 5px 0px;">
+        Biemer, C. F. (2023, October). Dynamic difficulty adjustment via procedural level generation guided by a Markov decision process for platformers and roguelikes. In Proceedings of the AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment (Vol. 19, No. 1, pp. 436-439).
+        <br/>
+        <a href="https://ojs.aaai.org/index.php/AIIDE/article/view/27540">Paper</a>
+      </li>
+      <li style="padding: 5px 0px;">
+        Biemer, C., & Cooper, S. (2022, October). Level Assembly as a Markov Decision Process. In 2022 Proceedings of the Experimental AI in Games Workshop.<br/>
+        <a href="https://arxiv.org/pdf/2304.13922.pdf">Paper</a>, <a href="https://www.youtube.com/watch?v=XpLm_AyimTw">Talk</a>, <a href="https://github.com/crowdgames/mdp-level-assembly">Code</a> 
+      </li>
+      <li style="padding: 5px 0px;">
+        Biemer, C., & Cooper, S. (2022, August). On Linking Level Segments. In 2022 IEEE Conference on Games (CoG) (pp. 199-205). 
+        <br/>
+        <a href="https://arxiv.org/pdf/2203.05057.pdf">Paper</a>, <a href="https://www.youtube.com/watch?v=VrOBNP6UbRU&t">Talk</a>, <a href="https://github.com/bi3mer/LinkingLevelSegments">Code</a> 
+        <br/>
+        ★ Best Paper Nominee
+      </li>
+      <li style="padding: 5px 0px;">
+        Biemer, C., Hervella, A., & Cooper, S. (2021, August). Gram-Elites: N-Gram Based Quality-Diversity Search. In The 16th International Conference on the Foundations of Digital Games (FDG) 2021 (pp. 1-6).
+        <br/>
+        <a href="pdf/2021_gram_elites.pdf">Paper</a>, <a href="https://www.youtube.com/watch?v=CRK1YlSFb3c">Talk</a>, <a href="https://github.com/bi3mer/GramElites">Code</a> 
+      </li>
+      <li style="padding: 5px 0px;">
+        Villareale, J., Biemer, C., Seif El-Nasr, M., & Zhu, J. (2020, September). Reflection in Game-Based Learning: A Survey of Programming Games. In International Conference on the Foundations of Digital Games (pp. 1-9).
+        <br/>
+        <a href="https://dl.acm.org/doi/pdf/10.1145/3402942.3403011?casa_token=_BhwKVV78p0AAAAA:zprP0P0pyLYQk5jwFe_H3AHj11uuTo5IthdXD6iUmJj8j58XBibbCKqVHmYsEp-c9QepSsUNetRR">Paper</a>
+      </li>
+    </ul>
+  </div>
+</div>
     <script>
       // default is resume
       if (window.location.hash === H_BLOG) {
@@ -756,8 +661,10 @@
         projects();
       } else if (window.location.hash == H_GAMES) {
         games();
+      } else if (window.location == H_PUBLICATIONS) { 
+        publications();
       } else {
-        resume();
+        home();
       }
     </script>
 

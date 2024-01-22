@@ -7,10 +7,11 @@
 	<body>
 		{{bar.plugin.html}}
 		<!-- CV -->
-		{{resume.plugin.html}}
+		{{home.plugin.html}}
 		{{projects.plugin.html}}
 		{{blogs.customfunction.html}}
     {{webgames.plugin.html}}
+    {{publications.plugin.html}}
 
     <script>
       // default is resume
@@ -20,8 +21,10 @@
         projects();
       } else if (window.location.hash == H_GAMES) {
         games();
+      } else if (window.location == H_PUBLICATIONS) { 
+        publications();
       } else {
-        resume();
+        home();
       }
     </script>
 
