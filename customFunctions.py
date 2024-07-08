@@ -44,7 +44,7 @@ def build_blog_post_item(post):
 		return None, ""
 
 def blogs():
-	output_str = '<div class="container" name="blog">'
+	output_str = '<div class="container" name="blog" style="display: none">'
 	output_str += '<div class="container">'
 
 	items = os.listdir(blog_directory)

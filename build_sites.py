@@ -11,15 +11,12 @@ def reimport():
 	try:
 		reload(customFunctions) 
 	except Exception as e:
-		# print erro message and make beep to notify user of error
+		# print error message and make beep to notify user of error
 		print(e)
 		sys.stdout.write('\r\a')
 
 def build_template(file_name, path):
 	f = open(file_name, 'r')
-	if file_name == 'projects.plugin.html':
-		print('here')
-
 
 	output_file = file_name.replace('.template', '')
 	output_str  = '<!-- auto-generated document -->\n'

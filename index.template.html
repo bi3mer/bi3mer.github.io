@@ -15,17 +15,19 @@
 
     <script>
       // default is resume
-      if (window.location.hash === H_BLOG) {
-        blog();
-      } else if (window.location.hash == H_PROJECTS) {
-        projects();
-      } else if (window.location.hash == H_GAMES) {
-        games();
-      } else if (window.location == H_PUBLICATIONS) { 
-        publications();
-      } else {
-        home();
-      }
+      document.body.onload = () => {
+        if (window.location.hash === H_BLOG) {
+          blog();
+        } else if (window.location.hash == H_PROJECTS) {
+          projects();
+        } else if (window.location.hash == H_GAMES) {
+          games();
+        } else if (window.location.hash == H_PUBLICATIONS) { 
+          publications();
+        } else {
+          home();
+        }
+      };
     </script>
 
 		{{google_analytics.plugin.html}}
