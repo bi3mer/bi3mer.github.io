@@ -10,18 +10,19 @@
 		{{home.plugin.html}}
 		{{projects.plugin.html}}
 		{{blogs.customfunction.html}}
-    {{webgames.plugin.html}}
     {{publications.plugin.html}}
+    {{resume.plugin.html}}
 
     <script>
       // default is resume
       document.body.onload = () => {
         if (window.location.hash === H_BLOG) {
           blog();
-        } else if (window.location.hash == H_PROJECTS) {
-          projects();
         } else if (window.location.hash == H_GAMES) {
           games();
+        } else if (window.location.hash == H_RESUME) {
+          console.log('1')
+          resume();
         } else if (window.location.hash == H_PUBLICATIONS) { 
           publications();
         } else {

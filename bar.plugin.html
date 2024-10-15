@@ -1,71 +1,71 @@
 <script type="text/javascript">
 	const HOME         = "home";
-	const PROJECTS     = "projects";
+	const RESUME       = "resume";
+	const GAMES        = "games";
 	const BLOG         = "blog";
-	const GAMES        = "webgames";
   const PUBLICATIONS = "publications";
 
-	const H_HOME         = "#home";
-	const H_PROJECTS     = "#projects";
+  const H_HOME         = "#home"
+	const H_RESUME       = "#resume";
+	const H_GAMES        = "#games";
 	const H_BLOG         = "#blog";
-  const H_GAMES        = "#webgames"
   const H_PUBLICATIONS = "#publications"
 
 	function home() {
 		document.getElementsByName(HOME)[0].style["display"]         = "block"
-		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
-		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(RESUME)[0].style["display"]       = "none"
 		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
 		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
 
 		document.location.hash = HOME;
 	};
 
   function publications() {
-		document.getElementsByName(HOME)[0].style["display"]         = "block"
-		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
-		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(HOME)[0].style["display"]         = "none"
+		document.getElementsByName(RESUME)[0].style["display"]       = "none"
 		document.getElementsByName(GAMES)[0].style["display"]        = "none"
-		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "block"
 
-		document.location.hash = HOME;
+		document.location.hash = RESUME;
 	};
 
-	function projects() {
+	function games() {
 		document.getElementsByName(HOME)[0].style["display"]         = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"]     = "inline-block"
+		document.getElementsByName(RESUME)[0].style["display"]       = "none"
+		document.getElementsByName(GAMES)[0].style["display"]        = "block"
 		document.getElementsByName(BLOG)[0].style["display"]         = "none"
-		document.getElementsByName(GAMES)[0].style["display"]        = "none"
-		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
-
-		document.location.hash = PROJECTS;
-	};
-
-	function blog() {
-		document.getElementsByName(HOME)[0].style["display"]         = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
-		document.getElementsByName(BLOG)[0].style["display"]         = "inline"
-		document.getElementsByName(GAMES)[0].style["display"]        = "none"
-		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
-
-		document.location.hash = BLOG;
-	};
-
-  function games() {
-		document.getElementsByName(HOME)[0].style["display"]         = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
-		document.getElementsByName(BLOG)[0].style["display"]         = "none"
-		document.getElementsByName(GAMES)[0].style["display"]        = "inline"
 		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
 
 		document.location.hash = GAMES;
 	};
 
+	function blog() {
+		document.getElementsByName(HOME)[0].style["display"]         = "none"
+		document.getElementsByName(RESUME)[0].style["display"]       = "none"
+		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "inline"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
+
+		document.location.hash = BLOG;
+	};
+
+  function resume() {
+		document.getElementsByName(HOME)[0].style["display"]         = "none"
+		document.getElementsByName(RESUME)[0].style["display"]       = "inline"
+		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
+
+		document.location.hash = RESUME;
+	};
+
   function publications() {
 		document.getElementsByName(HOME)[0].style["display"]         = "none"
-		document.getElementsByName(PROJECTS)[0].style["display"]     = "none"
-		document.getElementsByName(BLOG)[0].style["display"]         = "none"
+		document.getElementsByName(RESUME)[0].style["display"]       = "none"
 		document.getElementsByName(GAMES)[0].style["display"]        = "none"
+		document.getElementsByName(BLOG)[0].style["display"]         = "none"
 		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "inline"
 
 		document.location.hash = PUBLICATIONS;
@@ -87,7 +87,11 @@
 		</h3>
     &nbsp;
     <h3 style="display:inline">
-			<element onclick="games()">Web Games</element>
+      <element onclick="games()">Games</element>
+    </h3>
+    &nbsp;
+    <h3 style="display:inline">
+			<element onclick="resume()">Resume</element>
 		</h3>
     &nbsp;
 		<h3 style="display:inline">
@@ -97,11 +101,6 @@
 		<h3 style="display:inline">
 			<element onclick="blog()">Blog</element>
 		</h3>
-    &nbsp;
-		<h3 style="display:inline">
-			<element onclick="projects()">Miscellaneous</element>
-		</h3>
-    
 	</center>
 </div>
 <br/>
