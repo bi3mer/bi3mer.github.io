@@ -1,28 +1,117 @@
+<style>
+  td {
+    padding: 25px;
+    vertical-align: top;
+  }
+</style>
+
 <div class="container" name="webgames" style="display: none">
   <div class="container">
+    <center>
+      <h2>
+        C++
+      </h2>
+    </center>
+    <table class="table table-hover">
+  
+    </table>
+    
+    <center>
+      <h2>
+        TypeScript
+      </h2>
+    </center>
+    <table class="table table-hover">
+      <!------------- DG ------------->
+      <tr>
+        <td class="w-25">
+          <img class="card-img-top" src="images/dg.png">
+        </td>
+        <td>
+          <b>DG</b>
+          <br/>
+          This is a re-implementation of <a href="https://github.com/crowdgames/dungeongrams"> DungeonGrams</a> 
+          in TypeScript. I'm using the engine I built for the maze game, and I've named it
+          <a href="https://github.com/bi3mer/WorldEngine">WorldEngine</a>! (It made me laugh.)
+          <br/>
+          <br/>
+          <form action="https://bi3mer.github.io/dg/index.html">
+            <input type="submit" class="btn btn-success" value="Play" />
+            <input type="hidden" name="default" value="true" />
+          </form>
+        </td>
+      </tr>
+      <!------------------------------------------------->
+      <!------------- Sisyhpus's Dungeon 3 ------------->
+      <tr>
+        <td class="w-25">
+          <img class="card-img-top" src="images/scarydungeon.png">
+        </td>
+        <td>
+          <b>Sisyphus's Dungeon</b>
+          <br/>
+          <i>(Active Development)</i>
+          <br/>
+          This is a game that is a work in progress, so no guarantee that everything is correctly functioning or that it's fun.
+          It is a roguelike developed in Typescript and <a href="https://ondras.github.io/rot.js/hp/">rot.js</a> for rendering.
+          The code is on <a href="https://bi3mer.github.io/scary_dungeon_js/">Github.</a>
+          <br/>
+          <br/>
+          <form action="https://bi3mer.github.io/scary_dungeon_js/">
+            <input type="submit" class="btn btn-success" value="Play" />
+          </form>
+        </td>
+      </tr>
+      <!------------------------------------------------->
+      <!------------- Fruit 3 ------------->
+      <tr>
+        <td class="w-25">
+          <img class="card-img-top" src="images/match-three.png">
+        </td>
+        <td>
+          <b>Match Three</b>
+          <br/>
+          <i>(Active Development)</i>
+          <br/>
+          Someone brought up match three games with me at AIIDE 2023, and I realized
+          that I had never made one of those games. So, I made one. It isn't perfect,
+          it definitely could use a lot of user experience improvements, but I've enjoyed
+          working on it. The 
+          <a href="https://devilsworkshop.itch.io/match-3-free-2d-sprites-game-art-and-ui">assets</a>
+          are not my own.
+          The code is on <a href="https://github.com/bi3mer/match-three">Github.</a> NOTE:
+          version online is currently broken. Don't judge me. I'm changing to bit boards.
+          <br/>
+          <br/>
+          <form action="https://bi3mer.github.io/match-three/">
+            <input type="submit" class="btn btn-success" value="Play" onclick="alert('Fruit-3 is currently broken.')" />
+          </form>
+        </td>
+      </tr>
+      <!------------------------------------------------->
+
+    </table>
+  </div>
+
+  
+
+  <center>
+    <h2>
+      Rust
+    </h2>
+  </center>
+  <table class="table table-hover">
+
+  </table>
+
+  <center>
+    <h3>
+      Break
+    </h3>
+  </center>
+  <div class="container">
     <div class="card-columns">
-      <!-- Scary Dungeon -->
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="images/scarydungeon.png" alt="Card image cap">
-        <div class="card-body">
-          <p class="card-text">
-            <b>Sisyphus's Dungeon</b>
-            <br/>
-            <i>(Active Development)</i>
-            <br/>
-            This is a game that is a work in progress, so no guarantee that everything is correctly functioning or that it's fun.
-            It is a roguelike developed in Typescript and <a href="https://ondras.github.io/rot.js/hp/">rot.js</a> for rendering.
-            The code is on <a href="https://bi3mer.github.io/scary_dungeon_js/">Github.</a>
-            <br/>
-            <center>
-              <form action="https://bi3mer.github.io/scary_dungeon_js/">
-                <input type="submit" class="btn btn-success" value="Play" />
-              </form>
-            </center>
-          </p>  
-        </div>
-      </div>
-      <!-- Scary Dungeon -->
+
       <!-- Match Three -->
       <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="images/match-three.png" alt="Card image cap">
