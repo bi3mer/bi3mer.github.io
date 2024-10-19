@@ -45,7 +45,7 @@
 	function games() {
 		document.getElementsByName(HOME)[0].style["display"]         = "none"
 		document.getElementsByName(RESUME)[0].style["display"]       = "none"
-		document.getElementsByName(GAMES)[0].style["display"]        = "block"
+		document.getElementsByName(GAMES)[0].style["display"]        = "inline"
 		document.getElementsByName(BLOG)[0].style["display"]         = "none"
 		document.getElementsByName(PUBLICATIONS)[0].style["display"] = "none"
 
@@ -135,38 +135,77 @@
   </table>
 </div><!-- Set up columns for cleaner display -->
 <style>
-  #games {
+  #greenurl {
     a {
       color: #29ee71;
       text-decoration: underline;
     }
   }
 </style>
+
 <div class="container-fluid" name="games" style="display: none">
-  <div class="container" id="games">
+  <div class="container" id="greenurl">
     <center>
       <h2>
         C++
       </h2>
     </center>
     <table class="table table-hover">
-      <!------------- Raylib Tests ------------->
+      <!------------- Pong ------------->
       <tr>
         <td class="w-25">
-          <img class="card-img-top" src="images/raylib_tests.png">
+          <img class="card-img-top" src="images/cpp/pong.png">
         </td>
         <td>
-          <b>Raylib Tests</b>
+          <b>Hilbert Curves</b>
           <br/>
-          I haven't written any full games in c++ that are worth sharing. What I have been doing on the side, though,
-          is a series of test projects with <a href="https://www.raylib.com/">raylib.</a> Some of them are simulations
-          like <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a> and others are 
-          games, such as pong. I plan to add 10-20 small projects to the repo. The code is on 
-          <a href="https://github.com/bi3mer/raylib_tests">Github.</a>
+          An implementation of Pong with 
+          <a href="https://www.raylib.com/index.html">raylib.</a> I did an object oriented implementation with
+          scenes. The final result isn't that compelling and, ultimately, unnecessary, but it was interesting
+          to try out. The code is on 
+          <a href="https://github.com/bi3mer/raylib_tests/tree/main/pong/src">Github.</a>
           <br/>
           <br/>
-          <form action="https://bi3mer.github.io/raylib_tests">
+          <form action="https://bi3mer.github.io/raylib_tests/pong">
             <input type="submit" class="btn btn-success" value="Play" />
+          </form>
+        </td>
+      </tr>
+      <!------------------------------------------------->
+      <!------------- Hilbert Curves ------------->
+      <tr>
+        <td class="w-25">
+          <img class="card-img-top" src="images/cpp/hilbert_curves.png">
+        </td>
+        <td>
+          <b>Hilbert Curves</b>
+          <br/>
+          A visualization of <a href="https://en.wikipedia.org/wiki/Hilbert_curve">Hilbert curves</a> with 
+          <a href="https://www.raylib.com/index.html">raylib.</a> The code is on 
+          <a href="https://github.com/bi3mer/raylib_tests/tree/main/hilbert_curves/src">Github.</a>
+          <br/>
+          <br/>
+          <form action="https://bi3mer.github.io/raylib_tests/hilbert_curves">
+            <input type="submit" class="btn btn-success" value="Watch" />
+          </form>
+        </td>
+      </tr>
+      <!------------------------------------------------->
+      <!------------- Conway's Game of Life ------------->
+      <tr>
+        <td class="w-25">
+          <img class="card-img-top" src="images/cpp/conways_game_of_life.png">
+        </td>
+        <td>
+          <b>Conway's Game of Life</b>
+          <br/>
+          A simulation of <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Conway's Game of Life</a> with 
+          <a href="https://www.raylib.com/index.html">raylib.</a> The code is on 
+          <a href="https://github.com/bi3mer/raylib_tests/tree/main/conways_game_of_life/src">Github.</a>
+          <br/>
+          <br/>
+          <form action="https://bi3mer.github.io/raylib_tests/conways_game_of_life">
+            <input type="submit" class="btn btn-success" value="Watch" />
           </form>
         </td>
       </tr>
