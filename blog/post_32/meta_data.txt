@@ -1,1 +1,0 @@
-Linear and Quadratic Discriminant Analysis||03/15/21||true||./blog/post_32/biemer_colan_LDA_and_QDA.pdf

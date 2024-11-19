@@ -1,1 +1,0 @@
-Generative Art III: Conway's Game of Life||01/13/22||true
