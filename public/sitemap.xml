@@ -5,16 +5,28 @@
     <loc>http://localhost:1313/</loc>
     <lastmod>2024-11-19T20:27:29-05:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/games/</loc>
+    <lastmod>2024-11-19T20:27:29-05:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2024-11-19T20:27:29-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/games/second/</loc>
     <lastmod>2024-11-19T20:27:29-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/second/</loc>
     <lastmod>2024-11-19T20:27:29-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/first/</loc>
-    <lastmod>2024-11-19T20:24:55-05:00</lastmod>
+    <lastmod>2019-10-25T20:24:55-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/archives/</loc>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/publications/</loc>
+  </url><url>
+    <loc>http://localhost:1313/search/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
   </url>

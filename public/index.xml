@@ -10,6 +10,14 @@
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Second</title>
+      <link>http://localhost:1313/games/second/</link>
+      <pubDate>Tue, 19 Nov 2024 20:27:29 -0500</pubDate>
+      <guid>http://localhost:1313/games/second/</guid>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Hello, world! I&amp;rsquo;m here again :D&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Second</title>
       <link>http://localhost:1313/posts/second/</link>
       <pubDate>Tue, 19 Nov 2024 20:27:29 -0500</pubDate>
       <guid>http://localhost:1313/posts/second/</guid>
@@ -22,6 +30,16 @@
       <pubDate>Fri, 25 Oct 2019 20:24:55 -0500</pubDate>
       <guid>http://localhost:1313/posts/first/</guid>
       <description>&lt;p&gt;This is a quick walk through of how to take c++ and run it with Python through bindings. If you find yourself wishing to learn more on the topic, &lt;a href=&#34;http://www.swig.org/Doc1.3/Python.html&#34;&gt;Swig’s website&lt;/a&gt; for working with Python is a good start. My experience in setting this up was far more tedious than it had to be and I hope this will save people some time. As a note, I currently work on Ubuntu 16.04 and Python 2.7; this will be tailored to those dependencies, however, I do not believe any major changes will be required to the setup.py file based on &lt;a href=&#34;http://www.swig.org/Doc1.3/Python.html&#34;&gt;Swig&amp;rsquo;s website&lt;/a&gt; and a &lt;a href=&#34;https://stackoverflow.com/questions/32667888/building-extension-for-python-3-with-swig-and-distutils&#34;&gt;StackOverflow question for Python 3&lt;/a&gt;. In addition, the majority of operating systems should be covered by this walk through, with minor tweaks such as yum instead of apt-get for select operating systems.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Publications</title>
+      <link>http://localhost:1313/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/publications/</guid>
+      <description>&lt;p&gt;Biemer, C., &amp;amp; Cooper, S. (2024, May). Solution Path Heuristics for Predicting Difficulty and Enjoyment Ratings of Roguelike Level Segments. In Proceedings of the 19th International Conference on the Foundations of Digital Games (pp. 1-8). &lt;br&gt;
+&lt;a href=&#34;http://localhost:1313/pdf/2024_solution_path_heuristics.pdf&#34;&gt;Paper&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Biemer, C. F. (2023, October). Dynamic difficulty adjustment via procedural level generation guided by a Markov decision process for platformers and roguelikes. In Proceedings of the AAAI Conference on Artificial Intelligence and Interactive Digital Entertainment (Vol. 19, No. 1, pp. 436-439). &lt;br&gt;
+&lt;a href=&#34;http://localhost:1313/pdf/2023_ddaviaplgviamdp.pdf&#34;&gt;Paper&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

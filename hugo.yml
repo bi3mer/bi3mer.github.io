@@ -1,0 +1,28 @@
+baseURL: 'https://bi3mer.github.io/'
+languageCode: 'en-us'
+title: 'Colan Biemer'
+theme: 'PaperMod'
+
+params:
+  ShowShareButtons: true
+  ShowReadingTime: true
+  ShowBreadCrumbs: true
+
+menu:
+  main:
+    - identifier: games
+      name: Games
+      url: /games/
+      weight: 20
+    - identifier: posts
+      name: Posts
+      url: /posts/
+      weight: 20
+    - identifier: publications
+      name: Publications
+      url: /publications
+      weight: 30
+    - identifier: search
+      name: Search
+      url: /search/
+      weight: 40
