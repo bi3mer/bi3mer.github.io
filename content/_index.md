@@ -1,7 +1,9 @@
 ---
 title: "Colan Biemer" 
-layout: "home" 
+layout: "index"
 showtoc: false
+hideMeta: true
+showTitle: false
 showReadingTime: false
 disableShare: true
 ---
