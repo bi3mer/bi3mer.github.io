@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Sep 2019 18:11:10 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 28 May 2020 18:22:50 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chrome Invert Colors</title>
+      <link>http://localhost:1313/posts/chrome-invert-colors/</link>
+      <pubDate>Thu, 28 May 2020 18:22:50 -0500</pubDate>
+      <guid>http://localhost:1313/posts/chrome-invert-colors/</guid>
+      <description>&lt;p&gt;If it were up to me, every website would be required to have a theme option of light or dark. Unfortunately, it is not. It is uncommon to find websites that include both options or, at least, default to dark mode. Recently FaceBook included a dark mode option and slack now has it built into their app. It is a wonderful thing to see it become more popular. Still, there is no guarantee. As a result, I have turned to &lt;a href=&#34;https://darkreader.org/&#34;&gt;Dark Reader&lt;/a&gt;. A great chrome extension that will automatically run on all websites but gives you the option to turn off it completely or turn off for certain websites.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>N-Grams: Joint Probability</title>
       <link>http://localhost:1313/posts/n-gram-joint-probability/</link>
