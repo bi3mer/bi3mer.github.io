@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 26 Feb 2018 20:27:29 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 18 Mar 2018 11:53:47 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Making Rush Hour 1: Requirements and Basic Structuring</title>
+      <link>http://localhost:1313/posts/making-rush-hour-1/</link>
+      <pubDate>Sun, 18 Mar 2018 11:53:47 -0500</pubDate>
+      <guid>http://localhost:1313/posts/making-rush-hour-1/</guid>
+      <description>&lt;p&gt;This is the first in a series of posts where I discuss implementing a version of &lt;a href=&#34;https://apps.apple.com/us/app/unblock-me/id315019111&#34;&gt;Unblock Me&lt;/a&gt; and &lt;a href=&#34;https://en.wikipedia.org/wiki/Rush_Hour_(puzzle)&#34;&gt;Rush Hour&lt;/a&gt;; sample screen shots can be seen in figure one. For the implementation, I’ve decided to use Python 2.7, however, you should be able to follow along with any language. My hope is that each of these posts will be more than just a copy and paste tutorial. To facilitate this, I will be taking deep dives into design decisions, test-driven design, common game AI architecture, general software structure, requirements gathering, servers, and more.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Generative Design in Mineraft: MCEdit Basics</title>
       <link>http://localhost:1313/posts/second/</link>
