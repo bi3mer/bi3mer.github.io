@@ -3,19 +3,22 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-11-21T18:44:03-05:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/posts/motivating-the-backoff-n-gram/</loc>
-    <lastmod>2024-11-21T18:44:03-05:00</lastmod>
+    <lastmod>2024-11-21T12:14:19-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-11-21T18:44:03-05:00</lastmod>
+    <lastmod>2024-11-21T12:14:19-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/games/</loc>
     <lastmod>2024-11-19T20:27:29-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/games/second/</loc>
     <lastmod>2024-11-19T20:27:29-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/deriving-ordinary-least-squares/</loc>
+    <lastmod>2021-03-09T18:55:12-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/motivating-the-backoff-n-gram/</loc>
+    <lastmod>2020-10-20T18:44:03-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/typing-game/</loc>
     <lastmod>2020-08-20T18:27:14-05:00</lastmod>
