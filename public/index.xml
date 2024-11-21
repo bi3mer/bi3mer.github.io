@@ -17,11 +17,19 @@
 &lt;p&gt;Hello, world! I&amp;rsquo;m here again :D&lt;/p&gt;</description>
     </item>
     <item>
+      <title>GDMC Part 2: Manipulating the Ground</title>
+      <link>http://localhost:1313/posts/gdmc2/</link>
+      <pubDate>Sun, 17 Jun 2018 13:59:57 -0500</pubDate>
+      <guid>http://localhost:1313/posts/gdmc2/</guid>
+      <description>&lt;h1 id=&#34;a-quick-note&#34;&gt;A Quick Note&lt;/h1&gt;
+&lt;p&gt;I ended up getting pretty sick and I was out of commission for about two months. The good news is that I’m now in perfectly good health. The bad news is that it kind of destroyed my hopes of building a decent submission for GDMC. The competition ends in about thirteen days which is not enough time to come up with a submission I would be proud of. In addition, my 40+ hours at the &lt;a href=&#34;https://braingamecenter.ucr.edu/&#34;&gt;Brain Game Center&lt;/a&gt;, where I work, every week is the very large nail in the coffin. Regardless, I plan on continuing to work on this problem until I have something cool I can show off.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Visualizing Sorting Algorithms with OpenGL</title>
       <link>http://localhost:1313/posts/visualizing-sorting-algorithms-with-opengl/</link>
       <pubDate>Fri, 20 Apr 2018 12:25:07 -0500</pubDate>
       <guid>http://localhost:1313/posts/visualizing-sorting-algorithms-with-opengl/</guid>
-      <description>&lt;p&gt;If you’ve read my previous posts, then you know I love python. Regardless, it has been a goal of mine to be proficient in c++. I’m not exactly sure why I’m fascinated with this language that I have no uses cases for, but I think it stems from my love of video games. C++ is used extensively by my favorite company, Blizzard Entertainment, and sees a wide range of use across the industry. In addition, it also is apart of a field that is of particular interest for me, AI. For example, tensorflow is implemented in c++.&lt;/p&gt;</description>
+      <description>&lt;p&gt;If you’ve read my previous posts, then you know I love python. Regardless, it has been a goal of mine to be proficient in c++. I’m not exactly sure why I’m fascinated with this language that I have no uses cases for, but I think it stems from my love of video games. C++ is used extensively by my favorite company, Blizzard Entertainment, and sees a wide range of use across the industry. In addition, it also is apart of a field that is of particular interest for me, AI. For example, &lt;a href=&#34;https://github.com/tensorflow/tensorflow&#34;&gt;tensorflow&lt;/a&gt; is implemented in c++.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Making Rush Hour 2: Github and Matrix Formats</title>
@@ -40,9 +48,9 @@
     </item>
     <item>
       <title>Generative Design in Mineraft: MCEdit Basics</title>
-      <link>http://localhost:1313/posts/second/</link>
+      <link>http://localhost:1313/posts/gdmc1/</link>
       <pubDate>Mon, 26 Feb 2018 20:27:29 -0500</pubDate>
-      <guid>http://localhost:1313/posts/second/</guid>
+      <guid>http://localhost:1313/posts/gdmc1/</guid>
       <description>&lt;h1 id=&#34;generative-design-in-minecraft-gdmc&#34;&gt;Generative Design in Minecraft (GDMC)&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&#34;http://gendesignmc.engineering.nyu.edu/&#34;&gt;GDMC&lt;/a&gt; is a competition to generate settlements within a selection of a minecraft map. The &lt;a href=&#34;http://gendesignmc.engineering.nyu.edu/&#34;&gt;project&amp;rsquo;s website&lt;/a&gt; provides details on how the competition works and what is expected. However, the main point to get across right now is that they are judging based on adaptability, functionality, narrative, and aesthetics. Adaptability is about the generation technique working with the map rather than ignoring it. An example of ignoring the environment would be generating a wooden village where there are no trees. The functionality component is based on real world criteria such as access to food, defenses, etc. The narrative component is about how every area has a story to tell. An example is a castle with part of the tower knocked down. Lastly, aesthetics is about how it looks both in terms of believability and general appeal.&lt;/p&gt;</description>
     </item>

@@ -1,7 +1,7 @@
 +++
 date = '2018-03-18T11:53:47-05:00'
 draft = false
-title = 'Making Rush Hour 1: Requirements and Basic Structuring'
+title = 'Making Rush Hour: Requirements and Basic Structuring'
 +++
 
 This is the first in a series of posts where I discuss implementing a version of [Unblock Me](https://apps.apple.com/us/app/unblock-me/id315019111) and [Rush Hour](https://en.wikipedia.org/wiki/Rush_Hour_(puzzle)); sample screen shots can be seen in figure one. For the implementation, I’ve decided to use Python 2.7, however, you should be able to follow along with any language. My hope is that each of these posts will be more than just a copy and paste tutorial. To facilitate this, I will be taking deep dives into design decisions, test-driven design, common game AI architecture, general software structure, requirements gathering, servers, and more.
