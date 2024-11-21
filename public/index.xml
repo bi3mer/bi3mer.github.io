@@ -6,15 +6,8 @@
     <description>Recent content on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Nov 2024 14:53:17 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2024 20:27:29 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Redacting PDFs</title>
-      <link>http://localhost:1313/posts/redacting-pdfs/</link>
-      <pubDate>Thu, 21 Nov 2024 14:53:17 -0500</pubDate>
-      <guid>http://localhost:1313/posts/redacting-pdfs/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Second</title>
       <link>http://localhost:1313/games/second/</link>
@@ -22,6 +15,22 @@
       <guid>http://localhost:1313/games/second/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Hello, world! I&amp;rsquo;m here again :D&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Q Learning: Starting From the Top</title>
+      <link>http://localhost:1313/posts/q-learning-from-the-top/</link>
+      <pubDate>Sat, 26 Jan 2019 15:00:28 -0500</pubDate>
+      <guid>http://localhost:1313/posts/q-learning-from-the-top/</guid>
+      <description>&lt;p&gt;I want to go over Q-learning (a form of reinforcement learning) in this post. To start, we could go in two directions. We could explore at the bottom and look at the math behind neural networks and Q-learning. Or we could start at the top and see the end result. We are going to go with the latter.&lt;/p&gt;
+&lt;p&gt;![](&amp;ldquo;Figure 1: The mountain car environment.&amp;rdquo;)&lt;/p&gt;
+&lt;p&gt;To do this we are going to need a few libraries and a testbed. To test, we are going to use &lt;a href=&#34;https://gym.openai.com/&#34;&gt;OpenAI’s Gym&lt;/a&gt; and use &lt;a href=&#34;https://gym.openai.com/envs/MountainCar-v0/&#34;&gt;MountainCar-V0&lt;/a&gt;. In this environment, proposed by Andrew Moore in his Ph.D. thesis, the car must reach the flag seen in figure 1. The car, though, does not have enough acceleration to achieve this by just going forward. Instead, it must go back and forward, steadily gaining enough speed to reach the goal. This is a problem that can be solved simply with a rule-based agent, however, reinforcement approaches can struggle with this. You’ll soon see that the amount of episodes it takes for q-learning to solve this is more than expected.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Redacting PDFs</title>
+      <link>http://localhost:1313/posts/redacting-pdfs/</link>
+      <pubDate>Sun, 29 Jul 2018 14:53:17 -0500</pubDate>
+      <guid>http://localhost:1313/posts/redacting-pdfs/</guid>
+      <description>&lt;p&gt;One day at work, I walked by someone who was going through a large set of PDFs and for everyone he put a block box over the name field. He mentioned it would take him several hours to accomplish this extremely menial task. Naturally, I found myself attracted to the problem due to my love of automation. I decided then and there I would write a small script that he could use to redact large set of similarly formatted PDFs.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Visualizing Fractal Trees</title>
