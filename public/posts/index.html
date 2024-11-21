@@ -132,6 +132,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Ring Buffers
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>In my last post I discussed n-grams and gave an example of them being used on the text of Harry Potter but I didn’t cover the implementation and instead linked the source. Today, I want to go over a key data structure used in my implementation: ring buffers (also known as a circular buffer).
+A ring buffer needs a max size, N, that represents its max capacity. Until the buffer has reached its max capacity, it is exactly like a list. However, once the max capacity is reached the buffer will drop elements when new ones are added resulting in a first in first out (FIFO) behavior. An example of this data structure in action can be seen below. We initialize a ring buffer of size three. At first the ring buffer acts like a list but stops when the fourth element is added. On this add, the ring buffer drops the 0 because it was the first element added and the buffer has reached its max capacity of three. Say, for example, we ran this again and added a four. The buffer would then be [2,3,4] because the one would be the next element to be dropped.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-09-08 18:03:23 -0500 -0500'>September 8, 2019</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to Ring Buffers" href="http://localhost:1313/posts/ring-buffer/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">N-Grams With Harry Potter
     </h2>
   </header>
@@ -247,19 +261,6 @@ Figure 1: The mountain car environment. To do this we are going to need a few li
   </div>
   <footer class="entry-footer"><span title='2018-03-18 11:53:47 -0500 -0500'>March 18, 2018</span>&nbsp;·&nbsp;6 min</footer>
   <a class="entry-link" aria-label="post link to Making Rush Hour: Requirements and Basic Structuring" href="http://localhost:1313/posts/making-rush-hour-1/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Generative Design in Mineraft: MCEdit Basics
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Generative Design in Minecraft (GDMC) GDMC is a competition to generate settlements within a selection of a minecraft map. The project’s website provides details on how the competition works and what is expected. However, the main point to get across right now is that they are judging based on adaptability, functionality, narrative, and aesthetics. Adaptability is about the generation technique working with the map rather than ignoring it. An example of ignoring the environment would be generating a wooden village where there are no trees. The functionality component is based on real world criteria such as access to food, defenses, etc. The narrative component is about how every area has a story to tell. An example is a castle with part of the tower knocked down. Lastly, aesthetics is about how it looks both in terms of believability and general appeal.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2018-02-26 20:27:29 -0500 EST'>February 26, 2018</span>&nbsp;·&nbsp;8 min</footer>
-  <a class="entry-link" aria-label="post link to Generative Design in Mineraft: MCEdit Basics" href="http://localhost:1313/posts/gdmc1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

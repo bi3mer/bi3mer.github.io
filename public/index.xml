@@ -6,16 +6,8 @@
     <description>Recent content on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Nov 2024 15:08:15 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2024 20:27:29 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Procjam 2018 Postmortem</title>
-      <link>http://localhost:1313/posts/procjam-2018-postmortem/</link>
-      <pubDate>Thu, 21 Nov 2024 15:08:15 -0500</pubDate>
-      <guid>http://localhost:1313/posts/procjam-2018-postmortem/</guid>
-      <description>&lt;p&gt;A few months ago I completed the annual &lt;a href=&#34;https://www.procjam.com/&#34;&gt;ProcJam&lt;/a&gt; jam. I wish I had considered doing a postmortem beforehand when everything was fresh, but now I am preparing for &lt;a href=&#34;http://www.roguebasin.com/index.php?title=7DRL&#34;&gt;7DRL&lt;/a&gt;. I figure a retrospective on how I did in the last jam will be useful for the upcoming one.&lt;/p&gt;
-&lt;p&gt;Before beginning, I would like to preface this with the fact that I was sick for the entire jam. It’s not an excuse but it is one of the reasons why I did not complete as much as I would have liked to in the game. My original design was a weapon based roguelike, minus turn-based, where the player is trying to get through as many levels as possible. The weapons would be dropped by enemies and they would be adversarially generated. Meaning, a player that spams weapon shots would receive guns that shoot slower. A player that was extremely accurate would receive guns that would spray, such as a shotgun. In addition, all levels would be procedurally generated. I hoped to get in a few enemies and had a stretch goal of creating a boss. Lastly, I hoped to make the game a platformer. In short, I had an ambitious scope for a ten-day jam even if I wasn’t sick.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>Second</title>
       <link>http://localhost:1313/games/second/</link>
@@ -23,6 +15,29 @@
       <guid>http://localhost:1313/games/second/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Hello, world! I&amp;rsquo;m here again :D&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ring Buffers</title>
+      <link>http://localhost:1313/posts/ring-buffer/</link>
+      <pubDate>Sun, 08 Sep 2019 18:03:23 -0500</pubDate>
+      <guid>http://localhost:1313/posts/ring-buffer/</guid>
+      <description>&lt;p&gt;In my &lt;a href=&#34;../harry-potter-n-grams/&#34;&gt;last post&lt;/a&gt; I discussed n-grams and gave an example of them being used on the text of Harry Potter but I didn&amp;rsquo;t cover the implementation and instead linked the source. Today, I want to go over a key data structure used in my implementation: ring buffers (also known as a circular buffer).&lt;/p&gt;
+&lt;p&gt;A ring buffer needs a max size, N, that represents its max capacity. Until the buffer has reached its max capacity, it is exactly like a list. However, once the max capacity is reached the buffer will drop elements when new ones are added resulting in a first in first out (FIFO) behavior. An example of this data structure in action can be seen below. We initialize a ring buffer of size three. At first the ring buffer acts like a list but stops when the fourth element is added. On this add, the ring buffer drops the 0 because it was the first element added and the buffer has reached its max capacity of three. Say, for example, we ran this again and added a four. The buffer would then be [2,3,4] because the one would be the next element to be dropped.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>N-Grams With Harry Potter</title>
+      <link>http://localhost:1313/posts/harry-potter-n-grams/</link>
+      <pubDate>Thu, 05 Sep 2019 15:32:07 -0500</pubDate>
+      <guid>http://localhost:1313/posts/harry-potter-n-grams/</guid>
+      <description>&lt;p&gt;I recently started grad school and one of the classes I am taking is Natural Language Processing (NLP). Before the class I decided to watch a few videos on NLP and came across N-Grams. I have not made it known in any of my past posts but I love N-Grams. One of my projects is around reinforcing N-Grams which I hope to post about sometime later this year. Digression aside, I decided it would be a fun project to write an n-gram that uses the text of Harry Potter as input and see what we get; I know it isn&amp;rsquo;t the most original idea but it was fun.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Procjam 2018 Postmortem</title>
+      <link>http://localhost:1313/posts/procjam-2018-postmortem/</link>
+      <pubDate>Sun, 10 Feb 2019 15:08:15 -0500</pubDate>
+      <guid>http://localhost:1313/posts/procjam-2018-postmortem/</guid>
+      <description>&lt;p&gt;A few months ago I completed the annual &lt;a href=&#34;https://www.procjam.com/&#34;&gt;ProcJam&lt;/a&gt; jam. I wish I had considered doing a postmortem beforehand when everything was fresh, but now I am preparing for &lt;a href=&#34;http://www.roguebasin.com/index.php?title=7DRL&#34;&gt;7DRL&lt;/a&gt;. I figure a retrospective on how I did in the last jam will be useful for the upcoming one.&lt;/p&gt;
+&lt;p&gt;Before beginning, I would like to preface this with the fact that I was sick for the entire jam. It’s not an excuse but it is one of the reasons why I did not complete as much as I would have liked to in the game. My original design was a weapon based roguelike, minus turn-based, where the player is trying to get through as many levels as possible. The weapons would be dropped by enemies and they would be adversarially generated. Meaning, a player that spams weapon shots would receive guns that shoot slower. A player that was extremely accurate would receive guns that would spray, such as a shotgun. In addition, all levels would be procedurally generated. I hoped to get in a few enemies and had a stretch goal of creating a boss. Lastly, I hoped to make the game a platformer. In short, I had an ambitious scope for a ten-day jam even if I wasn’t sick.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Q Learning: Starting From the Top</title>
