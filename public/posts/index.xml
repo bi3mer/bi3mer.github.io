@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Jun 2018 13:59:57 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 10 Jul 2018 14:19:03 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visualizing Fractal Trees</title>
+      <link>http://localhost:1313/posts/fractal-tree/</link>
+      <pubDate>Tue, 10 Jul 2018 14:19:03 -0500</pubDate>
+      <guid>http://localhost:1313/posts/fractal-tree/</guid>
+      <description>&lt;p&gt;I came across a &lt;a href=&#34;https://www.youtube.com/watch?v=0jjeOYMjmDU&#34;&gt;youtube video&lt;/a&gt; which showed a way to visualize fractal trees. I watched it while eating dinner and didn’t think much of it at the time. A week or two later, though, I had decided to a do a few more challenges for my &lt;a href=&#34;https://github.com/bi3mer/challenges&#34;&gt;challenges repository&lt;/a&gt; and this was at the top of the list. It is a fairly simple program that has a cool end result seen in figures one and four.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Generative Design in Mineraft: Nuking the Ground</title>
       <link>http://localhost:1313/posts/gdmc2/</link>
