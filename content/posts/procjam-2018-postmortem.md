@@ -1,5 +1,5 @@
 +++
-date = '2024-11-21T15:08:15-05:00'
+date = '2019-02-10T15:08:15-05:00'
 draft = false
 title = 'Procjam 2018 Postmortem'
 +++
@@ -60,7 +60,7 @@ In hindsight, at this point, I had given up on the weapons. I was already consid
 
 Following the improvement to spawning, I added the third and final enemy the game would ever see: the pest. The pest was the exact same as the kamikaze enemy but it would not explode on impact, instead do damage, and it could fly over obstacles. It is truly a pest and a very annoying enemy in the game. It is small enough so hitting it is kind of hard. Overall, I’m a big fan of the pest.
 
-![](/images/procjam-2018-postmortem/level_generator_ui.gif "Figure 5: level generator UI")
+![](/images/procjam-2018-postmortem/level_generator_ui.gif "Figure 5: Level generator UI")
 
 Next up, was my biggest mistake seen in Figure 5. Because this was ProcJam I wanted to show off the procedural generation with a UI that showed all the noise functions. However, the game should have done this on its own without the help of this extra UI. I enjoyed making it, but it was a complete waste of time and did not add any value to the end result.
 

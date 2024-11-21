@@ -6,12 +6,19 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Nov 2024 15:08:15 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 05 Sep 2019 15:32:07 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>N-Grams With Harry Potter</title>
+      <link>http://localhost:1313/posts/harry-potter-n-grams/</link>
+      <pubDate>Thu, 05 Sep 2019 15:32:07 -0500</pubDate>
+      <guid>http://localhost:1313/posts/harry-potter-n-grams/</guid>
+      <description>&lt;p&gt;I recently started grad school and one of the classes I am taking is Natural Language Processing (NLP). Before the class I decided to watch a few videos on NLP and came across N-Grams. I have not made it known in any of my past posts but I love N-Grams. One of my projects is around reinforcing N-Grams which I hope to post about sometime later this year. Digression aside, I decided it would be a fun project to write an n-gram that uses the text of Harry Potter as input and see what we get; I know it isn&amp;rsquo;t the most original idea but it was fun.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Procjam 2018 Postmortem</title>
       <link>http://localhost:1313/posts/procjam-2018-postmortem/</link>
-      <pubDate>Thu, 21 Nov 2024 15:08:15 -0500</pubDate>
+      <pubDate>Sun, 10 Feb 2019 15:08:15 -0500</pubDate>
       <guid>http://localhost:1313/posts/procjam-2018-postmortem/</guid>
       <description>&lt;p&gt;A few months ago I completed the annual &lt;a href=&#34;https://www.procjam.com/&#34;&gt;ProcJam&lt;/a&gt; jam. I wish I had considered doing a postmortem beforehand when everything was fresh, but now I am preparing for &lt;a href=&#34;http://www.roguebasin.com/index.php?title=7DRL&#34;&gt;7DRL&lt;/a&gt;. I figure a retrospective on how I did in the last jam will be useful for the upcoming one.&lt;/p&gt;
 &lt;p&gt;Before beginning, I would like to preface this with the fact that I was sick for the entire jam. It’s not an excuse but it is one of the reasons why I did not complete as much as I would have liked to in the game. My original design was a weapon based roguelike, minus turn-based, where the player is trying to get through as many levels as possible. The weapons would be dropped by enemies and they would be adversarially generated. Meaning, a player that spams weapon shots would receive guns that shoot slower. A player that was extremely accurate would receive guns that would spray, such as a shotgun. In addition, all levels would be procedurally generated. I hoped to get in a few enemies and had a stretch goal of creating a boss. Lastly, I hoped to make the game a platformer. In short, I had an ambitious scope for a ten-day jam even if I wasn’t sick.&lt;/p&gt;</description>
