@@ -6,20 +6,20 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2024 20:27:29 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 26 Feb 2018 20:27:29 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Second</title>
+      <title>Generative Design in Mineraft: MCEdit Basics</title>
       <link>http://localhost:1313/posts/second/</link>
-      <pubDate>Tue, 19 Nov 2024 20:27:29 -0500</pubDate>
+      <pubDate>Mon, 26 Feb 2018 20:27:29 -0500</pubDate>
       <guid>http://localhost:1313/posts/second/</guid>
-      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
-&lt;p&gt;Hello, world! I&amp;rsquo;m here again :D&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;generative-design-in-minecraft-gdmc&#34;&gt;Generative Design in Minecraft (GDMC)&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;http://gendesignmc.engineering.nyu.edu/&#34;&gt;GDMC&lt;/a&gt; is a competition to generate settlements within a selection of a minecraft map. The &lt;a href=&#34;http://gendesignmc.engineering.nyu.edu/&#34;&gt;project&amp;rsquo;s website&lt;/a&gt; provides details on how the competition works and what is expected. However, the main point to get across right now is that they are judging based on adaptability, functionality, narrative, and aesthetics. Adaptability is about the generation technique working with the map rather than ignoring it. An example of ignoring the environment would be generating a wooden village where there are no trees. The functionality component is based on real world criteria such as access to food, defenses, etc. The narrative component is about how every area has a story to tell. An example is a castle with part of the tower knocked down. Lastly, aesthetics is about how it looks both in terms of believability and general appeal.&lt;/p&gt;</description>
     </item>
     <item>
       <title>C&#43;&#43; to Python Bindings with Swig</title>
       <link>http://localhost:1313/posts/first/</link>
-      <pubDate>Fri, 25 Oct 2019 20:24:55 -0500</pubDate>
+      <pubDate>Wed, 25 Oct 2017 20:24:55 -0500</pubDate>
       <guid>http://localhost:1313/posts/first/</guid>
       <description>&lt;p&gt;This is a quick walk through of how to take c++ and run it with Python through bindings. If you find yourself wishing to learn more on the topic, &lt;a href=&#34;http://www.swig.org/Doc1.3/Python.html&#34;&gt;Swig’s website&lt;/a&gt; for working with Python is a good start. My experience in setting this up was far more tedious than it had to be and I hope this will save people some time. As a note, I currently work on Ubuntu 16.04 and Python 2.7; this will be tailored to those dependencies, however, I do not believe any major changes will be required to the setup.py file based on &lt;a href=&#34;http://www.swig.org/Doc1.3/Python.html&#34;&gt;Swig&amp;rsquo;s website&lt;/a&gt; and a &lt;a href=&#34;https://stackoverflow.com/questions/32667888/building-extension-for-python-3-with-swig-and-distutils&#34;&gt;StackOverflow question for Python 3&lt;/a&gt;. In addition, the majority of operating systems should be covered by this walk through, with minor tweaks such as yum instead of apt-get for select operating systems.&lt;/p&gt;</description>
     </item>

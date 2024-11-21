@@ -1,5 +1,5 @@
 +++
-date = '2019-10-25T20:24:55-05:00'
+date = '2017-10-25T20:24:55-05:00'
 draft = false
 title = 'C++ to Python Bindings with Swig'
 +++
