@@ -22,10 +22,14 @@ menu:
       name: Publications
       url: /publications
       weight: 30
+    - identifier: archive
+      name: Archive
+      url: /archives/
+      weight: 40
     - identifier: search
       name: Search
       url: /search/
-      weight: 40
+      weight: 50
 
 outputs:
   home:
