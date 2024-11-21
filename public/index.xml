@@ -6,8 +6,15 @@
     <description>Recent content on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2024 20:27:29 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2024 14:53:17 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redacting PDFs</title>
+      <link>http://localhost:1313/posts/redacting-pdfs/</link>
+      <pubDate>Thu, 21 Nov 2024 14:53:17 -0500</pubDate>
+      <guid>http://localhost:1313/posts/redacting-pdfs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Second</title>
       <link>http://localhost:1313/games/second/</link>
