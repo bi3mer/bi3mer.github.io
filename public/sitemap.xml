@@ -2,20 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/posts/chrome-invert-colors/</loc>
-    <lastmod>2024-11-21T18:22:50-05:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-11-21T18:22:50-05:00</lastmod>
+    <lastmod>2024-11-21T12:14:19-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-11-21T18:22:50-05:00</lastmod>
+    <lastmod>2024-11-21T12:14:19-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/games/</loc>
     <lastmod>2024-11-19T20:27:29-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/games/second/</loc>
     <lastmod>2024-11-19T20:27:29-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/typing-game/</loc>
+    <lastmod>2020-08-20T18:27:14-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/chrome-invert-colors/</loc>
+    <lastmod>2020-05-28T18:22:50-05:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/n-gram-joint-probability/</loc>
     <lastmod>2019-09-11T18:11:10-05:00</lastmod>
