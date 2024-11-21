@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  
+      inlineMath: [['\\(', '\\)']]                  
+    }
+  };
+</script>
+  <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
@@ -137,6 +148,19 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">N-Grams: Joint Probability
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Let’s start by examining the simplest case of joint probability with single word probability via a uni-gram. If we want to know the probability of a word, without any context appearing before or after, then we could take a corpus of text and convert it into a dictionary with the key for the word and the count as the value: { &#34;a&#34;: 1000, &#34;an&#34;: 3, &#34;animal&#34;: 12, ... }. Say we want to calculate P(&#34;a&#34;), meaning the likelihood of “a.” We would take the count of occurrences for the word “a” and divide it by the total number of words in the corpus: P(&#34;a&#34;) ≈ count(&#34;a&#34;) / corpus_word_count. This is called maximum likelihood estimation (MLE) and we use the “≈” sign because our corpus is not a perfect representation of the actual likelihood of the word.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2019-09-11 18:11:10 -0500 -0500'>September 11, 2019</span>&nbsp;·&nbsp;3 min</footer>
+  <a class="entry-link" aria-label="post link to N-Grams: Joint Probability" href="http://localhost:1313/posts/n-gram-joint-probability/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Ring Buffers
     </h2>
   </header>
@@ -253,19 +277,6 @@ Figure 1: The mountain car environment. To do this we are going to need a few li
   </div>
   <footer class="entry-footer"><span title='2018-03-20 12:03:38 -0500 -0500'>March 20, 2018</span>&nbsp;·&nbsp;6 min</footer>
   <a class="entry-link" aria-label="post link to Making Rush Hour: Github and Matrix Formats" href="http://localhost:1313/posts/making-rush-hour-2/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Making Rush Hour: Requirements and Basic Structuring
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>This is the first in a series of posts where I discuss implementing a version of Unblock Me and Rush Hour; sample screen shots can be seen in figure one. For the implementation, I’ve decided to use Python 2.7, however, you should be able to follow along with any language. My hope is that each of these posts will be more than just a copy and paste tutorial. To facilitate this, I will be taking deep dives into design decisions, test-driven design, common game AI architecture, general software structure, requirements gathering, servers, and more.
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2018-03-18 11:53:47 -0500 -0500'>March 18, 2018</span>&nbsp;·&nbsp;6 min</footer>
-  <a class="entry-link" aria-label="post link to Making Rush Hour: Requirements and Basic Structuring" href="http://localhost:1313/posts/making-rush-hour-1/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

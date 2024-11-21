@@ -7,6 +7,7 @@ params:
   ShowShareButtons: true
   ShowReadingTime: true
   ShowBreadCrumbs: true
+  math: true
 
 menu:
   main:
@@ -36,3 +37,19 @@ outputs:
     - HTML
     - RSS
     - JSON # necessary for search
+
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true
+  

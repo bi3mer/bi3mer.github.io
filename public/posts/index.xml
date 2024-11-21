@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Sep 2019 18:03:23 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 11 Sep 2019 18:11:10 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>N-Grams: Joint Probability</title>
+      <link>http://localhost:1313/posts/n-gram-joint-probability/</link>
+      <pubDate>Wed, 11 Sep 2019 18:11:10 -0500</pubDate>
+      <guid>http://localhost:1313/posts/n-gram-joint-probability/</guid>
+      <description>&lt;p&gt;Let&amp;rsquo;s start by examining the simplest case of joint probability with single word probability via a uni-gram. If we want to know the probability of a word, without any context appearing before or after, then we could take a corpus of text and convert it into a dictionary with the key for the word and the count as the value: &lt;code&gt;{ &amp;quot;a&amp;quot;: 1000, &amp;quot;an&amp;quot;: 3, &amp;quot;animal&amp;quot;: 12, ... }&lt;/code&gt;. Say we want to calculate &lt;code&gt;P(&amp;quot;a&amp;quot;)&lt;/code&gt;, meaning the likelihood of &amp;ldquo;a.&amp;rdquo; We would take the count of occurrences for the word &amp;ldquo;a&amp;rdquo; and divide it by the total number of words in the corpus: &lt;code&gt;P(&amp;quot;a&amp;quot;) ≈ count(&amp;quot;a&amp;quot;) / corpus_word_count&lt;/code&gt;. This is called maximum likelihood estimation (MLE) and we use the &amp;ldquo;≈&amp;rdquo; sign because our corpus is not a perfect representation of the actual likelihood of the word.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Ring Buffers</title>
       <link>http://localhost:1313/posts/ring-buffer/</link>
