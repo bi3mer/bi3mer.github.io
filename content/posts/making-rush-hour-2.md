@@ -1,5 +1,5 @@
 +++
-date = '2024-11-21T12:03:38-05:00'
+date = '2018-03-20T12:03:38-05:00'
 draft = false
 title = 'Making Rush Hour 2: Github and Matrix Formats'
 +++
