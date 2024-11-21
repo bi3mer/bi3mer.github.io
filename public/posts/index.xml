@@ -6,8 +6,16 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 18 Mar 2018 11:53:47 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2024 12:03:38 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Making Rush Hour 2: Github and Matrix Formats</title>
+      <link>http://localhost:1313/posts/making-rush-hour-2/</link>
+      <pubDate>Thu, 21 Nov 2024 12:03:38 -0500</pubDate>
+      <guid>http://localhost:1313/posts/making-rush-hour-2/</guid>
+      <description>&lt;h1 id=&#34;source-control-and-github&#34;&gt;Source Control and GitHub&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/&#34;&gt;GitHub&lt;/a&gt; is an awesome website that allows you to have unlimited repositories, for free, that are backed up with &lt;a href=&#34;https://git-scm.com/&#34;&gt;git&lt;/a&gt; on a remote server. In addition, it provides you with helpful tools like &lt;a href=&#34;https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues&#34;&gt;issues&lt;/a&gt; that allow you to keep track of bugs, features, and anything else you want. It is not the end all be all of &lt;a href=&#34;https://aws.amazon.com/devops/source-control/&#34;&gt;source control&lt;/a&gt; and has &lt;a href=&#34;https://www.timedoctor.com/blog/git-mecurial-and-cvs-comparison-of-svn-software/&#34;&gt;pros and cons that should be considered&lt;/a&gt; before being used.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Making Rush Hour 1: Requirements and Basic Structuring</title>
       <link>http://localhost:1313/posts/making-rush-hour-1/</link>
