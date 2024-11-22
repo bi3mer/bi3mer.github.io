@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Mar 2021 18:55:12 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 15 Mar 2021 18:55:12 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linear and Quadratic Discriminant Analysis</title>
+      <link>http://localhost:1313/posts/linear-and-quadratic-discriminant-analysis/</link>
+      <pubDate>Mon, 15 Mar 2021 18:55:12 -0500</pubDate>
+      <guid>http://localhost:1313/posts/linear-and-quadratic-discriminant-analysis/</guid>
+      <description>&lt;embed src= &#34;/pdf/biemer_colan_LDA_and_QDA.pdf&#34; width= &#34;100%&#34; height= &#34;800&#34; type=&#34;application/pdf&#34; &gt;</description>
+    </item>
     <item>
       <title>An Introduction to Naive Bayes Classification</title>
       <link>http://localhost:1313/posts/intro-to-naive-bayes/</link>
