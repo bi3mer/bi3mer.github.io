@@ -6,15 +6,8 @@
     <description>Recent content on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Nov 2024 19:25:59 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2024 20:27:29 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Generative Art Circles and Squares</title>
-      <link>http://localhost:1313/posts/generative-art-circles-and-squares/</link>
-      <pubDate>Thu, 21 Nov 2024 19:25:59 -0500</pubDate>
-      <guid>http://localhost:1313/posts/generative-art-circles-and-squares/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Second</title>
       <link>http://localhost:1313/games/second/</link>
@@ -22,6 +15,20 @@
       <guid>http://localhost:1313/games/second/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Hello, world! I&amp;rsquo;m here again :D&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Generative Art Lightning</title>
+      <link>http://localhost:1313/posts/generative-art-lightning/</link>
+      <pubDate>Sun, 12 Dec 2021 19:33:54 -0500</pubDate>
+      <guid>http://localhost:1313/posts/generative-art-lightning/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;../generative-art-circles-and-squares&#34;&gt;previous post&lt;/a&gt;, we generated images with circles and squares in Python with the package &lt;a href=&#34;https://pillow.readthedocs.io/en/stable/&#34;&gt;Pillow&lt;/a&gt;. The code was simple and the results are not that compelling. So, in this post I&amp;rsquo;m looking to step it up a bit. A while back &lt;a href=&#34;https://www.youtube.com/watch?v=akZ8JJ4gGLs&#34;&gt;Numberphile&lt;/a&gt; posted a video of &lt;a href=&#34;https://x.com/matthen2&#34;&gt;Matt Henderson&lt;/a&gt; explaining how maze generation and breadth-first search can be used to generate a compelling animation of lightning. We are going to use a similar approach to generate images of lightning.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Generative Art: Circles and Squares</title>
+      <link>http://localhost:1313/posts/generative-art-circles-and-squares/</link>
+      <pubDate>Wed, 20 Oct 2021 19:25:59 -0500</pubDate>
+      <guid>http://localhost:1313/posts/generative-art-circles-and-squares/</guid>
+      <description>&lt;p&gt;This is the first of what we&amp;rsquo;ll likely be a series of blog posts on generative art, specifically images. At the start, everything will be very simple. This is mainly because the topic is new to me and the library we&amp;rsquo;re going to use to generate images is also new to me. Speaking of, we&amp;rsquo;re going to be using Python and Pillow to generate images; at least at the start, we&amp;rsquo;ll see where we go. To start, I want to break this post into two parts: (1) pseudo-random and (2) generating a simple image with circles and squares.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Linear and Quadratic Discriminant Analysis</title>

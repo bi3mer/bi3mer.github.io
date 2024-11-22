@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Oct 2021 19:25:59 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 12 Dec 2021 19:33:54 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generative Art: Lightning</title>
+      <link>http://localhost:1313/posts/generative-art-lightning/</link>
+      <pubDate>Sun, 12 Dec 2021 19:33:54 -0500</pubDate>
+      <guid>http://localhost:1313/posts/generative-art-lightning/</guid>
+      <description>&lt;p&gt;In the &lt;a href=&#34;../generative-art-circles-and-squares&#34;&gt;previous post&lt;/a&gt;, we generated images with circles and squares in Python with the package &lt;a href=&#34;https://pillow.readthedocs.io/en/stable/&#34;&gt;Pillow&lt;/a&gt;. The code was simple and the results are not that compelling. So, in this post I&amp;rsquo;m looking to step it up a bit. A while back &lt;a href=&#34;https://www.youtube.com/watch?v=akZ8JJ4gGLs&#34;&gt;Numberphile&lt;/a&gt; posted a video of &lt;a href=&#34;https://x.com/matthen2&#34;&gt;Matt Henderson&lt;/a&gt; explaining how maze generation and breadth-first search can be used to generate a compelling animation of lightning. We are going to use a similar approach to generate images of lightning.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Generative Art: Circles and Squares</title>
       <link>http://localhost:1313/posts/generative-art-circles-and-squares/</link>
