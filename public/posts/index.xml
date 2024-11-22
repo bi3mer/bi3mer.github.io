@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 09 Mar 2021 18:55:12 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 10 Mar 2021 18:55:12 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An Introduction to Naive Bayes Classification</title>
+      <link>http://localhost:1313/posts/intro-to-naive-bayes/</link>
+      <pubDate>Wed, 10 Mar 2021 18:55:12 -0500</pubDate>
+      <guid>http://localhost:1313/posts/intro-to-naive-bayes/</guid>
+      <description>&lt;embed src= &#34;/pdf/biemer_naivebayes.pdf&#34; width= &#34;100%&#34; height= &#34;800&#34; type=&#34;application/pdf&#34; &gt;</description>
+    </item>
     <item>
       <title>Deriving the Ordinary Least Squares Linear Regression Solution</title>
       <link>http://localhost:1313/posts/deriving-ordinary-least-squares/</link>

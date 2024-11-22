@@ -18,6 +18,13 @@
     </item>
     <item>
       <title>Deriving the Ordinary Least Squares Linear Regression Solution</title>
+      <link>http://localhost:1313/posts/intro-to-naive-bayes/</link>
+      <pubDate>Wed, 10 Mar 2021 18:55:12 -0500</pubDate>
+      <guid>http://localhost:1313/posts/intro-to-naive-bayes/</guid>
+      <description>&lt;embed src= &#34;/pdf/biemer_naivebayes.pdf&#34; width= &#34;100%&#34; height= &#34;800&#34; type=&#34;application/pdf&#34; &gt;</description>
+    </item>
+    <item>
+      <title>Deriving the Ordinary Least Squares Linear Regression Solution</title>
       <link>http://localhost:1313/posts/deriving-ordinary-least-squares/</link>
       <pubDate>Tue, 09 Mar 2021 18:55:12 -0500</pubDate>
       <guid>http://localhost:1313/posts/deriving-ordinary-least-squares/</guid>
