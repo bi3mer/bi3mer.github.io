@@ -6,8 +6,15 @@
     <description>Recent content on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2024 20:27:29 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2024 19:25:59 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generative Art Circles and Squares</title>
+      <link>http://localhost:1313/posts/generative-art-circles-and-squares/</link>
+      <pubDate>Thu, 21 Nov 2024 19:25:59 -0500</pubDate>
+      <guid>http://localhost:1313/posts/generative-art-circles-and-squares/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Second</title>
       <link>http://localhost:1313/games/second/</link>
@@ -17,7 +24,7 @@
 &lt;p&gt;Hello, world! I&amp;rsquo;m here again :D&lt;/p&gt;</description>
     </item>
     <item>
-      <title>An Introduction to Naive Bayes Classification</title>
+      <title>Linear and Quadratic Discriminant Analysis</title>
       <link>http://localhost:1313/posts/linear-and-quadratic-discriminant-analysis/</link>
       <pubDate>Mon, 15 Mar 2021 18:55:12 -0500</pubDate>
       <guid>http://localhost:1313/posts/linear-and-quadratic-discriminant-analysis/</guid>

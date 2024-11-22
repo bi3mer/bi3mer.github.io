@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Colan Biemer</description>
     <generator>Hugo -- 0.139.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Mar 2021 18:55:12 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 20 Oct 2021 19:25:59 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generative Art: Circles and Squares</title>
+      <link>http://localhost:1313/posts/generative-art-circles-and-squares/</link>
+      <pubDate>Wed, 20 Oct 2021 19:25:59 -0500</pubDate>
+      <guid>http://localhost:1313/posts/generative-art-circles-and-squares/</guid>
+      <description>&lt;p&gt;This is the first of what we&amp;rsquo;ll likely be a series of blog posts on generative art, specifically images. At the start, everything will be very simple. This is mainly because the topic is new to me and the library we&amp;rsquo;re going to use to generate images is also new to me. Speaking of, we&amp;rsquo;re going to be using Python and Pillow to generate images; at least at the start, we&amp;rsquo;ll see where we go. To start, I want to break this post into two parts: (1) pseudo-random and (2) generating a simple image with circles and squares.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Linear and Quadratic Discriminant Analysis</title>
       <link>http://localhost:1313/posts/linear-and-quadratic-discriminant-analysis/</link>
