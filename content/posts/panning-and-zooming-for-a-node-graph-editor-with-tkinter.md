@@ -109,9 +109,74 @@ With that done, you can see the behavior in the gif above.
 
 ![](/images/gdm-editor/zooming.gif "Example of zooming in and out.")
 
-Zooming in and out was more challenging than I had initially thought. The reason is that everything is connected to the current zoom or `scale` level, as shown by the fact that `self.scale` was necessary for all the `move_node` code. Without the scale being part of that code, edges looked disconnected from nodes, and arrows pointed at nothing. So, in short, there were just a bunch of edge cases to take care of. 
+I bound the mouse wheel for zooming in and out:
 
-I made `self.scale` part of the [JSON](https://www.json.org/) representation that was stored by the editor. Then, when creating a node `self.scale` had to be used whenever a coordinate was used. It had to be used whenever a node was being dragged. It had to be used whenever an edge was being added. It had to be used everywhere. So, there isn't much to actually write specifically. Instead, I'll point you to the [code](https://github.com/bi3mer/GDM-Editor/blob/main/editor.py) if you are interested. Just search for `self.scroll`, and you can see all the uses. There isn't anything complicated once you see it. It just takes a while to get done.
+```python
+self.root.bind("<MouseWheel>", self.scale)
+```
+
+You'll notice the use of the word `scale` instead of `zoom`. This is because I decided to not implement zooming in and out exactly like what you see in something like Google Maps. In that version of zooming, you zoom in or out based on the mouse location. Instead, I decided to be easier on myself and affect the scale. This is still very similar to zooming in and out, but not exactly. The effect can be seen in the gif above, where everything gets smaller and goes towards the top left. This is because the top left is the origin `(0,0)`. Unsurprisingly, things multiplied by a number less than `1` will go towards `0`. 
+
+```python
+def scale(self, event):
+    delta = 1 if event.delta >= 0 else -1
+    self.scale = min(1.0, max(0.1, self.scale + 0.01*delta))
+    # remaining code...
+```
+
+This takes us to the top part of the `scale` function. It uses `event.delta` to tell if the user has scrolled up or down. This then changes the multiplier to `-1` or `1`. The scale is either added to or subtracted by `0.01` with a min of `0.1` and a max of `1.0`. After that, the code below for scaling is almost exactly the same as the `move_node` code. In fact, they are almost exactly the same, but there are some tiny differences. If I was more of a perfectionist, I would change the name of `move_node` to `update_node`. Then, I would update the the code so that both `pan` and `scale` used `update_node`. However, I am not a perfectionist, and this code is only being used by me. So, I'm going to leave it as is. 
+
+```python
+def scale(self, event):
+    delta = 1 if event.delta >= 0 else -1
+    self.scale = min(1.0, max(0.1, self.scale + 0.01*delta))
+
+    n: CustomNode
+    for n in self.G.nodes.values():
+        ## Update Node
+        # rectangle
+        self.canvas.coords(
+            n.rect_id,
+            n.x * self.scale,
+            n.y * self.scale,
+            (n.x + NODE_WIDTH) * self.scale,
+            (n.y + NODE_HEIGHT) * self.scale
+        )
+
+        # frame
+        n.frame.place(
+            x = (n.x + 1) * self.scale,
+            y = (n.y + 1) * self.scale
+        )
+
+        # entry
+        n.entry.config(width=ceil(3*self.scale))
+
+        ## Update Edge coordinates
+        # outgoing
+        for tgt in n.neighbors:
+            line_id = self.G.get_edge(n.name, tgt).line_id
+            coords = self.canvas.coords(line_id)
+            self.canvas.coords(
+                line_id, 
+                (n.x + NODE_WIDTH) * self.scale, 
+                (n.y + NODE_HEIGHT / 2) * self.scale, 
+                coords[2] , 
+                coords[3]  
+            )
+
+        for edge in self.G.incoming_edges(n.name):
+            coords = self.canvas.coords(edge.line_id)
+            self.canvas.coords(
+                edge.line_id, 
+                coords[0],
+                coords[1],
+                n.x * self.scale,
+                (n.y + NODE_HEIGHT / 2) * self.scale
+            )
+```
+
+The tedious part of this problem was that every piece of the code that involved coordinates had to be updated. I am not going to go over every piece of code that had to be updated, though. If you are interested, the [code is on GitHub](https://github.com/bi3mer/GDM-Editor/blob/main/editor.py). Just search for `self.scroll`, and you can see all the uses. (There are 16 in total.) There isn't anything complicated once you see it.
 
 # Conclusion
 
