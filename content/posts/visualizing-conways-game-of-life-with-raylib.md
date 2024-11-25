@@ -1,6 +1,6 @@
 +++
-date = '2024-11-24T14:20:53-05:00'
-draft = false
+date = '2024-11-30T14:20:53-05:00'
+draft = true
 title = "Visualizing Conway's Game of Life with Raylib"
 showtoc = true
 +++

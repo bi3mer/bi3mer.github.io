@@ -124,7 +124,7 @@ def scale(self, event):
     # remaining code...
 ```
 
-This takes us to the top part of the `scale` function. It uses `event.delta` to tell if the user has scrolled up or down. This then changes the multiplier to `-1` or `1`. The scale is either added to or subtracted by `0.01` with a min of `0.1` and a max of `1.0`. After that, the code below for scaling is almost exactly the same as the `move_node` code. In fact, they are almost exactly the same, but there are some tiny differences. If I was more of a perfectionist, I would change the name of `move_node` to `update_node`. Then, I would update the the code so that both `pan` and `scale` used `update_node`. However, I am not a perfectionist, and this code is only being used by me. So, I'm going to leave it as is. 
+This takes us to the top part of the `scale` function. It uses `event.delta` to tell if the user has scrolled up or down. This then changes the multiplier to `-1` or `1`. The scale is either added to or subtracted by `0.01` with a min of `0.1` and a max of `1.0`. After that, the code below for scaling is almost exactly the same as the `move_node` code. In fact, they are almost exactly the same, but there are some tiny differences. If I was more of a perfectionist, I would change the name of `move_node` to `update_node`. Then, I would update the the code so that both `pan` and `scale` used `update_node`. However, I am not a perfectionist, and this code is only being used by me. So, I'm going to leave it as is.[^1]
 
 ```python
 def scale(self, event):
@@ -183,3 +183,5 @@ The tedious part of this problem was that every piece of the code that involved 
 ![](/images/gdm-editor/zooming-and-panning.gif "Example of zooming and panning together.")
 
 One particular problem I ran into was combining panning and zooming. Before I had the implementation right, I had arrows flying around to all sorts of wrong coordinates. Again, the solution wasn't complex or particularly difficult to find. It just took fiddling with the implementation to find where I had made mistakes or forgotten to add a multiplication by `self.scale`. So, the conclusion here is that panning and scaling are not hard to implement. Tedious for sure, but not hard.
+
+[^1]:I implemented `update_node` in another [post](../update-node-and-previewing-level-segments/#update-node).
