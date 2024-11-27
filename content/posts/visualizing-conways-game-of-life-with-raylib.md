@@ -1,32 +1,32 @@
 +++
-date = '2024-11-30T14:20:53-05:00'
-draft = true
+date = '2024-11-26T14:20:53-05:00'
+draft = false
 title = "Visualizing Conway's Game of Life with Raylib"
 showtoc = true
 +++
 # Introduction
-[Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) was created by [John Horton Conway](https://en.wikipedia.org/wiki/John_Horton_Conway). The idea is very simple, you have a grid of cells where they can either be `alive` or `dead`. A new grid is made from the current grid every iteration by following a set of rules based on a cell's neighbors. Since this is a grid, there are 8 possible neighbors when diagonals are included. The rules are the following:
+[Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) was created by [John Horton Conway](https://en.wikipedia.org/wiki/John_Horton_Conway). The idea is simple: you have a grid of cells that can either be `alive` or `dead`. In every iteration, a new grid is made from the current grid by following a set of rules based on a cell's neighbors. Since this is a grid, there are 8 possible neighbors when diagonals are included. The rules are the following:
 
 1. Any live cell with less than two neighbors dies.
 2. Any live cell with two or three neighbors stays alive.
 3. Any live cell with more than three neighbors dies.
 4. Any dead cell with three live neighbors becomes a live cell.
 
-The rules are simple, but the [results can be mesmerizing](https://www.youtube.com/watch?v=C2vgICfQawE). But, there are more reasons to care about this Conway's Game of Life than the fact that it is nice to look at. For example, it has been shown that a [turing machine](https://en.wikipedia.org/wiki/Turing_machine#:~:text=A%20Turing%20machine%20is%20a,A%20physical%20Turing%20machine%20model.) can be [simulated with it](https://www.nicolasloizeau.com/gol-computer). It is also proof of how seemingly incredibly complex phenomena can appear from extremely simple rules. 
+The rules are simple, but the [results can be mesmerizing](https://youtu.be/C2vgICfQawE?si=o7ODSCIxiCeaPBy5&t=104). However, there are more reasons to care about Conway's Game of Life than the fact that it is nice to look at. For example, it has been shown that a [turing machine](https://en.wikipedia.org/wiki/Turing_machine#:~:text=A%20Turing%20machine%20is%20a,A%20physical%20Turing%20machine%20model.) can be [simulated with it](https://www.nicolasloizeau.com/gol-computer). It is also proof of how seemingly incredibly complex phenomena can appear from straightforward rules. 
 
-However, for this blog post, all we care about is that the results look really nice.
+However, for this blog post, we only care about the results looking nice.
 
 # Goal
 
 ![](/images/raylib/conway.gif)
 
-The goal is to code Conway's Game of Life in c++ and visualize it with [raylib](https://www.raylib.com/). Why raylib? Great question, but I don't have a great answer. Any library that allows the programmer to draw rectangles would have worked fine. I chose raylib for this particular project because I wanted to try it out, and I knew that it could be compiled to [WASM](https://en.wikipedia.org/wiki/WebAssembly) for a web build with [emscripten](https://github.com/emscripten-core/emscripten). 
+The goal is to code Conway's Game of Life in C++ and visualize it with [raylib](https://www.raylib.com/). Why raylib? Great question, but I don't have a great answer. Any library that allows the programmer to draw rectangles would have worked fine. I chose raylib for this particular project because I wanted to try it out, and I knew that it could be compiled to [WASM](https://en.wikipedia.org/wiki/WebAssembly) for a web build with [emscripten](https://github.com/emscripten-core/emscripten). 
 
 If you want to see the web version of the final product, you can see it [here](https://bi3mer.github.io/raylib_tests/conways_game_of_life/).
 
 # Implementing Conway's Game of Life
 
-Conway's Game of Life (CGoL) is a pretty simple program overall. You start by initializing a matrix with true or false values.
+To start implementing Conway's Game of Life (CGoL), randomly initialize a matrix with true or false values.
 
 ```c++
 // matrix
@@ -46,7 +46,7 @@ for (std::size_t y = 0; y < N; ++y) {
 }
 ```
 
-For every iteration the state needs to be updated. A common mistake in implementations of CGoL is to loop through `curState` and update values in `curState`. The correct implementation is to update a new matrix. The reason for this is that if you update `curState`, then the live neighbor counts is incorrect for each cell. 
+The state needs to be updated for every iteration. A common mistake in implementations of CGoL is to loop through `curState` and update values in `curState`. The correct implementation is to update a new matrix. If you update `curState`, then the live neighbor counts for each cell are incorrect. 
 
 ```c++
 // list of all neighbors
@@ -81,13 +81,13 @@ for(int y = 0; y < N; ++y) {
     }
 }
 ```
-Here are a few notes for the above implementation that are may be helpful:
+Here are a few notes for the above implementation that may be helpful:
 
 - `NEIGHBORS` has the neighbors in all 8 directions.
 - The new matrix is called as `nextState`. 
-- Counting the neighbors requires a bounds check for the new `x` and `y` coordinates else they may be less than zero or greater than the size of the matrix.
+- Counting the neighbors requires a bounds check for the new `x` and `y` coordinates. Otherwise, the coordinates can be less than zero or greater than the size of the matrix.
 
-This is all you need to implement one iteration of CGoL. If you want to run more, you need to update `curState` to the current value of `nextState`. You can do this by running two for loops. Or you can be a bit more clever. The full implementation below tries to do the latter. It use [`std::swap`](https://en.cppreference.com/w/cpp/algorithm/swap) to swap the matrices, that way memory is constant and the swap is much more efficient. 
+This is all you need to implement one iteration of CGoL. If you want to run more, you need to update `curState` to the current value of `nextState`. You can do this by running two loops. Or you can be a bit more clever. The full implementation below tries to do the latter. It uses [`std::swap`](https://en.cppreference.com/w/cpp/algorithm/swap) to swap the matrices; memory is constant, and the swap is much more efficient. 
 
 ```c++
 #pragma once
@@ -161,7 +161,7 @@ typedef struct State {
 } State;
 ```
 
-This struct is going to be passed to two functions (`update` and `render`). Hopefully, `Conway` make sense, but `time` may not. `time` will be explained in a little bit, so for now ignore it. Instead, let's focus on the rendering the grid first. 
+The `State` struct is going to be passed to two functions (`update` and `render`). Hopefully, `Conway` makes sense, but `time` may not. `time` will be explained in a little bit, so for now, ignore it. Instead, let's focus on rendering the the alive cells. 
 
 ```c++
 void render(const State& state) {
@@ -207,9 +207,9 @@ void render(const State& state) {
 }
 ```
 
-This function is doing two things. At the top, it is figuring out where to draw a square grid on the screen based on the dimensions. It uses `GetScreenWidth` and `GetScreenHeight` to get the screens dimensions. Then it finds which is smaller and uses that. The grid should only take 80% of the min screen dimension, this way there is space. I found this by playing around with the number, and it was what I thought looked best. After, it defines the start coordinates for `x` and `y`. Finally, it finds the cell dimension which is square. (I tried allowing for rectangles, but it looked really bad.)
+This function is doing two things. At the top, it figures out where to draw a square grid on the screen based on the dimensions. It uses `GetScreenWidth` and `GetScreenHeight` to get the screen's dimensions. Then, it finds which is smaller and uses that. The grid should only take 80% of the minimum screen dimension; this way, there is space. I found 80% by playing around with the number until I found something that I thought looked best. After, it defines the start coordinates for `x` and `y`. Finally, it finds the cell dimension, which results in rendering squares that fit the designated screen space. (I tried allowing for rectangles, but it looked terrible.)
 
-Next, `render` draws the grid. It starts by clearing the whole screen. Then, it iterates through the grid, which is `curState`. The definition for `cellIsActive` is above. If the cell is active, it is drawn. You'll a `-1` for both dimensions. This is so the drawn squares don't connect. Again, this just came down to preference. I thought that the separation made for a better looking visualization. The same reason is for why I went with `RED` and not `GREEN` or some custom color. 
+Next, `render` draws the grid. It starts by clearing the whole screen. Then, it iterates through the grid, which is `curState`. The definition for `cellIsActive` is above. If the cell is active, it is drawn. One is subtracted from both dimensions so that the drawn squares don't connect. Again, this just came down to preference. I thought that the separation made for a better-looking visualization. The same reason is why I went with `RED` and not `GREEN` or some custom color. 
 
 ```c++
 void update(State& state) {
@@ -222,12 +222,11 @@ void update(State& state) {
 }
 ```
 
-Now that we can draw the grid, the next problem is to `update` it. This is where `time` comes into play. A valid implementation would beo turn `state.conway.step()` every frame. However, doing this makes for an incredibly busy, and hard to understand visualization. As a result, I put in a delay before `step` could be run. The number I found that worked for me was `0.075`. 
+Now that we can draw the grid, the next problem is to `update` it. This is where `time` comes into play. A valid implementation would be to run `state.conway.step()` every frame. However, doing this makes for an incredibly busy and hard-to-understand visualization. As a result, I put in a delay before `step` could be run. The number I found that worked for me was `0.075`. 
 
-The delay works by using `GetFrameTime`. This function returns the time between frames. When the total time is greater than `0.075`, then `time` is reset to `0` and the `step` function for CGoL is run. 
-
+The delay works by using `GetFrameTime`, which returns the time between frames. When the total time is greater than `0.075`, `time` is reset to `0`, and the `step` function for CGoL is run. 
 
 # Conclusion
-I have not shown the complete code for running this visualization nor have I given you any directions on compiling. For that, you can go go the [GitHub repo](https://github.com/bi3mer/raylib_tests/tree/main/conways_game_of_life). It has a [makefile](https://en.wikipedia.org/wiki/Make_(software)) for compiling the code either for local use or for running on the internet. It also has the complete [`main.cpp`](https://github.com/bi3mer/raylib_tests/blob/main/conways_game_of_life/src/main.cpp) file. You can see in there one way to structure your code for local and WASM development. 
+I have not shown the complete code for running this visualization, nor have I given you any directions on compiling it. To do so, you can go to the [GitHub repo](https://github.com/bi3mer/raylib_tests/tree/main/conways_game_of_life). It has a [makefile](https://en.wikipedia.org/wiki/Make_(software)) for compiling the code either for local use or for running in your browser. It also has the complete [`main.cpp`](https://github.com/bi3mer/raylib_tests/blob/main/conways_game_of_life/src/main.cpp) file. You can see one way to structure your code for local and WASM development. 
 
-Regardless, this is the end of the post. I have shown one way to implement Conway's Game of Life in c++, and then how to visualize it with raylib. For anyone out there reading this post, I hope that it helped. If you find any mistakes, please let me know.
+Regardless, this is the end of the post. I have shown one way to implement Conway's Game of Life in C++ and then how to visualize it with raylib. For anyone out there reading this post, I hope that it helped. If you find any mistakes, please let me know.
