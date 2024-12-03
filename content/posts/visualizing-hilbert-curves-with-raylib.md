@@ -1,11 +1,11 @@
 +++
-date = '2024-11-30T11:12:00-06:00'
-draft = true
+date = '2024-12-03T11:12:00-06:00'
+draft = false
 title = 'Visualizing Hilbert Curves With Raylib'
 +++
-In my most [recent post](../visualizing-conways-game-of-life-with-raylib/), I showed how to implement [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in C++ and visualize it with [raylib](https://www.raylib.com/). This post is of the same kind, except we are going to visualize [Hilbert Curves](https://en.wikipedia.org/wiki/Hilbert_curve) with raylib. However, this post will only have an example of the final result and the code,[^1] because I think that the topic is already explained well by others. 
+In my most [recent post](../visualizing-conways-game-of-life-with-raylib/), I showed how to implement [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in C++ and visualize it with [raylib](https://www.raylib.com/). This post is of the same kind, except we are going to visualize [Hilbert Curves](https://en.wikipedia.org/wiki/Hilbert_curve) with raylib. However, this post will only have an example of the final result and the code.[^1] I am of the opinion that that the two sources below are of a high enough quality that I don't have anything more to add.
 
-- If you want to know why you should care about Hilbert Curves, [3Blue1Brown (Grant Sanderson)](https://en.wikipedia.org/wiki/3Blue1Brown) has already made an [18 minute video](https://www.youtube.com/watch?v=3s7h2MHQtxc) on the topic.
+- If you want to know why you should care about Hilbert Curves, [3Blue1Brown (Grant Sanderson)](https://en.wikipedia.org/wiki/3Blue1Brown) has made an [awesome video](https://www.youtube.com/watch?v=3s7h2MHQtxc) on the topic.
 
 - If you want an explanation on how it can be implemented, [The Coding Train](https://thecodingtrain.com/) has [video](https://www.youtube.com/watch?v=dSK-MW-zuAc) on the topic.[^2]
 
@@ -23,17 +23,10 @@ In my most [recent post](../visualizing-conways-game-of-life-with-raylib/), I sh
 #include <raylib.h>
 #include <raymath.h>
 
-const Vector2 HILBERT_POSITIONS[] = {
-    {0.0f, 0.0f},  
-    {0.0f, 1.0f}, 
-    {1.0f, 1.0f}, 
-    {1.0f, 0.0f}
-};
-
 class Hilbert {
 public:
     std::size_t N;
-    
+
     Hilbert();
     Vector2 generate_next();
     bool is_done() const;
@@ -49,6 +42,13 @@ private:
 *Hilbert.cpp*
 ```c++
 #include "Hilbert.hpp"
+
+const Vector2 HILBERT_POSITIONS[] = {
+    {0.0f, 0.0f},
+    {0.0f, 1.0f},
+    {1.0f, 1.0f},
+    {1.0f, 0.0f}
+};
 
 Hilbert::Hilbert() {
     order = 1;
@@ -140,7 +140,7 @@ void update(State& state) {
 
                 state.points.clear();
                 state.points.push_back(HILBERT_POSITIONS[0]);
-            } 
+            }
 
             break;
         }
