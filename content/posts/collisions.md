@@ -5,6 +5,7 @@ title = 'Making an A* Agent for Recformer'
 +++
 
 ## Collision Speed Up
+### Grid Collisions for Static Entitites
 
 ```typescript
 for (let i = 0; i < dynamicSize; ++i) {
@@ -57,3 +58,8 @@ I won't pretend that I have written a perfect benchmark. I am going to run both 
 
 So, based on this, I think our efforts were rewarded. As a bonus, the game will now run better on other people's computers. Plus, I will be using this to generate levels with [ponos](https://github.com/bi3mer/ponos) down the line, so faster execution is always a good thing.
 
+### Sweep and Prune Collisions for Dynamic Entities
+
+|Double `for` Loop | Sweep & Prune |
+|--|--|
+| 2462.8335 ms | 2339.5377 ms |
