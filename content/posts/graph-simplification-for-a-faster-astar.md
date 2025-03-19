@@ -106,7 +106,7 @@ In the first figure above, you can see a simple example of what happens when we 
 |--|--|
 |![alt text](/images/hypergraph/nodes.png "Reduction for nodes.") | ![alt text](/images/hypergraph/edges.png "Reduction for edges.") |
 
-As you can see, the larger the graph becomes, the more signifigant the reduction in nodes and edges.[^4] But, how much does this affect the overall speed of A*?
+As you can see, the larger the graph becomes, the more signifigant the reduction in nodes and edges.[^4] More specifically, this results in an overall number of nodes reduced by ~31.4% and edges by ~65.1%. But, how much does this affect the overall speed of A*?
 
 ![alt text](/images/hypergraph/G_HG.png "A* solution time.")
 
