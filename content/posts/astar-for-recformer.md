@@ -1,7 +1,7 @@
 +++
 date = '2025-02-04T14:14:48-05:00'
 draft = true
-title = 'Making an A* Agent for Recformer'
+title = 'A* for Recformer'
 +++
 
 ## Collision Speed Up
