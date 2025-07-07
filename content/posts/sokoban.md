@@ -17,3 +17,4 @@ Project repo: [https://github.com/bi3mer/sokoban](https://github.com/bi3mer/soko
 - [Part 7: State Machine Basics](https://www.youtube.com/watch?v=GkINdTax_Eg)
 - [Part 8: Instructions](https://www.youtube.com/watch?v=pl2_XjE7QFA)
 - [Part 9: Level Progression](https://www.youtube.com/watch?v=kqlvHfFpcj4)
+- [Part 10: Grid View](https://www.youtube.com/watch?v=-jr-BNMy5K8)
