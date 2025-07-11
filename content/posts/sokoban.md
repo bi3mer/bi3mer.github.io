@@ -19,3 +19,4 @@ Project repo: [https://github.com/bi3mer/sokoban](https://github.com/bi3mer/soko
 - [Part 9: Level Progression](https://www.youtube.com/watch?v=kqlvHfFpcj4)
 - [Part 10: Grid View](https://www.youtube.com/watch?v=-jr-BNMy5K8)
 - [Part 11: Saving](https://www.youtube.com/watch?v=dbooT1yTtI0)
+- [Part 12: Logging](https://www.youtube.com/watch?v=UwbaxYBC5OI)
