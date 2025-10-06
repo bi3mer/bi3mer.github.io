@@ -1,5 +1,5 @@
 ---
-title: "Colan Biemer" 
+title: "Colan Biemer"
 layout: "index"
 showtoc: false
 hideMeta: true
@@ -16,4 +16,4 @@ I am a PhD candidate at Northeastern University. My advisor is Seth Cooper. I'm 
 
 When I'm not working on my research or programming some side project for fun, I'm likely doing something with my perfect dog or reading a book. My two favorite books are *A Christmas Carol* by Charles Dickens and *Stoner* by John Williams.
 
-[Resume](/pdf/resume.pdf)
+[Resume](/pdf/resume.pdf) | [CV](/pdf/cfb_cv.pdf)
