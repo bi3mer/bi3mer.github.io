@@ -215,6 +215,8 @@ random: 7
 
 So, the above block randomization code worked in local testing and in small real world test, and I will be using it in my next two user studies that will have more logs logged and more conditions assigned. Though, I will make some changes, like not [hardcoding the conditions](https://github.com/bi3mer/go-log-study-server/blob/main/src/server.go#L19) and a few other improvements.
 
+**UPDATE 2025/10/21:** I've since made a [YouTube video,](https://www.youtube.com/watch?v=a21U3MzoPpc) showing how the whole thing can be implemented from scratch.
+
 
 
 [^conditions]: Block randomization is sometimes implemented with a multiplier. The multiplier, an integer that is greater than or equal to `1`, increases the size of the array of conditions, and adds duplicates. So, a multiplier of `2` would result in the conditions array having two instances of each condition.
