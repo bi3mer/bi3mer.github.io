@@ -19,7 +19,7 @@ Liu, Ling, **Colan F. Biemer**, Günter Wallner and Seth Cooper. "Voxel-Based Sp
 **Biemer, Colan F.**, and Seth Cooper. "Level assembly as a markov decision process." In EXAG@ AIIDE. 2023.. \
 [Paper](https://arxiv.org/pdf/2304.13922.pdf), [Talk](https://www.youtube.com/watch?v=XpLm_AyimTw), [Code](https://github.com/crowdgames/mdp-level-assembly)
 
-**Biemer, Colan F.**, and Seth Cooper. "On linking level segments." In 2022 IEEE Conference on Games (CoG), pp. 199-205. IEEE, 2022.[ ★ Best Paper Nominee \
+**Biemer, Colan F.**, and Seth Cooper. "On linking level segments." In 2022 IEEE Conference on Games (CoG), pp. 199-205. IEEE, 2022. ★ Best Paper Nominee \
 [Paper](https://arxiv.org/pdf/2203.05057.pdf), [Talk](https://www.youtube.com/watch?v=VrOBNP6UbRU&t), [Code](https://github.com/bi3mer/LinkingLevelSegments)
 
 **Biemer, Colan F.**, Alejandro Hervella, and Seth Cooper. "Gram-elites: N-gram based quality-diversity search." In Proceedings of the 16th International Conference on the Foundations of Digital Games, pp. 1-6. 2021. \
