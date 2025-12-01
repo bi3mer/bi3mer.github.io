@@ -5,10 +5,14 @@ showtoc: false
 showReadingTime: false
 disableShare: true
 ---
+
+## Papers
+
 **Biemer, Colan F.**, and Seth Cooper. "Evaluating the impact of MDP-based level assembly on player experience." In EXAG@ AIIDE. 2025. \
 [Paper](/pdf/2025_exag_dda-mdp.pdf)
 
-Liu, Ling, **Colan F. Biemer**, Günter Wallner and Seth Cooper. "Voxel-Based Spatio-Temporal Visualization of Gameplay Traces with Anomaly Detection." In EXAG@ AIIDE. 2025.
+Liu, Ling, **Colan F. Biemer**, Günter Wallner and Seth Cooper. "Voxel-Based Spatio-Temporal Visualization of Gameplay Traces with Anomaly Detection." In EXAG@ AIIDE. 2025. \
+[Paper](/pdf/2025_liu_voxel_based_spatio_temporal_visualization.pdf)
 
 **Biemer, Colan F.**, and Seth Cooper. "Solution Path Heuristics for Predicting Difficulty and Enjoyment Ratings of Roguelike Level Segments." In Proceedings of the 19th International Conference on the Foundations of Digital Games, pp. 1-8. 2024. \
 [Paper](/pdf/2024_solution_path_heuristics.pdf)
@@ -27,3 +31,8 @@ Liu, Ling, **Colan F. Biemer**, Günter Wallner and Seth Cooper. "Voxel-Based Sp
 
 Villareale, Jennifer, **Colan F. Biemer**, Magy Seif El-Nasr, and Jichen Zhu. "Reflection in game-based learning: A survey of programming games." In Proceedings of the 15th International Conference on the Foundations of Digital Games, pp. 1-9. 2020. \
 [Paper](https://dl.acm.org/doi/pdf/10.1145/3402942.3403011?casa_token=_BhwKVV78p0AAAAA:zprP0P0pyLYQk5jwFe_H3AHj11uuTo5IthdXD6iUmJj8j58XBibbCKqVHmYsEp-c9QepSsUNetRR)
+
+## Dissertation
+
+**Biemer, Colan F.** "Dynamic Difficulty Adjustment via Procedural Level Generation Guided by a Markov Decision Process." PhD diss., Northeastern University, 2025. \
+[Dissertation](/pdf/2025_colan_biemer_dissertation.pdf)
