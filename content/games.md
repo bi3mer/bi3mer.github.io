@@ -12,7 +12,8 @@ disableShare: true
 # C
 | | | |
 |-|-|-|
-| {{< gameEntry "/images/games/crossword.png" 200 "https://bi3mer.github.io/crossword/" >}} |  ![](/images/games/empty.png) | ![](/images/games/empty.png) |
+| {{< gameEntry "/images/games/crossword.png" 200 "https://bi3mer.github.io/crossword/" >}} | {{< gameEntry "/images/games/c-wordle.png" 200 "https://github.com/bi3mer/c-wordle" >}} | {{< gameEntry "/images/games/c-tic-tac-toe.png" 200 "https://github.com/bi3mer/c-tic-tac-toe" >}} |
+| {{< gameEntry "/images/games/c-snake.png" 200 "https://github.com/bi3mer/c-snake" >}} | {{< gameEntry "/images/games/c-pong.png" 200 "https://github.com/bi3mer/raylib-pong" >}} | |
 
 # TypeScript
 
