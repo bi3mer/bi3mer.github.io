@@ -236,8 +236,7 @@ Results on an AMD Ryzen AI 9 HX 370 (averages over 5 runs, 1000 random inputs cy
 | :------------------- | -----: | ---: | --------: |
 | Iterative (Step 2)   | 1339.6 | 1199 |        59 |
 | Mixed-radix (Step 5) |  778.6 |  816 |        39 |
-
-{style="overflow-x: auto; display: block;"}
+{.styled-table}
 
 The three columns mean: **ns/op** is nanoseconds per function call, **B/op** is heap bytes allocated per function call, and **allocs/op** is the number of distinct heap allocations per function call. The mixed-radix version is ~1.7× faster, uses 32% less memory, and makes 34% fewer allocations.
 
@@ -290,6 +289,7 @@ There is a trade-off: all returned strings share one backing buffer. A single lo
 | Iterative (Step 2)     | 1339.6 | 1199 |        59 |
 | Mixed-radix (Step 5)   |  778.6 |  816 |        39 |
 | unsafe.String (Step 6) |  689.0 |  822 |         2 |
+{.styled-table}
 
 Compared to Step 5: 37 fewer allocations, similar memory footprint, ~12% faster. Compared to Step 2: ~1.9× faster, 31% less memory, 97% fewer allocations.
 
