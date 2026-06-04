@@ -1,0 +1,15 @@
+.post-content table {
+    border-collapse: collapse;
+    margin: 0 auto 1.5em;
+    display: table;
+}
+
+.post-content table th,
+.post-content table td {
+    border: 1px solid var(--border, #ccc);
+    padding: 8px 16px;
+}
+
+.post-content table th {
+    border-bottom: 2px solid var(--border, #ccc);
+}
