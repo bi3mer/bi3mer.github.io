@@ -6,7 +6,13 @@
       "Bash(file *)",
       "Bash(go version *)",
       "Read(//proc/**)",
-      "Bash(go test *)"
+      "Bash(go test *)",
+      "Bash(hugo version *)",
+      "Bash(git -C themes/PaperMod log --oneline -5)",
+      "Bash(hugo --templateMetrics)",
+      "Bash(git -C /home/gogi/projects/bi3mer.github.io diff HEAD)",
+      "Bash(git -C /home/gogi/projects/bi3mer.github.io diff)",
+      "Bash(git *)"
     ]
   }
 }
