@@ -12,7 +12,8 @@
       "Bash(hugo --templateMetrics)",
       "Bash(git -C /home/gogi/projects/bi3mer.github.io diff HEAD)",
       "Bash(git -C /home/gogi/projects/bi3mer.github.io diff)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(go mod *)"
     ]
   }
 }
