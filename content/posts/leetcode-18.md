@@ -6,13 +6,13 @@ title = 'Leetcode 18'
 
 [LeetCode 18, _4Sum_](https://leetcode.com/problems/4sum/description/) asks for every _unique_ quadruplet `[a, b, c, d]` in an array `nums` that sums to a `target`. For example, given `nums = [1, 0, -1, 0, -2, 2]` and `target = 0`, the answer is `[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]`. The word _unique_ is the whole game here. It is easy to find quadruplets that sum to the target; it is annoying to make sure you never report the same one twice.
 
-This is a continuation of my [LeetCode 17 post](https://bi3mer.github.io/posts/leetcode-17/), where I'm using these problems as an excuse to learn Go. Same as before, I'm not going to show the smart answer first. I like solving these the dumb way first, and then working towards the smarter solution.
+This is a continuation of my [LeetCode 17 post](https://bi3mer.github.io/posts/leetcode-17/), where I'm using these problems as an excuse to learn Go. Same as before, I'm not going to show the smart answer first. I like solving these the dumb way, and then working towards the smarter solution.
 
 ## Step 1: The Dumbest Thing That Could Work
 
 The starting point is the dumbest correct approach: four nested loops that check every possible quadruplet. It has no redeeming performance qualities, but it is a useful blank canvas for seeing how Go handles sorting, slices, and the `slices` package before any of the interesting machinery shows up.
 
-The trick that keeps the loops honest is the indexing: `i < j < k < l`. By forcing each loop to start one past the previous one, I never reuse an element and I never visit the same four positions in a different order. That alone removes a huge class of duplicates — the ones that come from _position_ rather than _value_.
+The trick that keeps the loops honest is the indexing: `i < j < k < l`. By forcing each loop to start one past the previous one, I never reuse an element and I never visit the same four positions in a different order.
 
 ```go
 import (
@@ -57,20 +57,22 @@ func fourSum(nums []int, target int) [][]int {
 
 I sort `nums` up front with `sort.Ints`. This matters more than it looks. Because the loops pull elements in array order, sorting first means every quadruplet comes out in ascending order, _and_ two quadruplets with the same set of values come out byte-for-byte identical. Without the sort, `[2, 3, 4, 2]` and `[2, 2, 3, 4]` are the "same" answer but would not compare equal, so the dedup pass would miss them.
 
-The dedup itself is a deliberately inefficient nested loop. Two Go behaviors are worth knowing here. First, `slices.Delete` returns the new slice rather than shrinking the old one in place, exactly like `append`, so you must reassign with `result = slices.Delete(...)`. Second, after deleting at index `j`, every element shifts left, so the thing that _was_ at `j+1` is now at `j`. If I let the loop do its normal `j++`, I would skip right over it. The fix is `j--` after a delete so the loop re-examines the new occupant of that slot.
+The dedup itself is a deliberately inefficient nested loop. Two Go behaviors are worth knowing here:
+
+1. `slices.Delete` returns the new slice rather than shrinking the old one in place, exactly like `append`, so you must reassign with `result = slices.Delete(...)`.
+2. After deleting at index `j`, every element shifts left, so the thing that _was_ at `j+1` is now at `j`. If I let the loop do its normal `j++`, I would skip right over it. The fix is `j--` after a delete so the loop re-examines the new occupant of that slot.
 
 |                      |       ns/op |    B/op | allocs/op |
 | :------------------- | ----------: | ------: | --------: |
 | Brute force (Step 1) | 1,822,444.6 | 216,701 |      1815 |
+
 {.styled-table}
 
 This solution is correct. It is also terribly slow, and LeetCode's adversarial input is an array of nothing but two-hundred `2`s causes the program to time out.
 
 ## Step 2: Using a Map
 
-The dedup pass above is `O(m²)` in the number of matches, and slice deletion shifts elements every time, which makes it worse. Before fixing the generation cost, it is worth seeing how Go handles dedup. Go has no built-in set type, so we can use a `map` like a set.
-
-The wrinkle is that a `[]int` cannot be a map key — slices are not comparable in Go. The workaround is to turn each quadruplet into a `string`, which is comparable. I reached for `fmt.Sprintf` to build the key:
+The dedup pass above is `O(m²)` in the number of matches, and slice deletion shifts elements every time, which makes it worse. Before fixing the generation cost, I wanted to speed up the deduplication. My original thought was to use a `set` but it turns out that Go does not have one. Instead, I used a `map`. The wrinkle is that a `[]int` cannot be a map key, because slices are not comparable in Go. The workaround is to turn each quadruplet into a `string`, which is comparable. I reached for `fmt.Sprintf` to build the key:
 
 ```go
 import "sort"
@@ -107,12 +109,13 @@ func fourSum(nums []int, target int) [][]int {
 }
 ```
 
-I made the map value the quadruplet itself (`map[string][]int`) rather than a `bool`, so the final step just ranges over the map's values and appends each one. One thing to know: Go randomizes map iteration order on purpose, so `result` comes out in arbitrary order. 4Sum's judge compares answers as a set, so this is fine here.
+I made the map value the quadruplet itself (`map[string][]int`), so the final step to deduplicate ranges over the map's values and appends each one.
 
 |                      |       ns/op |    B/op | allocs/op |
 | :------------------- | ----------: | ------: | --------: |
 | Brute force (Step 1) | 1,822,444.6 | 216,701 |      1815 |
 | Map dedup (Step 2)   |   281,144.8 | 125,848 |      6928 |
+
 {.styled-table}
 
 This compiles, runs, and is correct. It is also too slow to pass LeetCode's time limit exceeded. Regardless, it is an improvement over step 1. It is ~6× faster than Step 1 and uses 42% less heap memory. The `O(m²)` dedup loop and its element-shifting deletes are gone. The trade-off is allocations: 6928 vs 1815, nearly 4× more. Every quadruplet match now costs a string key allocation plus a map insert, whereas Step 1 just appended a slice.
@@ -121,7 +124,7 @@ This compiles, runs, and is correct. It is also too slow to pass LeetCode's time
 
 The way to speed up the algorithm is to figure out how we can reduce the time complexity from `O(n⁴)` to `O(n³)`. We have to keep two outer loops to fix the first two numbers, but we can replace the inner two loops with a two-pointer scan over the rest of the sorted array.
 
-The idea behind the scan: for a fixed `i` and `j`, I want two more numbers that sum to `target - nums[i] - nums[j]`. Because the array is sorted, I can put one pointer at `left` (just past `j`) and one at `right` (the end), and walk them toward each other. If the current sum is too big, the only way to shrink it is to move `right` left. If it is too small, move `left` right. If it matches, record it and move both inward. Each pointer sweeps the region once, so the inner search is linear instead of quadratic.
+The idea behind the scan: for a fixed `i` and `j`, I want two more numbers that sum to: `target - nums[i] - nums[j]`. Because the array is sorted, I can put one pointer at `left` (just past `j`) and one at `right` (the end), and walk them toward each other. If the current sum is too big, the only way to shrink it is to move `right` left. If it is too small, move `left` right. If it matches, record it and move both inward. Each pointer sweeps the region once, so the inner search is linear instead of quadratic.
 
 ```go
 import "sort"
@@ -173,56 +176,18 @@ One thing to get right: on a match, both pointers move (`left++` and `right--`),
 | Brute force (Step 1)        | 1,822,444.6 | 216,701 |      1815 |
 | Map dedup (Step 2)          |   281,144.8 | 125,848 |      6928 |
 | Two pointers + map (Step 3) |   101,004.6 |  52,509 |      2287 |
+
 {.styled-table}
 
 This finally passes, but the LeetCode performance is rough: **176 ms, beats 7.84%**. The algorithm is now the right complexity, so something else is eating the time. If you are guessing the use of the map, you are correct. But, before we drop it, we can make one tiny improvement which is worth looking at.
 
 ## Step 4: Dropping `fmt.Sprintf`
 
-`fmt.Sprintf` is convenient, but it works through reflection. Meaning, it inspects the type of each argument at runtime to decide how to format it. On a hot path that runs on every single match, that overhead dominates. The fix is to build the key by hand with `strconv.Itoa`, which converts an int to a string directly with no reflection:
+`fmt.Sprintf` is convenient, but it works through reflection. Meaning, it inspects the type of each argument at runtime to decide how to format it. On a hot path that runs on every single match, that overhead dominates. The fix is to build the key by hand with `strconv.Itoa`, which converts an int to a string directly with no reflection. The code is otherwise unchanged.
 
 ```go
-import "sort"
-import "strconv"
-
-func fourSum(nums []int, target int) [][]int {
-    sort.Ints(nums)
-
-    seen := make(map[string][]int)
-
-    for i := 0; i < len(nums); i++ {
-        for j := i + 1; j < len(nums); j++ {
-            sum := nums[i] + nums[j]
-
-            left := j + 1
-            right := len(nums) - 1
-
-            for left < right {
-                currentSum := sum + nums[left] + nums[right]
-
-                if currentSum > target {
-                    right--
-                } else if currentSum < target {
-                    left++
-                } else {
-                    key := strconv.Itoa(nums[i]) + "," + strconv.Itoa(nums[j]) + "," +
-                        strconv.Itoa(nums[left]) + "," + strconv.Itoa(nums[right])
-                    seen[key] = []int{nums[i], nums[j], nums[left], nums[right]}
-                    left++
-                    right--
-                }
-            }
-        }
-    }
-
-    // Change map into desired output format
-    var result [][]int
-    for _, quad := range seen {
-        result = append(result, quad)
-    }
-
-    return result
-}
+key := strconv.Itoa(nums[i]) + "," + strconv.Itoa(nums[j]) + "," +
+  	   strconv.Itoa(nums[left]) + "," + strconv.Itoa(nums[right])
 ```
 
 |                             |       ns/op |    B/op | allocs/op |
@@ -231,6 +196,7 @@ func fourSum(nums []int, target int) [][]int {
 | Map dedup (Step 2)          |   281,144.8 | 125,848 |      6928 |
 | Two pointers + map (Step 3) |   101,004.6 |  52,509 |      2287 |
 | `strconv` key (Step 4)      |    70,881.8 |  44,599 |      2287 |
+
 {.styled-table}
 
 This dropped the LeetCode runtime to **86 ms, beats 9.98%**. Roughly twice as fast, which confirms `fmt.Sprintf` was the culprit. But beating 10% of submissions is still bad. However, we can see a real improvement over the solutions in step 1 and step 2.
@@ -318,8 +284,6 @@ func fourSum(nums []int, target int) [][]int {
 }
 ```
 
-The hot path is now nothing but integer comparisons. No key string, no hash, no map allocation. This is the version that actually places well, because the dedup is folded into the scan rather than bolted on afterward.
-
 |                             |       ns/op |    B/op | allocs/op | vs prev | vs Step 1 |
 | :-------------------------- | ----------: | ------: | --------: | ------: | --------: |
 | Brute force (Step 1)        | 1,822,444.6 | 216,701 |      1815 |       — |        1× |
@@ -327,13 +291,12 @@ The hot path is now nothing but integer comparisons. No key string, no hash, no 
 | Two pointers + map (Step 3) |   101,004.6 |  52,509 |      2287 |    2.8× |       18× |
 | `strconv` key (Step 4)      |    70,881.8 |  44,599 |      2287 |    1.4× |       26× |
 | Inline skip (Step 5)        |     6,122.8 |   8,250 |        88 |   11.6× |      298× |
+
 {.styled-table}
 
 Results on an AMD Ryzen AI 9 HX 370 (averages over 5 runs, 1000 random inputs cycled per benchmark).
 
-The "vs prev" column shows what each individual change bought. Step 2 (swapping the nested dedup loop for a map) was the first big jump: **6.5×**, mostly by eliminating the `O(m²)` loop and all the element-shifting deletes. Step 3 (two pointers) added another **2.8×** by dropping the inner two loops from `O(n²)` to `O(n)`. Step 4 (swapping `fmt.Sprintf` for `strconv`) only gained **1.4×** — a real improvement on a hot path, but a narrow one.
-
-Then Step 5 falls off a cliff: **11.6× faster than Step 4**, and **298× faster than Step 1**, using 96% less heap memory and 95% fewer allocations. The map is completely gone. No string keys, no hashing, no allocations on the hot path — just integer comparisons. Steps 2 through 4 were all optimizing the map. Step 5 killed the map.
+The "vs prev" column shows what each individual change bought. Step 2 (swapping the nested dedup loop for a map) was the first big jump: **6.5×**, mostly by eliminating the `O(m²)` loop and all the element-shifting deletes. Step 3 (two pointers) added another **2.8×** by dropping the inner two loops from `O(n²)` to `O(n)`. Step 4 (swapping `fmt.Sprintf` for `strconv`) only gained **1.4×** — a real improvement on a hot path, but a narrow one. Step 5 shows the real boost: **11.6× faster than Step 4**, and **298× faster than Step 1**, using 96% less heap memory and 95% fewer allocations.
 
 ## A Note on Measuring Performance
 
