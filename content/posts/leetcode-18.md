@@ -1,5 +1,5 @@
 +++
-date = '2026-06-05T8:00:41-04:00'
+date = '2026-06-04T8:00:41-04:00'
 draft = false
 title = 'Leetcode 18'
 +++
@@ -65,7 +65,6 @@ The dedup itself is a deliberately inefficient nested loop. Two Go behaviors are
 |                      |       ns/op |    B/op | allocs/op |
 | :------------------- | ----------: | ------: | --------: |
 | Brute force (Step 1) | 1,822,444.6 | 216,701 |      1815 |
-
 {.styled-table}
 
 This solution is correct. It is also terribly slow, and LeetCode's adversarial input is an array of nothing but two-hundred `2`s causes the program to time out.
@@ -115,7 +114,6 @@ I made the map value the quadruplet itself (`map[string][]int`), so the final st
 | :------------------- | ----------: | ------: | --------: |
 | Brute force (Step 1) | 1,822,444.6 | 216,701 |      1815 |
 | Map dedup (Step 2)   |   281,144.8 | 125,848 |      6928 |
-
 {.styled-table}
 
 This compiles, runs, and is correct. It is also too slow to pass LeetCode's time limit exceeded. Regardless, it is an improvement over step 1. It is ~6× faster than Step 1 and uses 42% less heap memory. The `O(m²)` dedup loop and its element-shifting deletes are gone. The trade-off is allocations: 6928 vs 1815, nearly 4× more. Every quadruplet match now costs a string key allocation plus a map insert, whereas Step 1 just appended a slice.
@@ -176,7 +174,6 @@ One thing to get right: on a match, both pointers move (`left++` and `right--`),
 | Brute force (Step 1)        | 1,822,444.6 | 216,701 |      1815 |
 | Map dedup (Step 2)          |   281,144.8 | 125,848 |      6928 |
 | Two pointers + map (Step 3) |   101,004.6 |  52,509 |      2287 |
-
 {.styled-table}
 
 This finally passes, but the LeetCode performance is rough: **176 ms, beats 7.84%**. The algorithm is now the right complexity, so something else is eating the time. If you are guessing the use of the map, you are correct. But, before we drop it, we can make one tiny improvement which is worth looking at.
@@ -196,7 +193,6 @@ key := strconv.Itoa(nums[i]) + "," + strconv.Itoa(nums[j]) + "," +
 | Map dedup (Step 2)          |   281,144.8 | 125,848 |      6928 |
 | Two pointers + map (Step 3) |   101,004.6 |  52,509 |      2287 |
 | `strconv` key (Step 4)      |    70,881.8 |  44,599 |      2287 |
-
 {.styled-table}
 
 This dropped the LeetCode runtime to **86 ms, beats 9.98%**. Roughly twice as fast, which confirms `fmt.Sprintf` was the culprit. But beating 10% of submissions is still bad. However, we can see a real improvement over the solutions in step 1 and step 2.
@@ -291,7 +287,6 @@ func fourSum(nums []int, target int) [][]int {
 | Two pointers + map (Step 3) |   101,004.6 |  52,509 |      2287 |    2.8× |       18× |
 | `strconv` key (Step 4)      |    70,881.8 |  44,599 |      2287 |    1.4× |       26× |
 | Inline skip (Step 5)        |     6,122.8 |   8,250 |        88 |   11.6× |      298× |
-
 {.styled-table}
 
 Results on an AMD Ryzen AI 9 HX 370 (averages over 5 runs, 1000 random inputs cycled per benchmark).
