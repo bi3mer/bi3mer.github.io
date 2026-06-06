@@ -13,7 +13,9 @@
       "Bash(git -C /home/gogi/projects/bi3mer.github.io diff HEAD)",
       "Bash(git -C /home/gogi/projects/bi3mer.github.io diff)",
       "Bash(git *)",
-      "Bash(go mod *)"
+      "Bash(go mod *)",
+      "Bash(cat)",
+      "Bash(cp /tmp/alloc_check_test.go /home/gogi/projects/bi3mer.github.io/example-code/leetcode-20/alloc_check_test.go)"
     ]
   }
 }
