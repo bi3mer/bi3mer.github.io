@@ -156,7 +156,6 @@ The valid-string generator uses a stack. At each step, if there is still room to
 | Solution 1: Dumb version  | 920.6 |  201 |         8 |
 | Solution 2: Stack (runes) | 203.9 |   19 |         0 |
 | Solution 3: Stack (bytes) | 193.5 |    0 |         0 |
-
 {.styled-table}
 
 Results on an AMD Ryzen AI 9 HX 370 (averages over 10 runs, 1000 random inputs cycled per benchmark). The three columns mean: **ns/op** is nanoseconds per call, **B/op** is heap bytes allocated per call, and **allocs/op** is the number of distinct heap allocations per call.
