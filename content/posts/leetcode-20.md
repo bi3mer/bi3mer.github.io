@@ -149,7 +149,7 @@ func randomInputs(count int) []string {
 }
 ```
 
-The valid-string generator uses a stack. At each step, if there is still room to close everything that is open, it randomly opens a new bracket or closes the top one. The `remaining > len(stack)` guard ensures there are always enough positions left to close whatever is open, so the string is always complete and validht .
+The valid-string generator uses a stack. At each step, if there is still room to close everything that is open, it randomly opens a new bracket or closes the top one. The `remaining > len(stack)` guard ensures there are always enough positions left to close whatever is open, so the string is always complete and valid.
 
 |                           | ns/op | B/op | allocs/op |
 | :------------------------ | ----: | ---: | --------: |
