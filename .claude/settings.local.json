@@ -18,7 +18,8 @@
       "Bash(cp /tmp/alloc_check_test.go /home/gogi/projects/bi3mer.github.io/example-code/leetcode-20/alloc_check_test.go)",
       "Bash(pkill -f \"go test.*lc21\")",
       "Bash(pkill -f \"lc21bench\")",
-      "Bash(pkill -f \"_test/lc21\")"
+      "Bash(pkill -f \"_test/lc21\")",
+      "Bash(GOGC=off go test *)"
     ]
   }
 }
