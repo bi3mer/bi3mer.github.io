@@ -19,7 +19,13 @@
       "Bash(pkill -f \"go test.*lc21\")",
       "Bash(pkill -f \"lc21bench\")",
       "Bash(pkill -f \"_test/lc21\")",
-      "Bash(GOGC=off go test *)"
+      "Bash(GOGC=off go test *)",
+      "Bash(tee results.txt)",
+      "Bash(benchstat results.txt)",
+      "Bash(go install *)",
+      "Bash(benchstat /home/gogi/projects/bi3mer.github.io/example-code/leetcode-23/results.txt)",
+      "Bash(/home/gogi/go/bin/benchstat *)",
+      "Bash(kill -9 84166 84198)"
     ]
   }
 }
