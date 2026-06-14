@@ -1,6 +1,6 @@
 +++
-date = '2026-06-13T18:58:24-05:00'
-draft = true
+date = '2026-06-14T07:58:24-05:00'
+draft = false
 title = 'LeetCode 28'
 +++
 
@@ -8,7 +8,7 @@ title = 'LeetCode 28'
 
 # Solution 1: `strings.Index`
 
-This kind of a problem is so common in programming, that the majority of standard libraries include it. In C, you can use `strstr`. In Go, you can use `strings.Index()`.
+This kind of problem is so common in programming, that the majority of standard libraries include it. In C, you can use `strstr`. In Go, you can use `strings.Index()`.
 
 ```go
 import "strings"
@@ -20,7 +20,7 @@ func strStr(haystack string, needle string) int {
 
 I doubt, though, that the problem's maker wanted us to use the standard library. So, let's implement the function ourselves.
 
-# Solution 2: Iterating by Hand
+# Solution 2: Iterating by Character
 
 ```go
 func strStr(haystack string, needle string) int {
@@ -47,7 +47,7 @@ func strStr(haystack string, needle string) int {
 ```
 
 This solution has a runtime of 0ms, and beats 100% of submissions.
-The only trick to notice is that the for loop uses `i <= len_haystack - len_needle` as its stopping condition. I think the best way to explain this condition is with an example. Lets say we receive as input `haystack="haystack", needle="genetic"`. The difference between the lengths of both strings is `8-7=1`. So, rather than doing comparisons that are doomed to fail after the letter 'a', we stop the loop.
+The only trick to notice is that the for loop uses `i <= len_haystack - len_needle` as its stopping condition. I think the best way to explain this condition is with an example. Let's say we receive as input `haystack="haystack", needle="genetic"`. The difference between the lengths of both strings is `8-7=1`. So, rather than doing comparisons that are doomed to fail after the letter 'a', we stop the loop.
 The downside of this approach is that the code is a bit hard to read. So, let's improve that using slices.
 
 # Solution 3: Slices
@@ -64,47 +64,9 @@ func strStr(haystack string, needle string) int {
 }
 ```
 
-The code is doing effectively the same thing. The difference is that instead of doing character by character comparisons, we compare two strings.
-
-# Benchmark
-
-Benchmarks were run on an AMD Ryzen AI 9 HX 370 across three haystack lengths (n=100, 1000, 10000), three needle-to-haystack ratios (1%, 5%, 10%), and three scenarios: the needle appears at the start (`early`), at the end (`late`), or not at all (`nomatch`). The full benchmark code is [available on GitHub](https://github.com/bi3mer/bi3mer.github.io/tree/master/example-code/leetcode-28). Solution 1 is represented by `strings.Index`. Solution 2 is represented by Char. Solution 3 is represented by Slices.
-
-## TODO: missing ratio in these tables
-
-**Early**
-
-| n     | `strings.Index` | Char    | Slices  |
-| ----- | --------------- | ------- | ------- |
-| 100   | 2.873ns         | 1.788ns | 2.695ns |
-| 1000  | 3.965ns         | 5.989ns | 2.793ns |
-| 10000 | 5.128ns         | 63.91ns | 3.865ns |
-
-The needle matches at position 0 here, so every solution finds it on the first try. The interesting part is how each one degrades as n grows. Because the needle is a fixed 1% of the haystack, a larger n means a longer needle to confirm at position 0. Char pays for this linearly: it confirms the match one byte at a time, so its cost climbs with needle length (1.788ns to 63.91ns). Slices stays nearly flat because that single comparison compiles down to `CALL runtime.memequal(SB)`, which compares a block of memory at once rather than byte by byte. `strings.Index` carries some fixed setup overhead but scales well for the same reason.
-
-**Late**
-
-| n     | `strings.Index` | Char    | Slices  |
-| ----- | --------------- | ------- | ------- |
-| 100   | 3.031ns         | 9.926ns | 22.72ns |
-| 1000  | 246.2ns         | 923.4ns | 1503ns  |
-| 10000 | 2005ns          | 10250ns | 14430ns |
-
-Now the needle sits at the end, so all three scan most of the haystack before finding it. The block comparison that helped Slices in the `early` case hurts it here because at every failing position it builds a slice header and runs a full `memequal`, only to throw the result away. (This, by the way, is a clue for how you could make a faster version, if you were inclined to do so.) Char, by contrast, bails on the first mismatched byte at each position. That early exit is why Char beats Slices across the board here, by over 2x at n=100 (9.926ns vs 22.72ns).
-
-**No Match**
-
-| n     | `strings.Index` | Char    | Slices  |
-| ----- | --------------- | ------- | ------- |
-| 100   | 3.534ns         | 73.93ns | 177.3ns |
-| 1000  | 11.00ns         | 665.0ns | 1436ns  |
-| 10000 | 91.47ns         | 7327ns  | 14360ns |
-
-`strings.Index` is the clear winner. For `nomatch` at n=10000 it finishes in **91ns**, versus **7327ns** for Char and **14360ns** for Slices, roughly 80x and 150x slower respectively. This is not a coincidence: Go's `strings.Index` uses [Rabin-Karp](https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm) for longer needles and a variant of [Boyer-Moore-Horspool](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore%E2%80%93Horspool_algorithm) for short ones, both of which skip ahead in the haystack instead of checking every position. The same first-mismatch early exit that helped Char in the `late` case helps it again here: with no match, the mismatch usually comes within the first byte or two at each position, so Char stays ahead of Slices.
+The code is doing effectively the same thing. The difference is that instead of doing character by character comparisons, we compare two strings. However, there is a difference when we get to performance.
 
 # Solution 4: Best of Both Worlds
-
-Based on those benchmarks, I realzied that we can get the best of both worlds for Char and Slice:
 
 ```go
 func strStr(haystack string, needle string) int {
@@ -120,45 +82,50 @@ func strStr(haystack string, needle string) int {
 }
 ```
 
-Now, we check the first character of `haystack[i]` and needle. If they are the same, then we run the full comparison (skipping the first character because we already did that compare).
+While I was finishing up the first version of this blog post, I realized that I could improve the performance in the general case. What led to this was an observation that the `char` solution was fast when the `needle` was later in the string and slower than the slice solution when the `needle` was early. I'll explain why in the benchmark section. This solution uses that observation to check the first character quickly and then only do a full compare if the first characters were the same. (I kind of gave away the why with that sentence. Oh well.)
 
-Benchmarks below were run on an Apple M4 Pro. Ratios are needle length as a fraction of haystack length.
+# Benchmark
+
+Benchmarks were run on an AMD Ryzen AI 9 HX 370 across three haystack lengths (n=100, 1000, 10000), a needle-to-haystack ratio of 5%, and three scenarios: the needle appears at the start (`early`), middle (`middle`), or end (`late`). The full benchmark code is [available on GitHub](https://github.com/bi3mer/bi3mer.github.io/tree/master/example-code/leetcode-28). Solution 1 is `strings.Index`. Solution 2 is Char. Solution 3 is Slices. Solution 4 is CharSlice.
 
 **Early**
 
-| n     | ratio=1% | ratio=5% | ratio=10% |
-| ----- | -------- | -------- | --------- |
-| 100   | 3.227ns  | 4.051ns  | 3.743ns   |
-| 1000  | 3.660ns  | 5.869ns  | 6.929ns   |
-| 10000 | 6.942ns  | 15.15ns  | 23.14ns   |
+| n     | `strings.Index` | Char    | Slices  | CharSlice |
+| ----- | --------------- | ------- | ------- | --------- |
+| 100   | 3.885ns         | 4.305ns | 2.588ns | 2.688ns   |
+| 1000  | 5.030ns         | 21.67ns | 3.962ns | 3.930ns   |
+| 10000 | 8.410ns         | 278.9ns | 6.707ns | 7.232ns   |
+
+The needle matches at position 0, so every solution finds it on the first try. Slices is the fastest of the bunch. This is because the string comparison compiles to `CALL runtime.memequal(SB)`, which compares a block of memory at once and so the comparison is very fast. Compare this to Char which has to match byte-by-byte. With a needle that is 5% of `n`, that means you have 5 bytes at `n=100` and 500 bytes at `n=10000`, showing why the cost soars to 278.9ns.
+
+The other two solutions, `strings.Index` and CharSlice, are slower than Slices and faster than Char. The reason is that both have a cost. CharSlice's cost is that it checks the first character first so it can be faster if the needle is later in `haystack`. `strings.Index` has a similar cost, but it also analyzes the strings first to determine which algorithm it will run.
+
+**Middle**
+
+| n     | `strings.Index` | Char    | Slices  | CharSlice |
+| ----- | --------------- | ------- | ------- | --------- |
+| 100   | 17.28ns         | 42.18ns | 86.29ns | 19.70ns   |
+| 1000  | 89.24ns         | 485.6ns | 701.2ns | 155.7ns   |
+| 10000 | 919.1ns         | 4985ns  | 6710ns  | 1597ns    |
+
+With the needle in the middle, every solution scans roughly half the haystack. CharSlice comes closest to `strings.Index`, running 2–4x slower rather than 5–7x. This works because CharSlice skips `memequal` at most positions and only runs it when the first byte agrees. Slices has no such guard and pays for a `memequal` call at every position, making it the slowest naive solution. Char bails on the first mismatched byte, which is better than a full wasted `memequal`, but slower than CharSlice's guard.
 
 **Late**
 
-| n     | ratio=1% | ratio=5% | ratio=10% |
-| ----- | -------- | --------- | --------- |
-| 100   | 8.847ns  | 64.32ns   | 61.25ns   |
-| 1000  | 634.2ns  | 573.5ns   | 520.9ns   |
-| 10000 | 6431ns   | 6102ns    | 6220ns    |
+| n     | `strings.Index` | Char    | Slices  | CharSlice |
+| ----- | --------------- | ------- | ------- | --------- |
+| 100   | 32.09ns         | 85.61ns | 190.0ns | 36.87ns   |
+| 1000  | 191.9ns         | 884.6ns | 1376ns  | 313.0ns   |
+| 10000 | 1860ns          | 10216ns | 13481ns | 3253ns    |
 
-**No Match**
-
-| n     | ratio=1% | ratio=5% | ratio=10% |
-| ----- | -------- | --------- | --------- |
-| 100   | 58.89ns  | 52.94ns   | 49.57ns   |
-| 1000  | 557.8ns  | 538.6ns   | 516.3ns   |
-| 10000 | 5536ns   | 5357ns    | 4801ns    |
-
-The early case degrades with ratio because a larger needle means more work inside `memequal` even when the first character matches at position 0. The late and no-match cases hold up well relative to Slices: the first-character guard skips `memequal` entirely at most positions, giving Char's early-exit benefit while still using `memequal` for the full comparison when the first byte agrees.
-
-## TODO: this is great, but it doesn't work if it is hard to compare to the above tables, and it is hard to do so!
+The late case amplifies the middle pattern. CharSlice's first-character guard still filters most positions cheaply, keeping it roughly 2x slower than `strings.Index`. Slices remains worst: every position triggers a full `memequal` that comes back false. Char beats Slices because it bails on the first mismatched byte, but is still much slower than `strings.Index` and `CharSlice`.
 
 # Conclusion
 
-`strings.Index` wins by a large margin in every non-trivial case. My two implementations were fun, but, unsurprisingly, slower.
-My two solutions also trade places depending on the input. Slices wins when matches are common and early, where one `memequal` beats a hand-rolled byte loop. Char wins when comparisons fail fast, because it bails on the first mismatched byte instead of comparing a whole block it is about to discard. But neither ever catches the standard library. Where both of mine check every position one at a time, `strings.Index` skips ahead.
+`strings.Index` wins by a large margin in every non-trivial case. My three implementations were fun, but, unsurprisingly, slower. So, why are my solutions worse? CharSlice was one step in a long path people have taken to make really fast algorithms. The next step would be to examine one of the major points of wasted work, which is that every string comparison throws away work. Meaning, after string comparison fails, we step one character forward and then do another comparison. What if, instead, we could skip further ahead based on that string comparison?[^1]
 
-That skip-ahead is also why this benchmark does not represent a worst case for the naive solutions. A haystack full of repeated characters with a needle that almost-matches at every position (e.g. haystack=`"aaaaaa…a"`, needle=`"aaab"`) would make both Char and Slices significantly worse, while `strings.Index` would still handle it efficiently.
-
-This is exactly the kind of problem that motivated algorithms like [Boyer-Moore](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm), [Knuth-Morris-Pratt](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm), and the [many other variants](https://en.wikipedia.org/wiki/String-searching_algorithm) that exist. Go's `strings.Index` itself uses [Rabin-Karp](https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm) for longer needles and a variant of [Boyer-Moore-Horspool](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore%E2%80%93Horspool_algorithm) for short ones. They are out of scope here, but their existence shows how even a problem listed as "easy" can be surprisingly deep if you care to look. If you are curious, you can see Go's implementation on [GitHub.](https://github.com/golang/go/blob/master/src/internal/stringslite/strings.go#L28)
+That question has motivated algorithms like [Boyer-Moore](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm), [Knuth-Morris-Pratt](https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm), and the [many other variants](https://en.wikipedia.org/wiki/String-searching_algorithm) that exist. Go's `strings.Index` itself uses [Rabin-Karp](https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm) for longer needles and a variant of [Boyer-Moore-Horspool](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore%E2%80%93Horspool_algorithm) for short ones ([GitHub](https://github.com/golang/go/blob/master/src/internal/stringslite/strings.go#L28)). These algorithms are out of scope for this blog post, but their existence shows how even a problem listed as "easy" can be surprisingly deep if you care to look.
 
 Till next time, friends.
+
+[^1]: This is a good time to point out that my benchmark did not have the worst case. The worst case is a haystack full of repeated characters with a needle that almost-matches at every position (e.g. haystack=`"aaaaaa…a"`, needle=`"aaab"`). Char would perform significantly worse, since it would do `len(needle)-1` character comparisons `len(haystack)` times. It would also cause CharSlice to perform worse than Slice. `strings.Index`, though, would, I bet, maintain a strong performance.

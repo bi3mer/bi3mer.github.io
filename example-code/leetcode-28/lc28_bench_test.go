@@ -49,9 +49,9 @@ func strStrSlice(haystack string, needle string) int {
 	return -1
 }
 
-// --- Solution 4: FirstCharCheck ---
+// --- Solution 4: CharSlice ---
 
-func strStrOptimized(haystack string, needle string) int {
+func strStrCharSlice(haystack string, needle string) int {
 	for i := 0; i <= len(haystack)-len(needle); i++ {
 		if haystack[i] == needle[0] {
 			if haystack[i+1:i+len(needle)] == needle[1:] {
@@ -93,6 +93,9 @@ func buildInputs(n int, ratio float64, scenario string) (string, string) {
 		switch scenario {
 		case "early":
 			copy(buf[:needleLen], needle)
+		case "middle":
+			mid := (n - needleLen) / 2
+			copy(buf[mid:mid+needleLen], needle)
 		case "late":
 			copy(buf[n-needleLen:], needle)
 		}
@@ -102,16 +105,15 @@ func buildInputs(n int, ratio float64, scenario string) (string, string) {
 }
 
 func benchmarkStrStr(b *testing.B, fn func(string, string) int) {
+	const ratio = 0.05
 	for _, n := range []int{100, 1000, 10000} {
-		for _, ratio := range []float64{0.01, 0.05, 0.1} {
-			for _, scenario := range []string{"early", "late", "nomatch"} {
-				haystack, needle := buildInputs(n, ratio, scenario)
-				b.Run(fmt.Sprintf("n=%d/ratio=%.2f/%s", n, ratio, scenario), func(b *testing.B) {
-					for b.Loop() {
-						sink = fn(haystack, needle)
-					}
-				})
-			}
+		for _, scenario := range []string{"early", "middle", "late", "nomatch"} {
+			haystack, needle := buildInputs(n, ratio, scenario)
+			b.Run(fmt.Sprintf("n=%d/%s", n, scenario), func(b *testing.B) {
+				for b.Loop() {
+					sink = fn(haystack, needle)
+				}
+			})
 		}
 	}
 }
@@ -119,4 +121,4 @@ func benchmarkStrStr(b *testing.B, fn func(string, string) int) {
 func BenchmarkStrStrLib(b *testing.B)       { benchmarkStrStr(b, strStrLib) }
 func BenchmarkStrStrByHand(b *testing.B)    { benchmarkStrStr(b, strStrByHand) }
 func BenchmarkStrStrSlice(b *testing.B)     { benchmarkStrStr(b, strStrSlice) }
-func BenchmarkStrStrOptimized(b *testing.B) { benchmarkStrStr(b, strStrOptimized) }
+func BenchmarkStrStrCharSlice(b *testing.B) { benchmarkStrStr(b, strStrCharSlice) }
