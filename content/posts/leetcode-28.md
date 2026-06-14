@@ -70,6 +70,8 @@ The code is doing effectively the same thing. The difference is that instead of 
 
 Benchmarks were run on an AMD Ryzen AI 9 HX 370 across three haystack lengths (n=100, 1000, 10000), three needle-to-haystack ratios (1%, 5%, 10%), and three scenarios: the needle appears at the start (`early`), at the end (`late`), or not at all (`nomatch`). The full benchmark code is [available on GitHub](https://github.com/bi3mer/bi3mer.github.io/tree/master/example-code/leetcode-28). Solution 1 is represented by `strings.Index`. Solution 2 is represented by Char. Solution 3 is represented by Slices.
 
+## TODO: missing ratio in these tables
+
 **Early**
 
 | n     | `strings.Index` | Char    | Slices  |
@@ -99,6 +101,56 @@ Now the needle sits at the end, so all three scan most of the haystack before fi
 | 10000 | 91.47ns         | 7327ns  | 14360ns |
 
 `strings.Index` is the clear winner. For `nomatch` at n=10000 it finishes in **91ns**, versus **7327ns** for Char and **14360ns** for Slices, roughly 80x and 150x slower respectively. This is not a coincidence: Go's `strings.Index` uses [Rabin-Karp](https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm) for longer needles and a variant of [Boyer-Moore-Horspool](https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore%E2%80%93Horspool_algorithm) for short ones, both of which skip ahead in the haystack instead of checking every position. The same first-mismatch early exit that helped Char in the `late` case helps it again here: with no match, the mismatch usually comes within the first byte or two at each position, so Char stays ahead of Slices.
+
+# Solution 4: Best of Both Worlds
+
+Based on those benchmarks, I realzied that we can get the best of both worlds for Char and Slice:
+
+```go
+func strStr(haystack string, needle string) int {
+    for i := 0; i <= len(haystack) - len(needle); i++ {
+        if haystack[i] == needle[0] {
+            if haystack[i+1:i+len(needle)] == needle[1:] {
+                return i
+            }
+        }
+    }
+
+    return -1
+}
+```
+
+Now, we check the first character of `haystack[i]` and needle. If they are the same, then we run the full comparison (skipping the first character because we already did that compare).
+
+Benchmarks below were run on an Apple M4 Pro. Ratios are needle length as a fraction of haystack length.
+
+**Early**
+
+| n     | ratio=1% | ratio=5% | ratio=10% |
+| ----- | -------- | -------- | --------- |
+| 100   | 3.227ns  | 4.051ns  | 3.743ns   |
+| 1000  | 3.660ns  | 5.869ns  | 6.929ns   |
+| 10000 | 6.942ns  | 15.15ns  | 23.14ns   |
+
+**Late**
+
+| n     | ratio=1% | ratio=5% | ratio=10% |
+| ----- | -------- | --------- | --------- |
+| 100   | 8.847ns  | 64.32ns   | 61.25ns   |
+| 1000  | 634.2ns  | 573.5ns   | 520.9ns   |
+| 10000 | 6431ns   | 6102ns    | 6220ns    |
+
+**No Match**
+
+| n     | ratio=1% | ratio=5% | ratio=10% |
+| ----- | -------- | --------- | --------- |
+| 100   | 58.89ns  | 52.94ns   | 49.57ns   |
+| 1000  | 557.8ns  | 538.6ns   | 516.3ns   |
+| 10000 | 5536ns   | 5357ns    | 4801ns    |
+
+The early case degrades with ratio because a larger needle means more work inside `memequal` even when the first character matches at position 0. The late and no-match cases hold up well relative to Slices: the first-character guard skips `memequal` entirely at most positions, giving Char's early-exit benefit while still using `memequal` for the full comparison when the first byte agrees.
+
+## TODO: this is great, but it doesn't work if it is hard to compare to the above tables, and it is hard to do so!
 
 # Conclusion
 

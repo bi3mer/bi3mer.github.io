@@ -49,6 +49,20 @@ func strStrSlice(haystack string, needle string) int {
 	return -1
 }
 
+// --- Solution 4: FirstCharCheck ---
+
+func strStrOptimized(haystack string, needle string) int {
+	for i := 0; i <= len(haystack)-len(needle); i++ {
+		if haystack[i] == needle[0] {
+			if haystack[i+1:i+len(needle)] == needle[1:] {
+				return i
+			}
+		}
+	}
+
+	return -1
+}
+
 // --- Benchmarks ---
 
 var sink int
@@ -102,6 +116,7 @@ func benchmarkStrStr(b *testing.B, fn func(string, string) int) {
 	}
 }
 
-func BenchmarkStrStrLib(b *testing.B)    { benchmarkStrStr(b, strStrLib) }
-func BenchmarkStrStrByHand(b *testing.B) { benchmarkStrStr(b, strStrByHand) }
-func BenchmarkStrStrSlice(b *testing.B)  { benchmarkStrStr(b, strStrSlice) }
+func BenchmarkStrStrLib(b *testing.B)       { benchmarkStrStr(b, strStrLib) }
+func BenchmarkStrStrByHand(b *testing.B)    { benchmarkStrStr(b, strStrByHand) }
+func BenchmarkStrStrSlice(b *testing.B)     { benchmarkStrStr(b, strStrSlice) }
+func BenchmarkStrStrOptimized(b *testing.B) { benchmarkStrStr(b, strStrOptimized) }
