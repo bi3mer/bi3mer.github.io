@@ -1,7 +1,7 @@
 +++
 date = '2026-06-05T09:37:33-05:00'
 draft = false
-title = 'Leetcode 19'
+title = 'LeetCode 19'
 url = '/posts/leetcode-19/'
 +++
 
@@ -93,6 +93,7 @@ I benchmarked all three with `testing.B` and `-benchmem`. The full benchmark cod
 | Solution 1: Two loops        |   919.1 |   803 |        50 |
 | Solution 2: Temporary memory | 1,210.6 | 2,012 |        56 |
 | Solution 3: Hare & tortoise  |   846.7 |   803 |        50 |
+
 {.styled-table}
 
 Results on an AMD Ryzen AI 9 HX 370 (averages over 5 runs, 1000 random inputs cycled per benchmark).

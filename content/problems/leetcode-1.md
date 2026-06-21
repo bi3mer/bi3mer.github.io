@@ -1,7 +1,7 @@
 +++
 date = '2026-06-20T12:11:03-05:00'
 draft = false
-title = 'Leetcode 1'
+title = 'LeetCode 1'
 url = '/posts/leetcode-1/'
 +++
 
