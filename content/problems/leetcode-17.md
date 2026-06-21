@@ -2,6 +2,7 @@
 date = '2026-06-03T08:49:11-00:00'
 draft = false
 title = 'Leetcode 17'
+url = '/posts/leetcode-17/'
 +++
 
 # From Array Confusion to a Mixed-Radix Decoder: Solving LeetCode 17 in Go

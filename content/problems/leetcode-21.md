@@ -2,6 +2,7 @@
 date = '2026-06-07T09:41:05-05:00'
 draft = false
 title = 'LeetCode 21'
+url = '/posts/leetcode-21/'
 +++
 
 Unfortunately, [LeetCode 21](https://leetcode.com/problems/merge-two-sorted-lists/) had no interesting wrinkles to explore.

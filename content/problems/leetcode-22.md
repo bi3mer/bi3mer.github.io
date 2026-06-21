@@ -2,6 +2,7 @@
 date = '2026-06-08T10:10:27-05:00'
 draft = false
 title = 'LeetCode 22'
+url = '/posts/leetcode-22/'
 +++
 
 Welcome back. This time we are going to work on [problem 22](https://leetcode.com/problems/generate-parentheses/). The idea is simple. We need to generate every possible valid string of open and closed parenthesis for an integer `n`. The example they give is for `n=1` and `n=3`:

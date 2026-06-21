@@ -2,6 +2,7 @@
 date = '2026-06-17T06:30:45-05:00'
 draft = false
 title = 'LeetCode 31'
+url = '/posts/leetcode-31/'
 +++
 
 [Problem 31](https://leetcode.com/problems/next-permutation/description/) is <span style="color:orange">medium</span> difficulty. The title is "Next Permutation," which partially relates to [yesterday's problem](../leetcode-30/) where I tried to use permutations, but the goal is different. To see, let's look at the examples that LeetCode gave:

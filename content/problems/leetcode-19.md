@@ -2,6 +2,7 @@
 date = '2026-06-05T09:37:33-05:00'
 draft = false
 title = 'Leetcode 19'
+url = '/posts/leetcode-19/'
 +++
 
 [LeetCode 19](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) asks the solver to remove a node from a linked list. It does have a trick, though. Rather than the typical "remove the nth element" it gives you an index based on the end of the list, "remove the nth element from the end of the list."

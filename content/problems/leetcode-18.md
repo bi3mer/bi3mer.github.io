@@ -2,6 +2,7 @@
 date = '2026-06-04T8:00:41-04:00'
 draft = false
 title = 'Leetcode 18'
+url = '/posts/leetcode-18/'
 +++
 
 [LeetCode 18, _4Sum_](https://leetcode.com/problems/4sum/description/) asks for every _unique_ quadruplet `[a, b, c, d]` in an array `nums` that sums to a `target`. For example, given `nums = [1, 0, -1, 0, -2, 2]` and `target = 0`, the answer is `[[-2, -1, 1, 2], [-2, 0, 0, 2], [-1, 0, 0, 1]]`. The word _unique_ is the whole game here. It is easy to find quadruplets that sum to the target; it is annoying to make sure you never report the same one twice.

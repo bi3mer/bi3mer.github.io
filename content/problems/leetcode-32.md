@@ -2,6 +2,7 @@
 date = '2026-06-19T07:30:25-05:00'
 draft = false
 title = 'LeetCode 32'
+url = '/posts/leetcode-32/'
 +++
 
 We are now on [LeetCode 32](https://leetcode.com/problems/longest-valid-parentheses/). It is titled, "Longest Valid Parentheses," and the problem definition is wonderfully sparse: "Given a string containing just the characters '(' and ')', return the length of the longest valid (well-formed) parentheses substring."

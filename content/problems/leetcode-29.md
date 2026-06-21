@@ -2,6 +2,7 @@
 date = '2026-06-15T09:22:12-05:00'
 draft = false
 title = 'LeetCode 29'
+url = '/posts/leetcode-29/'
 +++
 
 [LeetCode 29](https://leetcode.com/problems/divide-two-integers/description/) asks for you to implement integer division without using division, mod, or multiplication. Naturally, the first thing I did was use division.

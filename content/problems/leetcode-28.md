@@ -2,6 +2,7 @@
 date = '2026-06-14T07:58:24-05:00'
 draft = false
 title = 'LeetCode 28'
+url = '/posts/leetcode-28/'
 +++
 
 [LeetCode 28](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) is another very easy problem. You are given two strings, and you have to see if the second string exists in the first string. If so, return the index of the start of that string. If it can't be found, return -1.

@@ -2,6 +2,7 @@
 date = '2026-06-20T12:11:03-05:00'
 draft = false
 title = 'Leetcode 1'
+url = '/posts/leetcode-1/'
 +++
 
 As mentioned in [the last post,](/posts/leetcode-32/#conclusion) we are going back to the start of the LeetCode problem set, and doing [LeetCode 1](https://leetcode.com/problems/two-sum/description/). The problem is to find two elements in the input array that add up to a target value that is also input. The output, then, is the indices of those two elements:

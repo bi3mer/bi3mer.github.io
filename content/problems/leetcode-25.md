@@ -2,6 +2,7 @@
 date = '2026-06-11T09:15:19-05:00'
 draft = false
 title = 'LeetCode 25'
+url = '/posts/leetcode-25/'
 +++
 
 Welcome back. We are going to be solving a dreaded <span style="color:red">HARD</span> problem. Specifically, we are going to do [problem 25](https://leetcode.com/problems/reverse-nodes-in-k-group/description/). What I like about it is that it directly builds on [problem 24, the problem I solved yesterday.](../leetcode-24/) As a reminder, [problem 24](https://leetcode.com/problems/swap-nodes-in-pairs/) asked you to swap nodes in pairs. This problem is the same idea, except instead of pairs, we have to swap `k` nodes. Meaning, problem 24 was a specific instance of this problem where `k=2`. To help, here are two examples:

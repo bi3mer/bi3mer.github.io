@@ -2,6 +2,7 @@
 date = '2026-06-06T12:00:54-05:00'
 draft = false
 title = 'Leetcode 20'
+url = '/posts/leetcode-20/'
 +++
 
 [LeetCode 20](https://leetcode.com/problems/valid-parentheses/) gives you a string made up of the six bracket characters `()[]{}` and asks whether they are properly matched and nested. "Properly" means every opener has a corresponding closer of the same type, and they close in the right order. So `()[]{}` is valid, `([])` is valid, but `([)]` is not.

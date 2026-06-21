@@ -2,6 +2,7 @@
 date = '2026-06-13T09:59:33-05:00'
 draft = false
 title = 'LeetCode 27'
+url = '/posts/leetcode-27/'
 +++
 
 [LeetCode 27](https://leetcode.com/problems/remove-element/description/) is, like [the last problem](../leetcode-26/), an <span style="color:green">easy</span> problem. The problem itself is to remove elements from an array that equal `v`. Here is an example:

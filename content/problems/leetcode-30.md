@@ -2,6 +2,7 @@
 date = '2026-06-16T09:24:41-05:00'
 draft = false
 title = 'Leetcode 30'
+url = '/posts/leetcode-30/'
 +++
 
 We are finally back to a <span style="color:red">HARD</span> problem with [LeetCode 30.](https://leetcode.com/problems/substring-with-concatenation-of-all-words/description/) As input, we get one string and one array of strings. The expected output is an array of indices.

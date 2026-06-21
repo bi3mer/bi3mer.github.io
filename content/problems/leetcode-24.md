@@ -2,6 +2,7 @@
 date = '2026-06-10T09:25:33-05:00'
 draft = false
 title = 'LeetCode 24'
+url = '/posts/leetcode-24/'
 +++
 
 [LeetCode 24](https://leetcode.com/problems/swap-nodes-in-pairs/) is a problem where you have to swap pairs of nodes in a linked list. I think the examples are more informative than the text, so here are the examples but I did modify them to use linked list notation:

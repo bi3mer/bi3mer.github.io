@@ -15,7 +15,7 @@ menu:
     - identifier: games
       name: Games
       url: /games/
-      weight: 20
+      weight: 10
     - identifier: posts
       name: Posts
       url: /posts/
@@ -24,14 +24,18 @@ menu:
       name: Publications
       url: /publications
       weight: 30
+    - identifier: problems
+      name: Problems
+      url: /problems/
+      weight: 40
     - identifier: archive
       name: Archive
       url: /archives/
-      weight: 40
+      weight: 50
     - identifier: search
       name: Search
       url: /search/
-      weight: 50
+      weight: 60
 
 outputs:
   home:

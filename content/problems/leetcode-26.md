@@ -2,6 +2,7 @@
 date = '2026-06-12T09:24:02-05:00'
 draft = false
 title = 'LeetCode 26'
+url = '/posts/leetcode-26/'
 +++
 
 [Problem 26](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) lives up to its label: <span style="color:green">easy</span>. You are given a sorted array, and you have to remove duplicates from it. It also asks that you include the number of unique elements in the array. Here are some samples.
