@@ -1,0 +1,66 @@
+goos: linux
+goarch: amd64
+pkg: lc3bench
+cpu: AMD Ryzen AI 9 HX 370 w/ Radeon 890M           
+BenchmarkLoopInit/n=1000-24         	 5449248	       224.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5406368	       216.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5493814	       216.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5412231	       214.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5467368	       214.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5226028	       215.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5636908	       212.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5661885	       213.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5439018	       217.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=1000-24         	 5382129	       215.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  515588	      2003 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  519045	      1980 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  589879	      2007 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  590656	      2032 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  558166	      2098 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  581679	      2011 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  597772	      1999 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  597504	      1996 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  600476	      1991 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=10000-24        	  579184	      2046 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   60753	     19726 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   60327	     19777 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   57715	     20131 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   60832	     19644 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   61053	     19633 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   60463	     19876 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   60375	     19698 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   60320	     19776 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   57049	     19913 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLoopInit/n=100000-24       	   60706	     19710 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	20363545	        61.60 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	20494701	        58.65 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	20466218	        58.58 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	20497786	        58.58 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	20373736	        59.07 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	20426259	        58.63 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	18620817	        59.05 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	20398438	        58.85 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	19965424	        59.74 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=1000-24         	17903668	        59.11 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2364672	       507.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2364322	       507.9 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2360187	       507.6 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2238416	       520.1 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2339772	       512.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2340786	       512.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2338476	       512.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2357176	       510.2 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2336025	       513.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=10000-24        	 2337301	       513.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  205204	      5955 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  207181	      5707 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  207691	      5690 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  205634	      5718 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  208537	      5738 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  211183	      5689 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  210867	      5696 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  208597	      5682 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  206713	      5750 ns/op	       0 B/op	       0 allocs/op
+BenchmarkBulkInit/n=100000-24       	  207969	      5756 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	lc3bench	70.951s
