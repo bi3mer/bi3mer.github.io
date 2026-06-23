@@ -1,0 +1,60 @@
+goos: linux
+goarch: amd64
+pkg: lc4bench
+cpu: AMD Ryzen AI 9 HX 370 w/ Radeon 890M           
+BenchmarkDumb/n=1000-24     	  139444	     41666 ns/op
+BenchmarkDumb/n=1000-24     	  149739	     42459 ns/op
+BenchmarkDumb/n=1000-24     	  141622	     43018 ns/op
+BenchmarkDumb/n=1000-24     	  138444	     43176 ns/op
+BenchmarkDumb/n=1000-24     	  136189	     41457 ns/op
+BenchmarkDumb/n=1000-24     	  138660	     42077 ns/op
+BenchmarkDumb/n=10000-24    	   16544	    359313 ns/op
+BenchmarkDumb/n=10000-24    	   16934	    359062 ns/op
+BenchmarkDumb/n=10000-24    	   16533	    362794 ns/op
+BenchmarkDumb/n=10000-24    	   16317	    365158 ns/op
+BenchmarkDumb/n=10000-24    	   17036	    357014 ns/op
+BenchmarkDumb/n=10000-24    	   16232	    375011 ns/op
+BenchmarkDumb/n=100000-24   	    1413	   3742552 ns/op
+BenchmarkDumb/n=100000-24   	    1550	   3749764 ns/op
+BenchmarkDumb/n=100000-24   	    1614	   3705156 ns/op
+BenchmarkDumb/n=100000-24   	    1581	   3722030 ns/op
+BenchmarkDumb/n=100000-24   	    1572	   3732825 ns/op
+BenchmarkDumb/n=100000-24   	    1450	   3755379 ns/op
+BenchmarkTwoPointers/n=1000-24         	 2442787	      2515 ns/op
+BenchmarkTwoPointers/n=1000-24         	 2331142	      2610 ns/op
+BenchmarkTwoPointers/n=1000-24         	 2201617	      2657 ns/op
+BenchmarkTwoPointers/n=1000-24         	 2197988	      2658 ns/op
+BenchmarkTwoPointers/n=1000-24         	 2304470	      2560 ns/op
+BenchmarkTwoPointers/n=1000-24         	 2375305	      2586 ns/op
+BenchmarkTwoPointers/n=10000-24        	  199593	     30328 ns/op
+BenchmarkTwoPointers/n=10000-24        	  200043	     29989 ns/op
+BenchmarkTwoPointers/n=10000-24        	  199677	     29961 ns/op
+BenchmarkTwoPointers/n=10000-24        	  199020	     30074 ns/op
+BenchmarkTwoPointers/n=10000-24        	  199764	     30191 ns/op
+BenchmarkTwoPointers/n=10000-24        	  198474	     30075 ns/op
+BenchmarkTwoPointers/n=100000-24       	   19670	    306933 ns/op
+BenchmarkTwoPointers/n=100000-24       	   19606	    305758 ns/op
+BenchmarkTwoPointers/n=100000-24       	   19641	    305388 ns/op
+BenchmarkTwoPointers/n=100000-24       	   19623	    308817 ns/op
+BenchmarkTwoPointers/n=100000-24       	   19543	    306174 ns/op
+BenchmarkTwoPointers/n=100000-24       	   19632	    305142 ns/op
+BenchmarkBinarySearch/n=1000-24        	460136683	        13.00 ns/op
+BenchmarkBinarySearch/n=1000-24        	466934625	        12.84 ns/op
+BenchmarkBinarySearch/n=1000-24        	463186975	        13.13 ns/op
+BenchmarkBinarySearch/n=1000-24        	465522939	        12.98 ns/op
+BenchmarkBinarySearch/n=1000-24        	449681152	        13.24 ns/op
+BenchmarkBinarySearch/n=1000-24        	436772184	        13.49 ns/op
+BenchmarkBinarySearch/n=10000-24       	273390526	        21.99 ns/op
+BenchmarkBinarySearch/n=10000-24       	272588270	        22.04 ns/op
+BenchmarkBinarySearch/n=10000-24       	272675353	        21.99 ns/op
+BenchmarkBinarySearch/n=10000-24       	272584645	        22.04 ns/op
+BenchmarkBinarySearch/n=10000-24       	271276153	        22.03 ns/op
+BenchmarkBinarySearch/n=10000-24       	273798235	        21.94 ns/op
+BenchmarkBinarySearch/n=100000-24      	251360382	        23.99 ns/op
+BenchmarkBinarySearch/n=100000-24      	251031788	        23.86 ns/op
+BenchmarkBinarySearch/n=100000-24      	247837286	        23.88 ns/op
+BenchmarkBinarySearch/n=100000-24      	250290975	        24.00 ns/op
+BenchmarkBinarySearch/n=100000-24      	249004165	        23.94 ns/op
+BenchmarkBinarySearch/n=100000-24      	251409753	        23.89 ns/op
+PASS
+ok  	lc4bench	324.508s
