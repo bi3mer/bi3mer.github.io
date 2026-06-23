@@ -1,7 +1,7 @@
 +++
 date = '2026-06-11T09:15:19-05:00'
 draft = false
-title = 'LeetCode 25'
+title = 'LeetCode 25: Reverse Nodes in k-Group'
 url = '/posts/leetcode-25/'
 +++
 

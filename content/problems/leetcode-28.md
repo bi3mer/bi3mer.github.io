@@ -1,7 +1,7 @@
 +++
 date = '2026-06-14T07:58:24-05:00'
 draft = false
-title = 'LeetCode 28'
+title = 'LeetCode 28: Find the Index of the First Occurrence in a String'
 url = '/posts/leetcode-28/'
 +++
 

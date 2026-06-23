@@ -1,7 +1,7 @@
 +++
 date = '2026-06-03T08:49:11-00:00'
 draft = false
-title = 'LeetCode 17'
+title = 'LeetCode 17: Letter Combinations of a Phone Number'
 url = '/posts/leetcode-17/'
 +++
 

@@ -1,7 +1,7 @@
 +++
 date = '2026-06-10T09:25:33-05:00'
 draft = false
-title = 'LeetCode 24'
+title = 'LeetCode 24: Swap Nodes in Pairs'
 url = '/posts/leetcode-24/'
 +++
 

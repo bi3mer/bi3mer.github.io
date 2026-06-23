@@ -1,7 +1,7 @@
 +++
 date = '2026-06-12T09:24:02-05:00'
 draft = false
-title = 'LeetCode 26'
+title = 'LeetCode 26: Remove Duplicates from Sorted Array'
 url = '/posts/leetcode-26/'
 +++
 

@@ -1,7 +1,7 @@
 +++
 date = '2026-06-22T10:16:57-0500'
 draft = false
-title = 'LeetCode 3'
+title = 'LeetCode 3: Longest Substring Without Repeating Characters'
 url = '/posts/leetcode-3/'
 +++
 

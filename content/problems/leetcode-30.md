@@ -1,7 +1,7 @@
 +++
 date = '2026-06-16T09:24:41-05:00'
 draft = false
-title = 'LeetCode 30'
+title = 'LeetCode 30: Substring with Concatenation of All Words'
 url = '/posts/leetcode-30/'
 +++
 

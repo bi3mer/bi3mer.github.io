@@ -1,7 +1,7 @@
 +++
 date = '2026-06-06T12:00:54-05:00'
 draft = false
-title = 'LeetCode 20'
+title = 'LeetCode 20: Valid Parentheses'
 url = '/posts/leetcode-20/'
 +++
 

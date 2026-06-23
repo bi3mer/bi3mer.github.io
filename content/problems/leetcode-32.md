@@ -1,7 +1,7 @@
 +++
 date = '2026-06-19T07:30:25-05:00'
 draft = false
-title = 'LeetCode 32'
+title = 'LeetCode 32: Longest Valid Parentheses'
 url = '/posts/leetcode-32/'
 +++
 
