@@ -2,6 +2,7 @@
 date = '2026-06-23T09:11:53-05:00'
 draft = false
 title = 'LeetCode 4: Median of Two Sorted Arrays'
+url = '/posts/leetcode-4/'
 +++
 
 Hi! Welcome back.
