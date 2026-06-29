@@ -1,0 +1,16 @@
+{{- define "main" }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+</header>
+
+{{- $pages := sort .RegularPages "Date" "desc" }}
+<ul class="problems-list">
+  {{- range $pages }}
+  <li>
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+    <span class="problems-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+  </li>
+  {{- end }}
+</ul>
+{{- end }}

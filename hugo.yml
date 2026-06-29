@@ -28,10 +28,14 @@ menu:
       name: Problems
       url: /problems/
       weight: 40
-    - identifier: archive
-      name: Archive
-      url: /archives/
-      weight: 50
+    - identifier: youtube
+      name: YouTube
+      url: /youtube/
+      weight: 45
+    # - identifier: archive
+    #   name: Archive
+    #   url: /archives/
+    #   weight: 50
     - identifier: search
       name: Search
       url: /search/

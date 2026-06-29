@@ -1,14 +1,14 @@
 +++
-date = '2026-03-16T12:21:57-04:00'
+date = '2026-03-16T12:00:00+00:00'
 draft = false
-title = 'Data Structures & Algorithms: Arrays and Linear Search'
+title = "Data Structures & Algorithms: Arrays and Linear Search"
 +++
 
 {{< youtube LuxDiQ7-i38 >}}
 
 ----
 
-An introduction to arrays and linear search, live-coded in C11.
+An introduction to arrays and linear search, live-coded in C11. 
 
 In this video we cover:
 
