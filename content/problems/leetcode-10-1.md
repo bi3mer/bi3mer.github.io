@@ -21,7 +21,7 @@ Example 3:
   Output: true
 ```
 
-There are two solid ways to solve this. I know because I did it a few years ago. The first way is recursive and the second way is with [dynamic programming.](https://en.wikipedia.org/wiki/Dynamic_programming) Up to this point, we haven't done any problems that required dynamic programming, and it is not a strong point of mine. As a result, I know that solving the problem the dynamic programming way will take me more than thirty minutes and I don't want to spend my whole morning on this problem. That is why I'm breaking this problem into two blog posts. In the first post, this one, I'll solve the problem with recursion. It is slower than the dynamic programming way, but I could use the practice writing a recursive solution. In the second post, I'll solve this problem with dynamic programming and explain what dynamic programming even is.
+There are two solid ways to solve this. I know because I did it a few years ago. The first way is recursive and the second way is with [dynamic programming.](https://en.wikipedia.org/wiki/Dynamic_programming) Up to this point, we haven't done any problems that required dynamic programming, and it is not a strong point of mine. As a result, I know that solving the problem the dynamic programming way will take me more than thirty minutes and I don't want to spend my whole morning on this problem. That is why I'm breaking this problem into two blog posts. In the first post, this one, I'll solve the problem with recursion. It is slower than the dynamic programming way, but I could use the practice writing a recursive solution. In [the second post,](/posts/leetcode-10-2/) I'll solve this problem with dynamic programming and explain what dynamic programming even is.
 
 Now, let's talk about how to solve this problem recursively.
 
@@ -103,9 +103,9 @@ if len(p) > 1 && p[1] == '*' {
 return false
 ```
 
-In the Kleene star case, we have two cases to handle. The first is when we have a character match either via the character or via a wildcard. In that case, we return the result of `isMatch(s[1:], p) || isMatch(s, p[2:])`. The first call removes the first character from `s` and keeps `p` unchanged, matching one occurrence. The second skips the "x*" pair in `p` without consuming `s`, matching zero occurrences. This is the backtracking: if one path fails, the `||` tries the other.
+In the Kleene star case, we have two cases to handle. The first is when we have a character match either via the character or via a wildcard. In that case, we return the result of `isMatch(s[1:], p) || isMatch(s, p[2:])`. The first call removes the first character from `s` and keeps `p` unchanged, matching one occurrence. The second skips the "x\*" pair in `p` without consuming `s`, matching zero occurrences. This is the backtracking: if one path fails, the `||` tries the other.
 
-And like that, we have a fully working solution to the problem. Unfortunately, it is slow. It beats only 15.53% of submissions. The way to fix this is with dynamic programming, and that'll be in the next post. Below is the complete solution based on the code we wrote. I have also included a second version that is much more compact, but is (1) slower and (2) harder to read.
+And like that, we have a fully working solution to the problem. Unfortunately, it is slow. It beats only 15.53% of submissions. The way to fix this is with dynamic programming, and that'll be in the [next post.](/posts/leetcode-10-2/) Below is the complete solution based on the code we wrote. I have also included a second version that is much more compact, but is (1) slower and (2) harder to read.
 
 **Our Solution**
 
