@@ -24,7 +24,7 @@ Example 3:
 They also provide a table, which is helpful:
 
 | Symbol | Value |
-|--------|-------|
+| ------ | ----- |
 | I      | 1     |
 | V      | 5     |
 | X      | 10    |
