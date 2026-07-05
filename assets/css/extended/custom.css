@@ -27,9 +27,15 @@
     border-bottom: 1px solid var(--border, #ccc);
 }
 
+.problems-meta {
+    display: flex;
+    gap: 1rem;
+    margin-left: 1rem;
+}
+
+.problems-readtime,
 .problems-date {
     color: var(--secondary);
     font-size: 0.85em;
     white-space: nowrap;
-    margin-left: 1rem;
 }

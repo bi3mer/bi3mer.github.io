@@ -9,7 +9,10 @@
   {{- range $pages }}
   <li>
     <a href="{{ .Permalink }}">{{ .Title }}</a>
-    <span class="problems-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+    <span class="problems-meta">
+      <span class="problems-readtime">{{ .ReadingTime }} min read</span>
+      <span class="problems-date">{{ .Date.Format "2006-01-02" }}</span>
+    </span>
   </li>
   {{- end }}
 </ul>
