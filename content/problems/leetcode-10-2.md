@@ -161,7 +161,7 @@ From there, the algorithm runs until it has completely filled in the graph, and 
 
 I've learned that top-down dynamic programming is easy. Make the recursive solution, then add memoization. Easy. Bottom-up dynamic programming is brutal. I'll need a ton more practice before I ever try it outside of a LeetCode problem. That said, I don't know if I have ever come across a problem where dynamic program was required except for pathfinding. Pathfinding, though, is somehow different for me. Probably because I've implemented all the variants so many times.
 
-Regardless, I hope you enjoyed this post. I'm definitely going to look to restructure this series of posts once I finish problem 16. I need to practice dynamic programming with more intent. I don't think it will suffice to wait till they randomly pop up.
+Regardless, I hope you enjoyed this post. I'm definitely going to look to restructure this series of posts once I finish [problem 16.](/posts/leetcode-16/) I need to practice dynamic programming with more intent. I don't think it will suffice to wait till they randomly pop up.
 
 Till next time, friends.
 
