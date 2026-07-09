@@ -1,5 +1,5 @@
 +++
-date = '2026-07-10T08:07:39-05:00''
+date = '2026-07-10T08:07:39-05:00'
 draft = false
 title = "Leetcode 119: Pascal's Triangle II"
 url = '/posts/leetcode-119/'
