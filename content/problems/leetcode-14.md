@@ -2,7 +2,7 @@
 date = '2026-07-04T07:48:05-05:00'
 draft = false
 math = true
-title = 'Leetcode 14: Longest Common Prefix'
+title = 'LeetCode 14: Longest Common Prefix'
 url = '/posts/leetcode-14/'
 +++
 

@@ -1,7 +1,7 @@
 +++
 date = '2026-06-27T09:43:24-05:00'
 draft = false
-title = 'Leetcode 8: String to Integer (atoi)'
+title = 'LeetCode 8: String to Integer (atoi)'
 url = '/posts/leetcode-8/'
 +++
 

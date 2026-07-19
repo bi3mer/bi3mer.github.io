@@ -2,7 +2,7 @@
 date = '2026-06-28T10:08:11-05:00'
 draft = false
 math = true
-title = 'Leetcode 9: Palindrome Number'
+title = 'LeetCode 9: Palindrome Number'
 url = '/posts/leetcode-9/'
 
 +++

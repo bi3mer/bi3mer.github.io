@@ -1,7 +1,7 @@
 +++
 date = '2026-06-30T08:50:27-05:00'
 draft = false
-title = 'Leetcode 10: Regular Expression Matching -> Dynamic Programming'
+title = 'LeetCode 10: Regular Expression Matching -> Dynamic Programming'
 url = '/posts/leetcode-10-2/'
 +++
 
