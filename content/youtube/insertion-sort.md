@@ -1,7 +1,7 @@
 +++
 date = '2026-07-08T12:25:39-05:00'
 draft = false
-title = 'Datastructures & Algorithms: Insertion Sort'
+title = 'Data Structures & Algorithms: Insertion Sort'
 +++
 
 {{< youtube eTwcfbFprps >}}

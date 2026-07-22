@@ -1,7 +1,7 @@
 +++
 date = '2018-06-17T13:59:57-05:00'
 draft = false
-title = 'Generative Design in Mineraft: Nuking the Ground'
+title = 'Generative Design in Minecraft: Nuking the Ground'
 +++
 # A Quick Note
 I ended up getting pretty sick and I was out of commission for about two months. The good news is that I’m now in perfectly good health. The bad news is that it kind of destroyed my hopes of building a decent submission for GDMC. The competition ends in about thirteen days which is not enough time to come up with a submission I would be proud of. In addition, my 40+ hours at the [Brain Game Center](https://braingamecenter.ucr.edu/), where I work, every week is the very large nail in the coffin. Regardless, I plan on continuing to work on this problem until I have something cool I can show off.

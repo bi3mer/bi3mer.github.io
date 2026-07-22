@@ -1,7 +1,7 @@
 +++
 date = '2018-02-26T20:27:29-05:00'
 draft = false
-title = 'Generative Design in Mineraft: MCEdit Basics'
+title = 'Generative Design in Minecraft: MCEdit Basics'
 +++
 # Generative Design in Minecraft (GDMC)
 

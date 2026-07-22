@@ -1,7 +1,7 @@
 +++
 date = '2013-05-15T12:00:00+00:00'
 draft = false
-title = "Basic objective-c Programing: Button and Label"
+title = "Basic objective-c Programming: Button and Label"
 +++
 
 {{< youtube gEAAiYGjTMA >}}

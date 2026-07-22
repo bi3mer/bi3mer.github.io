@@ -1,7 +1,7 @@
 +++
 date = '2025-03-01T13:02:08-04:00'
 draft = false
-title = 'Graph Simplfication for a Faster A*'
+title = 'Graph Simplification for a Faster A*'
 +++
 
 [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) is an algorithm that is so well covered that I won't be wasting my time to add to the noise in this blog post, but if you are unfamiliar with A*, I recommend reading an [introduction from Red Blob Games](https://www.redblobgames.com/pathfinding/a-star/introduction.html) and then coming back here.[^0]
