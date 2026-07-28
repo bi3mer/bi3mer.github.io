@@ -30,6 +30,36 @@ func search(nums []int, target int) int {
 
 This beats 100% of the solutions in terms of runtime, and that's why I don't like this problem. There is no penalty for being lazy. The requirement that the solution must have a runtime of \(O(log(n))\) is contrived. Regardless, we might as well find the correct solution.
 
+```go
+func search(nums []int, target int) int {
+    left, right := 0, len(nums) - 1
+
+    for left <= right {
+        mid := left + (right-left)/2
+
+        if nums[mid] == target {
+            return mid
+        }
+
+        if nums[left] <= nums[mid] {
+            if nums[left] <= target && target < nums[mid] {
+                right = mid - 1
+            } else {
+                left = mid + 1
+            }
+        } else {
+            if nums[mid] < target && target <= nums[right] {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+    }
+
+    return -1
+}
+```
+
 As for dynamic programming practice, I'm hoping to come back to it in a week or two. Things are a bit busy for me at the moment.
 
 Till next time, friends.
