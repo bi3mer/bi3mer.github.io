@@ -9,8 +9,8 @@ showReadingTime: false
 disableShare: true
 ---
 ## Post-Dissertation Work
-- [adjust.h](https://github.com/bi3mer/adjust.h/blob/main/adjust.h) - A single header library written in `c11` for adjusting hardcoded values while the application is running.
-- [fsm.h](https://github.com/bi3mer/fsm.h) - A single header library written in `c11` used for simple state management in games.
+- [adjust.h](https://github.com/bi3mer/adjust.h/blob/main/adjust.h) - A single header library written in `c99` for adjusting hardcoded values while the application is running.
+- [fsm.h](https://github.com/bi3mer/fsm.h) - A single header library written in `c99` used for simple state management in games.
 
 ## Dissertation Work
 - [Ponos](https://github.com/bi3mer/ponos) - A tool for building a [Markov Decision Process](https://en.wikipedia.org/wiki/Markov_decision_process) that assembles video game levels for dynamic difficulty adjustment. It is the work behind my dissertation, and it combines the work of three of my papers into one.
