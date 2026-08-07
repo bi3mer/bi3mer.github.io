@@ -13,6 +13,7 @@ disableShare: true
 
 ## Active
 
+- Unannounced Game: a puzzle game written in C11 with a custom physics engine and [SDL3](https://wiki.libsdl.org/SDL3/FrontPage)
 - [brain](https://github.com/bi3mer/brain): a command line tool written in Go that combines a personal wiki, project manager, and digital [Zettelkasten](https://en.wikipedia.org/wiki/Zettelkasten)
 - [adjust.h](https://github.com/bi3mer/adjust.h): a single header C99 library for changing hardcoded values while your program is running
 
