@@ -8,6 +8,9 @@ disableShare: true
 
 ## Papers
 
+**Biemer, Colan F.**, and Seth Cooper. "Dynamic Crossword Difficulty via Reactive Puzzle Construction." In Proceedings of the 21st International Conference on the Foundations of Digital Games, pp. 1-5. 2026.\
+[Paper](/pdf/2026_pcg_crosswords.pdf), [Talk](https://drive.google.com/file/d/1LF718ukW606Agzp-GmMAkmgdngl3vaOr/view), [Code](https://github.com/bi3mer/crossword)
+
 **Biemer, Colan F.**, and Seth Cooper. "Evaluating the impact of MDP-based level assembly on player experience." In EXAG@ AIIDE. 2025. \
 [Paper](/pdf/2025_exag_dda-mdp.pdf)
 
