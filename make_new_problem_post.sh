@@ -7,14 +7,14 @@ if [ -z "$1" ]; then
 fi
 
 NAME="$1"
-FILE="content/problems/${NAME}.md"
+FILE="problems/${NAME}.md"
 
 if [ -f "$FILE" ]; then
     echo "Error: $FILE already exists"
     exit 1
 fi
 
-DATE=$(date +"%Y-%m-%dT%H:%M:%S%z")
+DATE=$(date +"%Y-%m-%dT%H:%M:%S%:z")
 
 cat > "$FILE" <<EOF
 +++

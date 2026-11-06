@@ -1,0 +1,181 @@
+/* Mobile first: base rules target phone width, and min-width queries add to them. */
+:root {
+  --background: #064f6e;
+  --text: #f5ecc2;
+  --accent: #f99d1b;
+  --secondary: #a8c1cc;
+  --code: #032837;
+  --stripe: #175b78;
+  --rule: #38728b;
+  --gutter: 1rem;
+  --measure: 46rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scrollbar-gutter: stable; }
+
+body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  gap: 1.5rem;
+  min-height: 100vh;
+  margin: 0;
+  padding: var(--gutter);
+  background: var(--background);
+  color: var(--text);
+  font: 1.0625rem/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+}
+
+/* A grid child defaults to min-width: auto, so one long code line would widen the page. */
+body > *, main > *, article > *, .post-body > * { min-width: 0; }
+
+.site-header, main, .site-footer {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.site-header {
+  display: grid;
+  gap: 0.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.site-name { color: var(--text); font-size: 1.25rem; font-weight: 700; text-decoration: none; }
+
+nav { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+nav a { padding-block: 0.25rem; color: var(--secondary); text-decoration: none; }
+nav a:hover { color: var(--accent); }
+
+.site-footer {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--rule);
+  color: var(--secondary);
+  font-size: 0.875rem;
+}
+
+a { color: var(--accent); overflow-wrap: anywhere; }
+
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; overflow-wrap: anywhere; }
+h1 { margin: 0 0 0.5rem; font-size: 1.75rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.2rem; }
+
+.post-meta { margin: 0 0 1.5rem; color: var(--secondary); font-size: 0.875rem; }
+
+hr { border: 0; border-top: 1px solid var(--rule); margin-block: 1.5rem; }
+
+blockquote {
+  margin-inline: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--rule);
+  color: var(--secondary);
+}
+
+img, video, canvas, embed, iframe { max-width: 100%; }
+img { height: auto; }
+
+figure { margin: 1.5rem 0; text-align: center; }
+figure small { display: block; margin-top: 0.25rem; color: var(--secondary); }
+
+code { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.9em; }
+:not(pre) > code { padding: 0.1em 0.3em; background: var(--code); border-radius: 3px; overflow-wrap: anywhere; }
+
+/* Wide content scrolls inside its own box. */
+pre, .table-wrap, .math { overflow-x: auto; }
+pre { padding: 0.75rem; background: var(--code); border-radius: 4px; line-height: 1.45; tab-size: 4; }
+
+/* Pygments token classes. */
+pre .c, pre .c1, pre .cm, pre .cp, pre .cpf, pre .ch, pre .cs { color: var(--secondary); font-style: italic; }
+pre .k, pre .kc, pre .kd, pre .kn, pre .kp, pre .kr, pre .ow { color: var(--accent); }
+pre .kt, pre .nc, pre .nb, pre .bp { color: #7fd1c7; }
+pre .s, pre .s1, pre .s2, pre .sa, pre .sb, pre .sc, pre .sd, pre .se, pre .sh, pre .si, pre .sx, pre .dl { color: #a6d98a; }
+pre .m, pre .mi, pre .mf, pre .mh, pre .mo, pre .mb, pre .il { color: #f7b5a0; }
+pre .nf, pre .fm { color: #ffd479; }
+pre .err { color: inherit; border: 0; }
+
+table { border-collapse: collapse; }
+.table-wrap { margin-block: 1.5rem; }
+th, td { padding: 0.4rem 0.75rem; border: 1px solid var(--rule); }
+th { border-bottom-width: 2px; }
+tbody tr:nth-child(even) { background: var(--stripe); }
+
+.video { aspect-ratio: 16 / 9; margin-block: 1rem; }
+.video iframe { width: 100%; height: 100%; border: 0; }
+
+.toc { margin-bottom: 1.5rem; padding: 0.5rem 0.75rem; background: var(--stripe); border-radius: 4px; }
+
+.footnotes { margin-top: 2rem; padding-top: 0.5rem; border-top: 1px solid var(--rule); font-size: 0.9375rem; }
+
+/* One column on phones with no query: auto-fit adds columns as they fit. */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards > li {
+  display: grid;
+  align-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.75rem;
+  background: var(--code);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+.cards > li:hover { border-color: var(--accent); }
+.cards a { text-decoration: none; }
+.card-meta { color: var(--secondary); font-size: 0.8125rem; }
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+}
+
+.game { position: relative; display: block; overflow: hidden; border-radius: 4px; }
+.game img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.game span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 0.25rem 0.5rem;
+  background: var(--code);
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+#search-box {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: var(--code);
+  color: var(--text);
+  font: inherit;
+}
+
+@media (min-width: 48rem) {
+  :root { --gutter: 2rem; }
+
+  .site-header {
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+
+  nav { justify-content: flex-end; }
+  h1 { font-size: 2.25rem; }
+}
+
+@media (min-width: 80rem) {
+  :root { --measure: 52rem; }
+}
